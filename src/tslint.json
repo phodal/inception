@@ -5,12 +5,14 @@
       true,
       "attribute",
       "app",
+      "feature",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
       "app",
+      "feature",
       "kebab-case"
     ]
   }
