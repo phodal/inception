@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { CustomMaterialModule } from './custom-material.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -11,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CustomMaterialModule
   ],
   declarations: [],
   providers: [
@@ -18,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CustomMaterialModule
   ],
   entryComponents: []
 })
