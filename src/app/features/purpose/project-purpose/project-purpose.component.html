@@ -58,13 +58,37 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
+  <mat-step [stepControl]="balanceGroup">
+    <form [formGroup]="balanceGroup" class="product-balance">
       <ng-template matStepLabel>项⽬权衡滑块</ng-template>
-      <mat-slider min="1" max="5" step="0.5" value="1.5" formControlName="thirdControl" required></mat-slider>
+      <div>
+        <span>时间</span>
+        <mat-slider min="1" max="5" step="1" formControlName="time" required></mat-slider>
+        {{balanceGroup.controls.time.value}}
+      </div>
+      <div>
+        <span>功能范围</span>
+        <mat-slider min="1" max="5" step="1" formControlName="scope" required></mat-slider>
+        {{balanceGroup.controls.scope.value}}
+      </div>
+      <div>
+        <span>用户体验</span>
+        <mat-slider min="1" max="5" step="1" formControlName="experience" required></mat-slider>
+        {{balanceGroup.controls.experience.value}}
+      </div>
+      <div>
+        <span>预算</span>
+        <mat-slider min="1" max="5" step="1" formControlName="budget" required></mat-slider>
+        {{balanceGroup.controls.budget.value}}
+      </div>
+      <div>
+        <span>产品性能</span>
+        <mat-slider min="1" max="5" step="1" formControlName="time" required></mat-slider>
+        {{balanceGroup.controls.time.value}}
+      </div>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext (click)="submitBalance()">Next</button>
       </div>
     </form>
   </mat-step>

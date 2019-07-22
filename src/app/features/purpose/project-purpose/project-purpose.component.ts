@@ -11,7 +11,7 @@ import { StorageService } from '../../../core/services/storage.service';
 export class ProjectPurposeComponent implements OnInit {
   backgroundGroupForm: FormGroup;
   secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
+  balanceGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private storage: StorageService) {
   }
@@ -30,15 +30,33 @@ export class ProjectPurposeComponent implements OnInit {
       ])
     });
 
-    (this.backgroundGroupForm.get('dimens') as FormArray).at(0).get('items').setValue([{
-      content: ''
-    }]);
-
     this.secondFormGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    this.thirdFormGroup = this.formBuilder.group({
-      thirdControl: ['', Validators.required]
+
+    this.balanceGroup = this.formBuilder.group({
+      time: [3, Validators.required],
+      experience: [3, Validators.required],
+      budget: [3, Validators.required],
+      performance: [3, Validators.required],
+      scope: [3, Validators.required]
+    });
+
+    this.initForm();
+  }
+
+  initForm() {
+    const balance = this.storage.getItem('inception.balance');
+    if (!balance) {
+      return;
+    }
+
+    this.balanceGroup.patchValue({
+      time: balance.time,
+      experience: balance.experience,
+      budget: balance.budget,
+      performance: balance.performance,
+      scope: balance.scope
     });
   }
 
@@ -92,5 +110,9 @@ export class ProjectPurposeComponent implements OnInit {
 
   submitBackground() {
     this.storage.setItem('background', this.backgroundGroupForm.value);
+  }
+
+  submitBalance() {
+    this.storage.setItem('inception.balance', this.balanceGroup.value);
   }
 }
