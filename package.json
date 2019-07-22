@@ -1,5 +1,5 @@
 {
-  "name": "clean-angular",
+  "name": "inception",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --prod --base-href 'https://inception.phodal.com' && npx angular-cli-ghpages"
   },
   "private": true,
   "dependencies": {
@@ -41,6 +42,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "angular-cli-ghpages": "^0.5.3",
     "codelyzer": "~4.5.0",
     "husky": "^1.3.1",
     "jasmine-core": "~2.99.1",
