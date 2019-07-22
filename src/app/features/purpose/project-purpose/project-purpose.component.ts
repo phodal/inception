@@ -30,8 +30,6 @@ export class ProjectPurposeComponent implements OnInit {
       ])
     });
 
-    console.log((this.backgroundGroupForm.get('dimens') as FormArray).at(0).get('items'));
-
     (this.backgroundGroupForm.get('dimens') as FormArray).at(0).get('items').setValue([{
       content: ''
     }]);

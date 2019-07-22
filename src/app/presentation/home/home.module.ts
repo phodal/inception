@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
-import { CoreModule } from '../../core/core.module';
 
 const HOME_ROUTER_CONFIG: Routes = [
   { path: '', component: HomeComponent }
