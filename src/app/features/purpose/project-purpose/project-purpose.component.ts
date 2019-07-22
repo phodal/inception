@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { StorageService } from '../../../core/services/storage.service';
+
 @Component({
   selector: 'feature-project-purpose',
   templateUrl: './project-purpose.component.html',
@@ -11,7 +13,7 @@ export class ProjectPurposeComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private storage: StorageService) {
   }
 
   ngOnInit() {
@@ -88,5 +90,9 @@ export class ProjectPurposeComponent implements OnInit {
     return this.formBuilder.group({
       content: ['', Validators.required]
     });
+  }
+
+  submitBackground() {
+    this.storage.setItem('background', this.backgroundGroupForm.value);
   }
 }

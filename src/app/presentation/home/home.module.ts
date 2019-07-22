@@ -4,14 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
+import { CoreModule } from '../../core/core.module';
 
 const HOME_ROUTER_CONFIG: Routes = [
   { path: '', component: HomeComponent }
 ];
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forChild(HOME_ROUTER_CONFIG), FeaturesModule],
-  declarations: [HomeComponent],
+  imports: [
+    SharedModule,
+    RouterModule.forChild(HOME_ROUTER_CONFIG),
+    FeaturesModule
+  ],
+  declarations: [HomeComponent]
 })
 export class HomeModule {
 }
