@@ -1,4 +1,5 @@
 <mat-horizontal-stepper #stepper>
+
   <mat-step [stepControl]="backgroundGroupForm">
     <form [formGroup]="backgroundGroupForm">
       <ng-template matStepLabel>项⽬背景</ng-template>
@@ -6,18 +7,32 @@
         <mat-divider *ngIf="formData.controls.length > 1 && i > 0"></mat-divider>
         <br>
         <div [formGroupName]="i">
-          <mat-form-field>
-            <input matInput placeholder="标题" formControlName="title" required>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput placeholder="Content" formControlName="content" required>
-          </mat-form-field>
-
           <button type="button" mat-mini-fab color="warn"
                   *ngIf="backgroundGroupForm.controls.dimens.controls.length > 1"
                   (click)="removeUnit(i)">
             删除
+          </button>
+
+          <mat-form-field>
+            <input matInput placeholder="标题" formControlName="title" required>
+          </mat-form-field>
+
+          <span formArrayName="items" *ngFor="let subUnit of getSubFormData(i).controls; let j=index">
+            <span [formGroupName]="j">
+              <mat-form-field>
+                <input matInput placeholder="Content" formControlName="content" required>
+              </mat-form-field>
+
+              <button mat-mini-fab color="warn" type="button" color="primary"
+                      *ngIf="getContentItemFormArray(i).controls && getContentItemFormArray(i).controls.length > 1"
+                      (click)="removeSubUnit(i, j)">
+                删除
+              </button>
+            </span>
+          </span>
+
+          <button mat-mini-fab color="warn" type="button" color="primary" (click)="addSubUnit(i)">
+            <mat-icon>add box</mat-icon>
           </button>
         </div>
       </div>
@@ -30,6 +45,7 @@
       </div>
     </form>
   </mat-step>
+
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>项目期望</ng-template>
@@ -45,7 +61,7 @@
   <mat-step [stepControl]="thirdFormGroup">
     <form [formGroup]="thirdFormGroup">
       <ng-template matStepLabel>项⽬权衡滑块</ng-template>
-        <mat-slider min="1" max="5" step="0.5" value="1.5"  formControlName="thirdControl" required></mat-slider>
+      <mat-slider min="1" max="5" step="0.5" value="1.5" formControlName="thirdControl" required></mat-slider>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>

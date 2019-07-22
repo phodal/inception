@@ -19,9 +19,21 @@ export class ProjectPurposeComponent implements OnInit {
       dimens: this.formBuilder.array([
         this.formBuilder.group({
           title: ['', Validators.required],
-          content: []
-        })])
+          items: this.formBuilder.array([
+            this.formBuilder.group({
+              content: ['', Validators.required]
+            })
+          ])
+        })
+      ])
     });
+
+    console.log((this.backgroundGroupForm.get('dimens') as FormArray).at(0).get('items'));
+
+    (this.backgroundGroupForm.get('dimens') as FormArray).at(0).get('items').setValue([{
+      content: ''
+    }]);
+
     this.secondFormGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
@@ -30,31 +42,51 @@ export class ProjectPurposeComponent implements OnInit {
     });
   }
 
-  /**
-   * Add new unit row into form
-   */
   addUnit() {
     const control = this.backgroundGroupForm.get('dimens') as FormArray;
-    console.log(control);
     control.push(this.getNewAction());
+  }
+
+  addSubUnit(i) {
+    this.getContentItemFormArray(i).push(this.getNewSubAction());
   }
 
   get formData() {
     return this.backgroundGroupForm.get('dimens') as FormArray;
   }
 
-  /**
-   * Remove unit row from form on click delete button
-   */
+  getSubFormData(i) {
+    return this.getContentItemFormArray(i);
+  }
+
+  getContentItemFormArray(i) {
+    return (this.backgroundGroupForm.get('dimens') as FormArray).at(i).get('items') as FormArray;
+  }
+
   removeUnit(i: number) {
     const control = this.backgroundGroupForm.get('dimens') as FormArray;
     control.removeAt(i);
   }
 
+  removeSubUnit(i: number, j: number) {
+    if (this.getContentItemFormArray(i).controls.length === 1) {
+      return;
+    }
+    this.getContentItemFormArray(i).removeAt(j);
+  }
+
   private getNewAction() {
     return this.formBuilder.group({
       title: ['', Validators.required],
-      content: ['', [Validators.required]],
+      items: this.formBuilder.array([
+        this.getNewSubAction()
+      ])
+    });
+  }
+
+  private getNewSubAction() {
+    return this.formBuilder.group({
+      content: ['', Validators.required]
     });
   }
 }
