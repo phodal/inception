@@ -10,6 +10,14 @@ const routes: Routes = [
   {
     path: 'technical',
     loadChildren: () => import('./presentation/technical/technical.module').then(m => m.TechnicalModule)
+  },
+  {
+    path: 'positioning',
+    loadChildren: () => import('./presentation/positioning/positioning.module').then(m => m.PositioningModule)
+  },
+  {
+    path: 'vision',
+    loadChildren: () => import('./presentation/vision/vision.module').then(m => m.VisionModule)
   }
 ];
 
