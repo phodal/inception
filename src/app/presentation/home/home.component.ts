@@ -77,8 +77,10 @@ export class HomeComponent implements OnInit {
     console.log(action, event);
   }
 
-  eventTimesChanged($event: CalendarEventTimesChangedEvent<any>) {
-
+  eventTimesChanged({ event, newStart, newEnd }: CalendarEventTimesChangedEvent) {
+    event.start = newStart;
+    event.end = newEnd;
+    this.refresh.next();
   }
 
   addEvent(event?: any, item?: any): void {
