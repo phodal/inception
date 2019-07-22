@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href 'https://inception.phodal.com' && npx angular-cli-ghpages"
+    "deploy": "ng build --prod --base-href 'https://inception.phodal.com' && echo 'inception.phodal.com' > dist/CNAME && npx angular-cli-ghpages"
   },
   "private": true,
   "dependencies": {
