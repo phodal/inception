@@ -13,8 +13,10 @@ export class AppComponent {
 
   constructor(private router: Router, private storageService: StorageService) {
     const lastPage = this.storageService.getItem('last.page');
-    this.router.navigateByUrl(lastPage).then((result) => {
-    });
+    if (lastPage) {
+      this.router.navigateByUrl(lastPage).then((result) => {
+      });
+    }
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
