@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
@@ -13,7 +15,11 @@ const HOME_ROUTER_CONFIG: Routes = [
   imports: [
     SharedModule,
     RouterModule.forChild(HOME_ROUTER_CONFIG),
-    FeaturesModule
+    FeaturesModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   declarations: [HomeComponent]
 })

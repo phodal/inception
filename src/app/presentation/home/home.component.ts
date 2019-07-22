@@ -1,6 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { GetAllElephantsUsecase } from '../../domain/elephant/usecases/get-all-elephants.usecase';
-import { ElephantModel } from '../../domain/elephant/model/elephant.model';
+import { CalendarEventAction, CalendarEvent, CalendarView, CalendarEventTimesChangedEvent } from 'angular-calendar';
+import { Subject } from 'rxjs';
+import {
+  startOfDay,
+  subDays,
+  addDays, addHours, endOfDay
+} from 'date-fns';
+
+export const colors: any = {
+  red: {
+    primary: '#ad2121',
+    secondary: '#FAE3E3'
+  },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF'
+  },
+  yellow: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA'
+  }
+};
 
 @Component({
   selector: 'app-home',
@@ -8,16 +28,76 @@ import { ElephantModel } from '../../domain/elephant/model/elephant.model';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  elephants: any[];
+  view: CalendarView = CalendarView.Day;
+  CalendarView = CalendarView;
+  refresh: Subject<any> = new Subject();
+  viewDate: Date = new Date();
+  modalData: {
+    action: string;
+    event: CalendarEvent;
+  };
 
-  constructor(private getAllElephants: GetAllElephantsUsecase) {
+  actions: CalendarEventAction[] = [
+    {
+      label: '<i class="fa fa-fw fa-pencil"></i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Edited', event);
+      }
+    },
+    {
+      label: '<i class="fa fa-fw fa-times"></i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter(iEvent => iEvent !== event);
+        this.handleEvent('Deleted', event);
+      }
+    }
+  ];
+
+  events: CalendarEvent[] = [{
+    start: addHours(startOfDay(new Date()), 2),
+    end: addHours(startOfDay(new Date()), 3),
+    title: 'A draggable and resizable event',
+    color: colors.yellow,
+    actions: this.actions,
+    resizable: {
+      beforeStart: true,
+      afterEnd: true
+    },
+    draggable: true
+  }];
+
+  constructor() {
   }
 
   ngOnInit() {
-    this.elephants = [];
-    this.getAllElephants.execute(null).subscribe((value: ElephantModel) => {
-      this.elephants.push(value);
-    });
   }
 
+  handleEvent(action: string, event: CalendarEvent): void {
+    console.log(action, event);
+  }
+
+  eventTimesChanged($event: CalendarEventTimesChangedEvent<any>) {
+
+  }
+
+  addEvent(): void {
+    this.events = [
+      ...this.events,
+      {
+        title: 'New event',
+        start: startOfDay(new Date()),
+        end: endOfDay(new Date()),
+        color: colors.red,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        }
+      }
+    ];
+  }
+
+  deleteEvent(eventToDelete: CalendarEvent) {
+    this.events = this.events.filter(event => event !== eventToDelete);
+  }
 }
