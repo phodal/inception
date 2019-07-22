@@ -1,37 +1,36 @@
 import { Component } from '@angular/core';
 import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { animate, animateChild, group, query, style, transition, trigger } from '@angular/animations';
-import { get } from 'lodash';
 
 import { StorageService } from './core/services/storage.service';
 
 export const slideInAnimation =
   trigger('routeAnimations', [
-    transition('HomePage <=> TechnicalPage', [
+    transition('leave <=> enter', [
       style({ position: 'relative' }),
       query(':enter, :leave', [
         style({
           position: 'absolute',
           top: 0,
-          left: 0,
+          right: 0,
           width: '100%'
         })
       ]),
       query(':enter', [
-        style({ left: '-100%'})
-      ]),
-      query(':leave', animateChild()),
-      group([
-        query(':leave', [
-          animate('300ms ease-out', style({ left: '100%'}))
-        ]),
-        query(':enter', [
-          animate('300ms ease-out', style({ left: '0%'}))
-        ])
+        style({ right: '100%'})
       ]),
       query(':enter', animateChild()),
+      group([
+        query(':leave', [
+          animate('300ms ease-out', style({ right: '100%'}))
+        ]),
+        query(':enter', [
+          animate('300ms ease-out', style({ right: '0%'}))
+        ])
+      ]),
+      query(':leave', animateChild()),
     ]),
-    transition('HomePage <=> *', [
+    transition('enter <=> leave', [
       style({ position: 'relative' }),
       query(':enter, :leave', [
         style({
@@ -67,6 +66,7 @@ export const slideInAnimation =
 })
 export class AppComponent {
   title = 'Inception';
+  private lastState = 'enter';
 
   constructor(private router: Router, private storageService: StorageService) {
     const lastPage = this.storageService.getItem('last.page');
@@ -77,12 +77,17 @@ export class AppComponent {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
+        if (this.lastState === 'enter') {
+          this.lastState = 'leave';
+        } else {
+          this.lastState = 'enter';
+        }
         this.storageService.setItem('last.page', event.url);
       }
     });
   }
 
-  getRouteAnimation(outlet) {
-    return outlet && outlet.activatedRouteData && get(outlet.activatedRouteData, 'animation');
+  getRouteAnimation() {
+    return this.lastState;
   }
 }
