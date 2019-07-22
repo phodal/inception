@@ -26,9 +26,6 @@ $border_color: #ccc;
   position: relative;
   padding-left: 21px;
   align-items: center;
-  border: 1px solid transparent;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
 }
 
 .tree-title::before {
@@ -97,11 +94,14 @@ $border_color: #ccc;
   background-color: transparent;
   border: none;
   border-radius: 2px;
-  outline-color: none;
+  outline-color: initial;
   cursor: pointer;
-  padding: 0;
   padding: 3px;
   transition: color 0.2s ease-in-out;
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 .add-btn:hover, .submit-btn:hover {
@@ -125,6 +125,11 @@ $border_color: #ccc;
   font-size: 14px;
   align-items: center;
   display: flex;
+
+  .mat-icon {
+    top: -3px;
+    position: relative;
+  }
 }
 
 /* childrens styles */

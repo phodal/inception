@@ -3,13 +3,13 @@
     <div *ngIf='config' [ngClass]="{hidden : element.options.hidden}">
       <div class='tree-title d-inline-flex pos-relative' [ngClass]="{destenationTop : element.options.destenationTop, destenationBottom: element.options.destenationBottom}" *ngIf="!element.options.edit;else onEdit">
         <div *ngIf="!config.setItemsAsLinks; else link" [ngClass]="{addOpacity : element.options.currentlyDragging}" libDropElement
-          [item]='element' class='draggable-item'>
+          [item]='element' class='draggable-item' (click)="enableRenameMode(element)">
           {{element.name}}
         </div>
         <ng-template #link>
           <div [ngClass]="{addOpacity : element.options.currentlyDragging}" libDropElement
           [item]='element' class='draggable-item'>
-            <a [href]="element.options.href" class='tree-link'>{{element.name}}</a>
+            <a [href]="element.options.href" class='tree-link' (click)="enableRenameMode(element)">{{element.name}}</a>
           </div>
         </ng-template>
         <div class='d-flex buttons-bar' *ngIf="config.showActionButtons && element.options.showActionButtons && !element.options.disabled">
@@ -18,11 +18,11 @@
               <mat-icon>add</mat-icon>
             </button>
           </div>
-          <div class='d-flex'>
-            <button class="tree-btn edit-btn" *ngIf="config.showRenameButtons" (click)="enableRenameMode(element)">
-              <mat-icon>edit</mat-icon>
-            </button>
-          </div>
+<!--          <div class='d-flex'>-->
+<!--            <button class="tree-btn edit-btn" *ngIf="config.showRenameButtons" (click)="enableRenameMode(element)">-->
+<!--              <mat-icon>edit</mat-icon>-->
+<!--            </button>-->
+<!--          </div>-->
           <div class='d-flex'>
             <button class="tree-btn delete-btn" *ngIf="config.showDeleteButtons && element.options.showDeleteButton" (click)="onSubmitDelete( element )">
               <mat-icon>clear</mat-icon>
@@ -35,12 +35,12 @@
         <div class='show-hide-switch' *ngIf="config.enableExpandButtons && element.options.showExpandButton && element.childrens.length > 0 && !element.options.disabled">
           <div *ngIf="element.options.hideChildrens; else visible">
             <button class='tree-btn show-btn' (click)='element.options.hideChildrens = false'>
-              <mat-icon>add</mat-icon>
+              <mat-icon color="primary">add</mat-icon>
             </button>
           </div>
           <ng-template #visible>
             <button class='tree-btn hide-btn' (click)='element.options.hideChildrens = true'>
-              <mat-icon>remove</mat-icon>
+              <mat-icon color="primary">remove</mat-icon>
             </button>
           </ng-template>
         </div>
