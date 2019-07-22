@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CalendarEventAction, CalendarEvent, CalendarView, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import {
@@ -24,6 +24,7 @@ export const colors: any = {
 
 @Component({
   selector: 'app-home',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -54,8 +55,8 @@ export class HomeComponent implements OnInit {
   ];
 
   events: CalendarEvent[] = [{
-    start: addHours(startOfDay(new Date()), 2),
-    end: addHours(startOfDay(new Date()), 3),
+    start: addHours(startOfDay(new Date()), 8),
+    end: addHours(startOfDay(new Date()), 10),
     title: 'A draggable and resizable event',
     color: colors.yellow,
     actions: this.actions,
@@ -80,7 +81,21 @@ export class HomeComponent implements OnInit {
 
   }
 
-  addEvent(): void {
+  addEvent(event?: any, item?: any): void {
+    if (event) {
+      this.events.push({
+        start: event,
+        title: 'New event',
+        color: colors.red,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        }
+      });
+      this.refresh.next();
+      return;
+    }
     this.events = [
       ...this.events,
       {
@@ -95,6 +110,8 @@ export class HomeComponent implements OnInit {
         }
       }
     ];
+
+    this.refresh.next();
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {
