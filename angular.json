@@ -28,7 +28,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/material-design-icons/iconfont/material-icons.css"
+              "./node_modules/material-design-icons/iconfont/material-icons.css",
+              "./node_modules/normalize.css/normalize.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
