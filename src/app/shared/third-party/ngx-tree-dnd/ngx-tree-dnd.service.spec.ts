@@ -85,7 +85,7 @@ describe('NgxTreeService', () => {
 
   // it('service method deleteItem work fine', (done) => {
   //     let clearActionSpy = spyOn(service, 'clearAction');
-  //     service.onStartDeleteItem.subscribe((event) => {
+  //     service.onstartDeleteItem.subscribe((event) => {
   //         expect(event.element).toEqual(testTree[0]);
   //         expect(event.parent).toBe('root');
   //         done();

@@ -118,27 +118,27 @@ export class NgxTreeParentComponent implements AfterViewInit {
     );
     this.treeService.onStartRenameItem.subscribe(
       (event) => {
-        this.onStartRenameItem.emit(event);
+        this.onstartRenameItem.emit(event);
       }
     );
     this.treeService.onFinishRenameItem.subscribe(
       (event) => {
-        this.onFinishRenameItem.emit(event);
+        this.onfinishRenameItem.emit(event);
       }
     );
     this.treeService.onStartDeleteItem.subscribe(
       (event) => {
-        this.onStartDeleteItem.emit(event);
+        this.onstartDeleteItem.emit(event);
       }
     );
     this.treeService.onFinishDeleteItem.subscribe(
       (event) => {
-        this.onFinishDeleteItem.emit(event);
+        this.onfinishDeleteItem.emit(event);
       }
     );
     this.treeService.onCancelDeleteItem.subscribe(
       (event) => {
-        this.onCancelDeleteItem.emit(event);
+        this.oncancelDeleteItem.emit(event);
       }
     );
     this.treeService.onDragEnter.subscribe(

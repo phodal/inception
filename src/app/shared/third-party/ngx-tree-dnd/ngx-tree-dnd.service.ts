@@ -141,9 +141,9 @@ export class NgxTreeService {
   /*
    Delete element.
    It`s accepts 'id' for find item on tree.
-   Emit onStartDeleteItem Subject before delete.
-   Emit onFinishDeleteItem Subject after submit delete.
-   Emit onCancelDeleteItem Subject after on cancel delete.
+   Emit onstartDeleteItem Subject before delete.
+   Emit onfinishDeleteItem Subject after submit delete.
+   Emit oncancelDeleteItem Subject after on cancel delete.
   */
   public deleteItem(id) {
     this.elementFinder(this.treeStorage, id);

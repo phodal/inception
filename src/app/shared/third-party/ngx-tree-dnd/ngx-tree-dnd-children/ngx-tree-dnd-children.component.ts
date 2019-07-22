@@ -97,9 +97,9 @@ export class NgxTreeChildrenComponent implements AfterViewInit {
   }
 
   /*
-    Event: onStartRenameItem;
+    Event: onstartRenameItem;
     Enable rename mode in element
-    Call onStartRenameItem() from tree service.
+    Call onstartRenameItem() from tree service.
   */
   enableRenameMode(element) {
     element.options.edit = true;
@@ -119,7 +119,7 @@ export class NgxTreeChildrenComponent implements AfterViewInit {
   }
 
   /*
-    Event: onFinishRenameItem;
+    Event: onfinishRenameItem;
     Check is form valid.
     Call addNewItem() from tree service.
   */
@@ -135,9 +135,9 @@ export class NgxTreeChildrenComponent implements AfterViewInit {
 
   /*
     Events:
-    onStartDeleteItem,
-    onFinishDeleteItem,
-    onCancelDeleteItem.
+    onstartDeleteItem,
+    onfinishDeleteItem,
+    oncancelDeleteItem.
     Check is item edit, then if name empty delete item.
     Call deleteItem() from tree service.
   */
