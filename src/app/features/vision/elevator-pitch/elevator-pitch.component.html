@@ -1,0 +1,30 @@
+<form class="example-form" [formGroup]="pitchForm">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="对于" formControlName="as" [errorStateMatcher]="matcher">
+    <mat-hint>对于 某一人群，</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="他们想" formControlName="think" [errorStateMatcher]="matcher">
+    <mat-hint>他们想</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="我们的产品" formControlName="product" [errorStateMatcher]="matcher">
+    <mat-hint>我们的产品</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="是⼀个" formControlName="is" [errorStateMatcher]="matcher">
+    <mat-hint>是⼀个</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="它可以" formControlName="can" [errorStateMatcher]="matcher">
+    <mat-hint>它可以</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="但它不同于" formControlName="different" [errorStateMatcher]="matcher">
+    <mat-hint>但它不同于</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="它的优势是" formControlName="advantage" [errorStateMatcher]="matcher">
+    <mat-hint>它的优势是 </mat-hint>
+  </mat-form-field>
+</form>
