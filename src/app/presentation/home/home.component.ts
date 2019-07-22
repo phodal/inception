@@ -1,11 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { CalendarEventAction, CalendarEvent, CalendarView, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import {
   startOfDay,
-  subDays,
-  addDays, addHours, endOfDay
+  addHours, endOfDay
 } from 'date-fns';
+import { isEmpty } from 'lodash';
+
+import { StorageService } from '../../core/services/storage.service';
 
 export const colors: any = {
   red: {
@@ -28,15 +30,11 @@ export const colors: any = {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   view: CalendarView = CalendarView.Day;
   CalendarView = CalendarView;
   refresh: Subject<any> = new Subject();
   viewDate: Date = new Date();
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
 
   actions: CalendarEventAction[] = [
     {
@@ -67,20 +65,39 @@ export class HomeComponent implements OnInit {
     draggable: true
   }];
 
-  constructor() {
+  constructor(private storageService: StorageService) {
   }
 
   ngOnInit() {
+    const calendarEvents = this.storageService.getItem('inception.calendar');
+    if (!isEmpty(calendarEvents)) {
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < calendarEvents.length; i++) {
+        calendarEvents[i].start = new Date(calendarEvents[i].start);
+        calendarEvents[i].end = new Date(calendarEvents[i].end);
+      }
+      this.events = calendarEvents;
+      this.refresh.next();
+    }
+  }
+
+  ngOnDestroy() {
+    this.storageEvents();
+  }
+
+  private storageEvents() {
+    this.storageService.setItem('inception.calendar', this.events);
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    console.log(action, event);
+    this.storageEvents();
   }
 
   eventTimesChanged({ event, newStart, newEnd }: CalendarEventTimesChangedEvent) {
     event.start = newStart;
     event.end = newEnd;
     this.refresh.next();
+    this.storageEvents();
   }
 
   addEvent(event?: any, item?: any): void {
@@ -96,6 +113,8 @@ export class HomeComponent implements OnInit {
         }
       });
       this.refresh.next();
+
+      this.storageEvents();
       return;
     }
     this.events = [
@@ -113,10 +132,12 @@ export class HomeComponent implements OnInit {
       }
     ];
 
+    this.storageEvents();
     this.refresh.next();
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter(event => event !== eventToDelete);
+    this.storageEvents();
   }
 }
