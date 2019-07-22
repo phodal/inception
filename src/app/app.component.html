@@ -13,4 +13,6 @@
   </button>
 </div>
 
-<router-outlet></router-outlet>
+<div [@routeAnimations]="getRouteAnimation(outlet)" >
+  <router-outlet></router-outlet>
+</div>

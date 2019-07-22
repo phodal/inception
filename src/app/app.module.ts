@@ -17,10 +17,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule
   ],
   providers: [
-/*    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy
-    }*/
+
   ],
   bootstrap: [AppComponent]
 })

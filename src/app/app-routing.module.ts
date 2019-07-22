@@ -1,15 +1,17 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: '/home'},
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: 'home',
-    loadChildren: () => import('./presentation/home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./presentation/home/home.module').then(m => m.HomeModule),
+    data: { animation: 'HomePage' }
   },
   {
     path: 'technical',
-    loadChildren: () => import('./presentation/technical/technical.module').then(m => m.TechnicalModule)
+    loadChildren: () => import('./presentation/technical/technical.module').then(m => m.TechnicalModule),
+    data: { animation: 'TechnicalPage' }
   },
   {
     path: 'positioning',
@@ -22,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
