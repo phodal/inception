@@ -1,5 +1,5 @@
-<div id='threeWrapper' *ngIf="treeView" [style.font-size.px]='userConfig.setFontSize'>
-    <div class='root-title d-inline-flex pos-relative' *ngIf="!userConfig.options.edit;else onEdit">
+<div id='threeWrapper' *ngIf="treeView">
+    <div class='root-title d-inline-flex pos-relative' *ngIf="!userConfig?.options.edit;else onEdit">
       <div class='root-text'>
         {{userConfig.rootTitle}}
       </div>
@@ -20,7 +20,9 @@
     <ng-template #onEdit>
       <div class='d-inline-flex'>
         <form [formGroup]="renameForm" class='d-flex' (submit)='submitRootRename()'>
-          <input type="text" class='input-rename' formControlName="name" libAutoFocus="true" [style.font-size.px]='userConfig.setFontSize'>
+          <mat-form-field>
+            <input matInput type="text" class='input-rename' formControlName="name" libAutoFocus="true">
+          </mat-form-field>
         </form>
         <div class='d-flex'>
           <button class='tree-btn submit-btn' (click)='submitRootRename()'>

@@ -1,2 +1,11 @@
 <span>业务全景图</span>
-<lib-ngx-tree-component [treeData]='youTree' [config]='config'></lib-ngx-tree-component>
+<lib-ngx-tree-component
+  #treeComponent
+  [treeData]='treeData'
+  [config]='config'
+  (ondrop)="updateTree()"
+  (onadditem)="updateTree()"
+  (onfinishRenameItem)="updateTree()"
+  (onfinishDeleteItem)="updateTree()"
+>
+</lib-ngx-tree-component>

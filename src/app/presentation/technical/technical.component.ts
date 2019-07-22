@@ -1,29 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { isEmpty } from 'lodash';
+
+import { NgxTreeParentComponent } from '../../shared/third-party/ngx-tree-dnd/ngx-tree-dnd-parent/ngx-tree-dnd-parent.component';
+import { StorageService } from '../../core/services/storage.service';
 
 @Component({
   selector: 'app-technical',
   templateUrl: './technical.component.html',
   styleUrls: ['./technical.component.scss']
 })
-export class TechnicalComponent implements OnInit {
-  youTree = [
-    {
-      name: '首页',
-      id: 1,
-      options: {
-        hidden: false,
-        position: 1,
-        href: 'https://github.com/Zicrael/ngx-tree-dnd'
-      },
-      childrens: [
-        {
-          name: 'Iphone',
-          id: 2,
-          childrens: []
-        }
-      ]
-    }
-  ];
+export class TechnicalComponent implements OnInit, AfterViewInit {
+  @ViewChild('treeComponent', null) treeComponent: NgxTreeParentComponent;
+
+  viewAlreadyInit = false;
+  treeData: any = [];
 
   config = {
     showActionButtons: true,
@@ -34,15 +24,30 @@ export class TechnicalComponent implements OnInit {
     enableExpandButtons: true,
     enableDragging: true,
     rootTitle: '',
-    validationText: 'Enter valid company',
+    validationText: '',
     minCharacterLength: 2,
     setItemsAsLinks: false
   };
 
-  constructor() {
+  constructor(private storageService: StorageService) {
   }
 
   ngOnInit() {
+
   }
 
+  ngAfterViewInit() {
+    const that = this;
+    const storageItem = this.storageService.getItem('tree');
+    if (!isEmpty(storageItem)) {
+      setTimeout(() => {
+        that.treeData = JSON.parse(JSON.stringify(storageItem));
+      });
+    }
+  }
+
+
+  updateTree() {
+    this.storageService.setItem('tree', this.treeData);
+  }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material';
+import { MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 
 import { AutoFocusDirective } from './directives/ngx-tree-dnd-autofocus.directive';
 import { DragElementsDirective } from './directives/ngx-tree-dnd-drag.directive';
@@ -13,7 +13,9 @@ import { NgxTreeChildrenComponent } from './ngx-tree-dnd-children/ngx-tree-dnd-c
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   declarations: [
     AutoFocusDirective,

@@ -48,7 +48,9 @@
       <ng-template #onEdit>
         <div class='tree-title d-inline-flex'>
           <form [formGroup]="renameForm" class='d-flex' (submit)='submitRename(element)'>
-            <input type="text" class='input-rename' formControlName="name" libAutoFocus="true" [style.font-size.px]='config.setFontSize'>
+            <mat-form-field>
+              <input matInput type="text" class='input-rename' formControlName="name" libAutoFocus="true">
+            </mat-form-field>
           </form>
           <div class='d-flex'>
             <button class='tree-btn submit-btn' (click)='submitRename(element)'>
