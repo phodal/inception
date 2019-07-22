@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CustomMaterialModule } from './custom-material.module';
+import { NgxTreeDndModule } from './third-party/ngx-tree-dnd/ngx-tree-dnd.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { CustomMaterialModule } from './custom-material.module';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    NgxTreeDndModule
   ],
   declarations: [],
   providers: [
@@ -22,7 +24,8 @@ import { CustomMaterialModule } from './custom-material.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    NgxTreeDndModule
   ],
   entryComponents: []
 })
