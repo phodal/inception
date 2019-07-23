@@ -104,6 +104,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (event) {
       this.events.push({
         start: event,
+        end: addHours(event, 1),
         title: 'New event',
         color: colors.red,
         draggable: true,
