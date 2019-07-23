@@ -9,6 +9,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AddWizardComponent implements OnInit {
   public steps: string[];
   public selectedStep = 0;
+  STEP_MAPS = {
+    purpose: {
+      name: '项⽬背景'
+    },
+    canvas: {
+      name: '商业画布'
+    },
+    balance: {
+      name: '权衡滑块'
+    },
+    metric: {
+      name: '成功度量标准'
+    }
+  };
 
   constructor(private router: Router, private route: ActivatedRoute) {
   }
