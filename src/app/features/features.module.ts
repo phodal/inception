@@ -8,12 +8,14 @@ import { ProjectPurposeComponent } from './purpose/project-purpose/project-purpo
 import { ElevatorPitchComponent } from './vision/elevator-pitch/elevator-pitch.component';
 import { BusinessCanvasComponent } from './purpose/business-canvas/business-canvas.component';
 import { PurposeComponent } from './purpose/purpose.component';
+import { ProjectBalanceComponent } from './purpose/project-balance/project-balance.component';
 
 @NgModule({
   declarations: [
     PurposeComponent,
     ProjectPurposeComponent,
     BusinessCanvasComponent,
+    ProjectBalanceComponent,
 
     ElevatorPitchComponent
   ],
@@ -21,6 +23,7 @@ import { PurposeComponent } from './purpose/purpose.component';
     PurposeComponent,
     ProjectPurposeComponent,
     BusinessCanvasComponent,
+    ProjectBalanceComponent,
 
     ElevatorPitchComponent
   ],

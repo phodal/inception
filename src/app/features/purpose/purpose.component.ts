@@ -17,30 +17,7 @@ export class PurposeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.balanceGroup = this.formBuilder.group({
-      time: [3, Validators.required],
-      experience: [3, Validators.required],
-      budget: [3, Validators.required],
-      performance: [3, Validators.required],
-      scope: [3, Validators.required]
-    });
 
-    this.initForm();
-  }
-
-  initForm() {
-    const balance = this.storage.getItem('inception.balance');
-    if (!balance) {
-      return;
-    }
-
-    this.balanceGroup.patchValue({
-      time: balance.time,
-      experience: balance.experience,
-      budget: balance.budget,
-      performance: balance.performance,
-      scope: balance.scope
-    });
   }
 
   submitBalance() {
@@ -48,10 +25,10 @@ export class PurposeComponent implements OnInit {
   }
 
   submitBackgroundForm() {
-    console.log(this.backgroundGroupForm);
+    this.storage.setItem('inception.background', this.balanceGroup.value);
   }
 
   submitCanvasForm() {
-    console.log(this.businessCanvasFormGroup);
+    this.storage.setItem('inception.canvas', this.balanceGroup.value);
   }
 }

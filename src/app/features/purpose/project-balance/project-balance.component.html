@@ -1,0 +1,31 @@
+<form [formGroup]="form" class="product-balance">
+  <div>
+    <span>时间</span>
+    <mat-slider min="1" max="5" step="1" formControlName="time" required></mat-slider>
+    {{form.controls.time.value}}
+  </div>
+  <div>
+    <span>功能范围</span>
+    <mat-slider min="1" max="5" step="1" formControlName="scope" required></mat-slider>
+    {{form.controls.scope.value}}
+  </div>
+  <div>
+    <span>用户体验</span>
+    <mat-slider min="1" max="5" step="1" formControlName="experience" required></mat-slider>
+    {{form.controls.experience.value}}
+  </div>
+  <div>
+    <span>预算</span>
+    <mat-slider min="1" max="5" step="1" formControlName="budget" required></mat-slider>
+    {{form.controls.budget.value}}
+  </div>
+  <div>
+    <span>产品性能</span>
+    <mat-slider min="1" max="5" step="1" formControlName="time" required></mat-slider>
+    {{form.controls.time.value}}
+  </div>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext (click)="submitBalance()">Next</button>
+  </div>
+</form>
