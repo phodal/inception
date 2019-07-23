@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   viewDate: Date = new Date();
 
   events: CalendarEvent[] = [];
+  minHour = 8;
+  maxHour = 20;
 
   constructor(private storageService: StorageService) {
   }
@@ -71,7 +73,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.storageService.setItem('inception.calendar', this.events);
   }
 
-  handleEvent(action: string, event: CalendarEvent): void {
+  handleEvent(event: any): void {
     this.storageEvents();
   }
 

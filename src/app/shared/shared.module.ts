@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CustomMaterialModule } from './custom-material.module';
 import { NgxTreeDndModule } from './third-party/ngx-tree-dnd/ngx-tree-dnd.module';
+import { CalendarHeaderComponent } from './components/calendar-header/calendar-header.component';
+import { CalendarCommonModule } from 'angular-calendar';
 
 @NgModule({
   imports: [
@@ -15,9 +17,12 @@ import { NgxTreeDndModule } from './third-party/ngx-tree-dnd/ngx-tree-dnd.module
     HttpClientModule,
     ReactiveFormsModule,
     CustomMaterialModule,
-    NgxTreeDndModule
+    NgxTreeDndModule,
+    CalendarCommonModule
   ],
-  declarations: [],
+  declarations: [
+    CalendarHeaderComponent
+  ],
   providers: [
   ],
   exports: [
@@ -25,7 +30,8 @@ import { NgxTreeDndModule } from './third-party/ngx-tree-dnd/ngx-tree-dnd.module
     FormsModule,
     ReactiveFormsModule,
     CustomMaterialModule,
-    NgxTreeDndModule
+    NgxTreeDndModule,
+    CalendarHeaderComponent
   ],
   entryComponents: []
 })
