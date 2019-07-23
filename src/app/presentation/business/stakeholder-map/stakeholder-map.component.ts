@@ -15,6 +15,16 @@ export class StakeholderMapComponent implements OnInit {
   initialPosition = { x: 0, y: 0 };
   position = { ...this.initialPosition };
   offset = { x: 0, y: 0 };
+  tile = {
+    editable: false,
+    tile: {
+      content: {
+        text: 'Angular Rocks !!',
+        html: '<i>Angular </i><b>Rocks !!</b>'
+      },
+      background: '#2ecc71'
+    }
+  };
 
   constructor(private storage: StorageService) {
   }
@@ -35,5 +45,9 @@ export class StakeholderMapComponent implements OnInit {
     console.log(this.position, this.initialPosition, this.offset);
 
     this.storage.setItem('stake.position', this.position);
+  }
+
+  contentChanged($event: any) {
+
   }
 }

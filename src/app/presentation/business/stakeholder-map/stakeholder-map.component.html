@@ -7,6 +7,21 @@
        [style.top.px]="initialPosition.y"
        [style.left.px]="initialPosition.x"
   >
-    I can only be dragged within the dotted container
+
   </div>
+
+  <editable-section
+    cdkDragBoundary=".example-boundary"
+    cdkDrag
+    #item
+    (cdkDragEnded)="dragEnd($event)"
+    [style.top.px]="initialPosition.y"
+    [style.left.px]="initialPosition.x"
+
+    [editable]="true"
+    [(ngModel)]="tile.tile"
+    [divStyle]="{ width: '200px', height: '100px', padding: '5px' }"
+    [backgroundColors]="['#2ecc71', '#3498db', '#e74c3c']"
+    [showCommands]="false">
+  </editable-section>
 </div>

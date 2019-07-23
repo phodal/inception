@@ -1,0 +1,38 @@
+<ng-container *ngIf="editable">
+
+  <!-- Actions -->
+  <div class="menu-container">
+    <ng-container *ngIf="showCommands">
+      <button class="button" (click)="bold()">
+        <mat-icon>format_bold</mat-icon>
+      </button>
+      <button class="button" (click)="italic()">
+        <mat-icon>format_italic</mat-icon>
+      </button>
+      <button class="button" (click)="link()">
+        <mat-icon>link</mat-icon>
+      </button>
+    </ng-container>
+    <div *ngIf="backgroundColors.length > 0" class="color-menu" [style.background]="model?.background"
+         [matMenuTriggerFor]="menu"></div>
+    <mat-menu #menu="matMenu">
+      <button *ngFor="let color of backgroundColors" [style.background]="color" mat-menu-item
+              (click)="modelChanged({background: color})"></button>
+    </mat-menu>
+  </div>
+
+  <!-- Editable section -->
+  <div class="box" [ngStyle]="divStyle" contenteditable="true" [style.background]="model?.background"
+       [ngModel]="model?.content" (ngModelChange)="contentChanged($event)">
+  </div>
+
+</ng-container>
+
+
+<ng-container *ngIf="!editable">
+
+  <!-- Non editable section -->
+  <div [ngStyle]="divStyle" [innerHTML]="model?.content.html" [style.background]="model?.background">
+  </div>
+
+</ng-container>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FormsModule } from '@angular/forms';
 
 import { BusinessComponent } from './business.component';
 import { SharedModule } from '../../shared/shared.module';
@@ -18,6 +19,7 @@ const routes: Routes = [
   imports: [
     FeaturesModule,
     SharedModule,
+    FormsModule,
     CommonModule,
     DragDropModule,
     RouterModule.forChild(routes)
