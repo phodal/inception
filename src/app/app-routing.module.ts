@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'vision',
     loadChildren: () => import('./presentation/vision/vision.module').then(m => m.VisionModule)
+  },
+  {
+    path: 'test',
+    loadChildren: () => import('./features/purpose/add-wizard/add-wizard.module').then(m => m.AddWizardModule)
   }
 ];
 

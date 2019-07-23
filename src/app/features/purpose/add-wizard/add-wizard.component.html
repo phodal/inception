@@ -1,0 +1,5 @@
+<mat-horizontal-stepper (selectionChange)="selectionChanged($event)">
+  <mat-step *ngFor="let step of steps; let i = index" [label]="step">
+    <router-outlet *ngIf="i === selectedStep"></router-outlet>
+  </mat-step>
+</mat-horizontal-stepper>

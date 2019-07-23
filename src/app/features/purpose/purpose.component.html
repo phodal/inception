@@ -4,36 +4,20 @@
     <form [formGroup]="backgroundGroupForm">
       <ng-template matStepLabel>项⽬背景</ng-template>
       <feature-project-purpose [(form)]="backgroundGroupForm"></feature-project-purpose>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext (click)="submitBackgroundForm()">Next</button>
-      </div>
     </form>
   </mat-step>
 
   <mat-step [stepControl]="businessCanvasFormGroup">
     <ng-template matStepLabel>商业画布</ng-template>
     <feature-business-canvas [(form)]="businessCanvasFormGroup"></feature-business-canvas>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext (click)="submitCanvasForm()">Next</button>
-    </div>
   </mat-step>
 
   <mat-step [stepControl]="balanceGroup">
     <ng-template matStepLabel>权衡滑块</ng-template>
     <feature-project-balance [(form)]="balanceGroup"></feature-project-balance>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext (click)="submitBalance()">Next</button>
-    </div>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>平台成功度量标准</ng-template>
+    <ng-template matStepLabel>成功度量标准</ng-template>
     You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
   </mat-step>
 </mat-horizontal-stepper>

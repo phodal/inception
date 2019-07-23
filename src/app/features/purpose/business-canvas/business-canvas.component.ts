@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
   selector: 'feature-business-canvas',
@@ -10,7 +12,7 @@ export class BusinessCanvasComponent implements OnInit {
   @Input() form: FormGroup;
   @Output() formChange = new EventEmitter<any>();
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private storage: StorageService) {
 
   }
 
@@ -32,4 +34,7 @@ export class BusinessCanvasComponent implements OnInit {
     });
   }
 
+  submitCanvasForm() {
+    this.storage.setItem('inception.canvas', this.form.value);
+  }
 }

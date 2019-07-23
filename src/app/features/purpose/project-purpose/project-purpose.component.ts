@@ -81,4 +81,8 @@ export class ProjectPurposeComponent implements OnInit {
       content: ['', Validators.required]
     });
   }
+
+  submitBackgroundForm() {
+    this.storage.setItem('inception.purpose', this.form.value);
+  }
 }

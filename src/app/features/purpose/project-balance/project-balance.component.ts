@@ -40,4 +40,8 @@ export class ProjectBalanceComponent implements OnInit {
       scope: balance.scope
     });
   }
+
+  submitBalance() {
+    this.storage.setItem('inception.balance', this.form.value);
+  }
 }

@@ -15,20 +15,20 @@ export const slideInAnimation =
           right: 0,
           width: '100%'
         })
-      ]),
+      ], { optional: true }),
       query(':enter', [
-        style({ right: '100%'})
-      ]),
-      query(':enter', animateChild()),
+        style({ right: '100%' })
+      ], { optional: true }),
+      query(':enter', animateChild(), { optional: true }),
       group([
         query(':leave', [
-          animate('300ms ease-out', style({ right: '100%'}))
-        ]),
+          animate('300ms ease-out', style({ right: '100%' }))
+        ], { optional: true }),
         query(':enter', [
-          animate('300ms ease-out', style({ right: '0%'}))
-        ])
+          animate('300ms ease-out', style({ right: '0%' }))
+        ], { optional: true })
       ]),
-      query(':leave', animateChild()),
+      query(':leave', animateChild(), { optional: true })
     ]),
     transition('enter <=> leave', [
       style({ position: 'relative' }),
@@ -41,18 +41,18 @@ export const slideInAnimation =
         })
       ]),
       query(':enter', [
-        style({ left: '-100%'})
+        style({ left: '-100%' })
       ]),
       query(':leave', animateChild()),
       group([
         query(':leave', [
-          animate('200ms ease-out', style({ left: '100%'}))
+          animate('200ms ease-out', style({ left: '100%' }))
         ]),
         query(':enter', [
-          animate('300ms ease-out', style({ left: '0%'}))
+          animate('300ms ease-out', style({ left: '0%' }))
         ])
       ]),
-      query(':enter', animateChild()),
+      query(':enter', animateChild())
     ])
   ]);
 
@@ -69,11 +69,11 @@ export class AppComponent {
   private lastState = 'enter';
 
   constructor(private router: Router, private storageService: StorageService) {
-    const lastPage = this.storageService.getItem('last.page');
-    if (lastPage) {
-      this.router.navigateByUrl(lastPage).then((result) => {
-      });
-    }
+    // const lastPage = this.storageService.getItem('last.page');
+    // if (lastPage) {
+    //   this.router.navigateByUrl(lastPage).then((result) => {
+    //   });
+    // }
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
@@ -82,7 +82,7 @@ export class AppComponent {
         } else {
           this.lastState = 'enter';
         }
-        this.storageService.setItem('last.page', event.url);
+        // this.storageService.setItem('last.page', event.url);
       }
     });
   }
