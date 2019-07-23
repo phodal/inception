@@ -1,11 +1,12 @@
-<span>业务全景图</span>
-<lib-ngx-tree-component
-  #treeComponent
-  [treeData]='treeData'
-  [config]='config'
-  (ondrop)="updateTree()"
-  (onadditem)="updateTree()"
-  (onfinishRenameItem)="updateTree()"
-  (onfinishDeleteItem)="updateTree()"
->
-</lib-ngx-tree-component>
+<mat-horizontal-stepper #stepper>
+  <mat-step>
+    <ng-template matStepLabel>业务全景图</ng-template>
+    <feature-business-map></feature-business-map>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>利益相关者地图</ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>成功要素</ng-template>
+  </mat-step>
+</mat-horizontal-stepper>

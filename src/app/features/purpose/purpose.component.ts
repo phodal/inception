@@ -21,16 +21,4 @@ export class PurposeComponent implements OnInit {
   ngOnInit() {
 
   }
-
-  submitBalance() {
-    this.storage.setItem('inception.balance', this.balanceGroup.value);
-  }
-
-  submitBackgroundForm() {
-    this.storage.setItem('inception.background', this.balanceGroup.value);
-  }
-
-  submitCanvasForm() {
-    this.storage.setItem('inception.canvas', this.balanceGroup.value);
-  }
 }
