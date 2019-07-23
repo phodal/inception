@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
+import { isEmpty } from 'lodash';
+
+import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
   selector: 'feature-stakeholder-map',
@@ -6,10 +10,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stakeholder-map.component.scss']
 })
 export class StakeholderMapComponent implements OnInit {
+  @ViewChild('item', null) item: ElementRef;
 
-  constructor() { }
+  initialPosition = { x: 0, y: 0 };
+  position = { ...this.initialPosition };
+  offset = { x: 0, y: 0 };
 
-  ngOnInit() {
+  constructor(private storage: StorageService) {
   }
 
+  ngOnInit() {
+    const lastPosition = this.storage.getItem('stake.position');
+    if (!isEmpty(lastPosition)) {
+      this.initialPosition = lastPosition;
+    }
+  }
+
+  dragEnd(event: CdkDragEnd) {
+    this.offset = { ...(event.source._dragRef as any)._passiveTransform };
+
+    this.position.x = this.initialPosition.x + this.offset.x;
+    this.position.y = this.initialPosition.y + this.offset.y;
+
+    console.log(this.position, this.initialPosition, this.offset);
+
+    this.storage.setItem('stake.position', this.position);
+  }
 }
