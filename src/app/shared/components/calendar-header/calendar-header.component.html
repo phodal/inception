@@ -37,21 +37,21 @@
       <div class="button-group">
         <div
           class="button button-primary"
-          (click)="viewChange.emit('month')"
+          (click)="changeView('month')"
           [class.active]="view === 'month'"
         >
           Month
         </div>
         <div
           class="button button-primary"
-          (click)="viewChange.emit('week')"
+          (click)="changeView('week')"
           [class.active]="view === 'week'"
         >
           Week
         </div>
         <div
           class="button button-primary"
-          (click)="viewChange.emit('day')"
+          (click)="changeView('day')"
           [class.active]="view === 'day'"
         >
           Day
