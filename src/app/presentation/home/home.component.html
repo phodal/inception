@@ -19,16 +19,12 @@
     <div
       class="fill-height"
       [contextMenu]="basicMenu"
-      [contextMenuSubject]="day.date"
-    >
+      [contextMenuSubject]="day.date">
       <div class="cal-cell-top">
-      <span class="cal-day-badge" *ngIf="day.badgeTotal > 0"
-      >{{ day.badgeTotal }}</span
-      >
-        <span class="cal-day-number"
-        >{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span
-        >
+        <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+        <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
       </div>
+
       <div class="cal-events">
         <div
           class="cal-event"
@@ -64,9 +60,7 @@
         [contextMenuSubject]="day.date"
       >
         <b>{{ day.date | calendarDate:'weekViewColumnHeader':locale }}</b><br />
-        <span
-        >{{ day.date | calendarDate:'weekViewColumnSubHeader':locale }}</span
-        >
+        <span>{{ day.date | calendarDate:'weekViewColumnSubHeader':locale }}</span>
       </div>
     </div>
   </ng-template>
