@@ -2,23 +2,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-business-canvas',
+  selector: 'feature-business-canvas',
   templateUrl: './business-canvas.component.html',
   styleUrls: ['./business-canvas.component.scss']
 })
 export class BusinessCanvasComponent implements OnInit {
-  @Output() set form(value) {
-    this._form = value;
-    this.formChange.emit(this._form);
-  }
-  // @ts-ignore
-  @Input() get form() {
-    return this._form;
-  }
-  // tslint:disable-next-line:variable-name
-  _form: FormGroup;
-  formChange = new EventEmitter();
-
+  @Input() form: FormGroup;
+  @Output() formChange = new EventEmitter<any>();
 
   constructor(private formBuilder: FormBuilder) {
 
@@ -37,6 +27,9 @@ export class BusinessCanvasComponent implements OnInit {
       revenueStreams: [['']]
     });
 
+    this.form.valueChanges.subscribe(() => {
+      this.formChange.emit(this.form);
+    });
   }
 
 }

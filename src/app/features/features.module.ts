@@ -7,16 +7,21 @@ import { CoreModule } from '../core/core.module';
 import { ProjectPurposeComponent } from './purpose/project-purpose/project-purpose.component';
 import { ElevatorPitchComponent } from './vision/elevator-pitch/elevator-pitch.component';
 import { BusinessCanvasComponent } from './purpose/business-canvas/business-canvas.component';
+import { PurposeComponent } from './purpose/purpose.component';
 
 @NgModule({
   declarations: [
+    PurposeComponent,
     ProjectPurposeComponent,
     BusinessCanvasComponent,
+
     ElevatorPitchComponent
   ],
   exports: [
+    PurposeComponent,
     ProjectPurposeComponent,
     BusinessCanvasComponent,
+
     ElevatorPitchComponent
   ],
   imports: [

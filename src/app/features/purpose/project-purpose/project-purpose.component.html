@@ -1,23 +1,19 @@
-<mat-horizontal-stepper #stepper>
+<form [formGroup]="form">
+  <div formArrayName="dimens" *ngFor="let unit of formData.controls; let i=index">
+    <mat-divider *ngIf="formData.controls.length > 1 && i > 0"></mat-divider>
+    <br>
+    <div [formGroupName]="i">
+      <button type="button" mat-mini-fab color="warn"
+              *ngIf="form.controls.dimens.controls.length > 1"
+              (click)="removeUnit(i)">
+        删除
+      </button>
 
-  <mat-step [stepControl]="backgroundGroupForm">
-    <form [formGroup]="backgroundGroupForm">
-      <ng-template matStepLabel>项⽬背景</ng-template>
-      <div formArrayName="dimens" *ngFor="let unit of formData.controls; let i=index">
-        <mat-divider *ngIf="formData.controls.length > 1 && i > 0"></mat-divider>
-        <br>
-        <div [formGroupName]="i">
-          <button type="button" mat-mini-fab color="warn"
-                  *ngIf="backgroundGroupForm.controls.dimens.controls.length > 1"
-                  (click)="removeUnit(i)">
-            删除
-          </button>
+      <mat-form-field>
+        <input matInput placeholder="标题" formControlName="title" required>
+      </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="标题" formControlName="title" required>
-          </mat-form-field>
-
-          <span formArrayName="items" *ngFor="let subUnit of getSubFormData(i).controls; let j=index">
+      <span formArrayName="items" *ngFor="let subUnit of getSubFormData(i).controls; let j=index">
             <span [formGroupName]="j">
               <mat-form-field>
                 <input matInput placeholder="Content" formControlName="content" required>
@@ -31,69 +27,16 @@
             </span>
           </span>
 
-          <button mat-mini-fab color="warn" type="button" color="primary" (click)="addSubUnit(i)">
-            <mat-icon>add box</mat-icon>
-          </button>
-        </div>
-      </div>
-      <button mat-raised-button type="button" color="primary" (click)="addUnit()">
+      <button mat-mini-fab color="warn" type="button" color="primary" (click)="addSubUnit(i)">
         <mat-icon>add box</mat-icon>
-        添加
       </button>
-      <div>
-        <button mat-button matStepperNext (click)="submitBackground()">Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="secondFormGroup">
-    <ng-template matStepLabel>项目期望</ng-template>
-    <app-business-canvas [(form)]="secondFormGroup"></app-business-canvas>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext (click)="submitCanvasForm()">Next</button>
     </div>
-  </mat-step>
-  <mat-step [stepControl]="balanceGroup">
-    <form [formGroup]="balanceGroup" class="product-balance">
-      <ng-template matStepLabel>权衡滑块</ng-template>
-      <div>
-        <span>时间</span>
-        <mat-slider min="1" max="5" step="1" formControlName="time" required></mat-slider>
-        {{balanceGroup.controls.time.value}}
-      </div>
-      <div>
-        <span>功能范围</span>
-        <mat-slider min="1" max="5" step="1" formControlName="scope" required></mat-slider>
-        {{balanceGroup.controls.scope.value}}
-      </div>
-      <div>
-        <span>用户体验</span>
-        <mat-slider min="1" max="5" step="1" formControlName="experience" required></mat-slider>
-        {{balanceGroup.controls.experience.value}}
-      </div>
-      <div>
-        <span>预算</span>
-        <mat-slider min="1" max="5" step="1" formControlName="budget" required></mat-slider>
-        {{balanceGroup.controls.budget.value}}
-      </div>
-      <div>
-        <span>产品性能</span>
-        <mat-slider min="1" max="5" step="1" formControlName="time" required></mat-slider>
-        {{balanceGroup.controls.time.value}}
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext (click)="submitBalance()">Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>平台成功度量标准</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+  </div>
+  <button mat-raised-button type="button" color="primary" (click)="addUnit()">
+    <mat-icon>add box</mat-icon>
+    添加
+  </button>
+  <div>
+    <button mat-button matStepperNext (click)="submitBackground()">Next</button>
+  </div>
+</form>

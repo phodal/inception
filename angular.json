@@ -64,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "clean-angular:build"
+            "browserTarget": "inception:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "clean-angular:build:production"
+              "browserTarget": "inception:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "clean-angular:build"
+            "browserTarget": "inception:build"
           }
         },
         "test": {
@@ -109,7 +109,7 @@
         }
       }
     },
-    "clean-angular-e2e": {
+    "inception-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -118,11 +118,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "clean-angular:serve"
+            "devServerTarget": "inception:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "clean-angular:serve:production"
+              "devServerTarget": "inception:serve:production"
             }
           }
         },
@@ -138,5 +138,5 @@
       }
     }
   },
-  "defaultProject": "clean-angular"
+  "defaultProject": "inception"
 }

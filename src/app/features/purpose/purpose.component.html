@@ -1,0 +1,65 @@
+<mat-horizontal-stepper #stepper>
+
+  <mat-step [stepControl]="backgroundGroupForm">
+    <form [formGroup]="backgroundGroupForm">
+      <ng-template matStepLabel>项⽬背景</ng-template>
+      <feature-project-purpose [(form)]="backgroundGroupForm"></feature-project-purpose>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="submitBackgroundForm()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="businessCanvasFormGroup">
+    <ng-template matStepLabel>商业画布</ng-template>
+    <feature-business-canvas [(form)]="businessCanvasFormGroup"></feature-business-canvas>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext (click)="submitCanvasForm()">Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step [stepControl]="balanceGroup">
+    <form [formGroup]="balanceGroup" class="product-balance">
+      <ng-template matStepLabel>权衡滑块</ng-template>
+      <div>
+        <span>时间</span>
+        <mat-slider min="1" max="5" step="1" formControlName="time" required></mat-slider>
+        {{balanceGroup.controls.time.value}}
+      </div>
+      <div>
+        <span>功能范围</span>
+        <mat-slider min="1" max="5" step="1" formControlName="scope" required></mat-slider>
+        {{balanceGroup.controls.scope.value}}
+      </div>
+      <div>
+        <span>用户体验</span>
+        <mat-slider min="1" max="5" step="1" formControlName="experience" required></mat-slider>
+        {{balanceGroup.controls.experience.value}}
+      </div>
+      <div>
+        <span>预算</span>
+        <mat-slider min="1" max="5" step="1" formControlName="budget" required></mat-slider>
+        {{balanceGroup.controls.budget.value}}
+      </div>
+      <div>
+        <span>产品性能</span>
+        <mat-slider min="1" max="5" step="1" formControlName="time" required></mat-slider>
+        {{balanceGroup.controls.time.value}}
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="submitBalance()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>平台成功度量标准</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

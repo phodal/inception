@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { StorageService } from '../../../core/services/storage.service';
@@ -9,15 +9,14 @@ import { StorageService } from '../../../core/services/storage.service';
   styleUrls: ['./project-purpose.component.scss']
 })
 export class ProjectPurposeComponent implements OnInit {
-  backgroundGroupForm: FormGroup;
-  secondFormGroup: FormGroup;
-  balanceGroup: FormGroup;
+  @Input() form: FormGroup;
+  @Output() formChange = new EventEmitter<any>();
 
   constructor(private formBuilder: FormBuilder, private storage: StorageService) {
   }
 
   ngOnInit() {
-    this.backgroundGroupForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       dimens: this.formBuilder.array([
         this.formBuilder.group({
           title: ['', Validators.required],
@@ -30,38 +29,13 @@ export class ProjectPurposeComponent implements OnInit {
       ])
     });
 
-    this.secondFormGroup = this.formBuilder.group({
-      partners: [[''], Validators.required]
-    });
-
-    this.balanceGroup = this.formBuilder.group({
-      time: [3, Validators.required],
-      experience: [3, Validators.required],
-      budget: [3, Validators.required],
-      performance: [3, Validators.required],
-      scope: [3, Validators.required]
-    });
-
-    this.initForm();
-  }
-
-  initForm() {
-    const balance = this.storage.getItem('inception.balance');
-    if (!balance) {
-      return;
-    }
-
-    this.balanceGroup.patchValue({
-      time: balance.time,
-      experience: balance.experience,
-      budget: balance.budget,
-      performance: balance.performance,
-      scope: balance.scope
+    this.form.valueChanges.subscribe(() => {
+      this.formChange.emit(this.form);
     });
   }
 
   addUnit() {
-    const control = this.backgroundGroupForm.get('dimens') as FormArray;
+    const control = this.form.get('dimens') as FormArray;
     control.push(this.getNewAction());
   }
 
@@ -70,7 +44,7 @@ export class ProjectPurposeComponent implements OnInit {
   }
 
   get formData() {
-    return this.backgroundGroupForm.get('dimens') as FormArray;
+    return this.form.get('dimens') as FormArray;
   }
 
   getSubFormData(i) {
@@ -78,11 +52,11 @@ export class ProjectPurposeComponent implements OnInit {
   }
 
   getContentItemFormArray(i) {
-    return (this.backgroundGroupForm.get('dimens') as FormArray).at(i).get('items') as FormArray;
+    return (this.form.get('dimens') as FormArray).at(i).get('items') as FormArray;
   }
 
   removeUnit(i: number) {
-    const control = this.backgroundGroupForm.get('dimens') as FormArray;
+    const control = this.form.get('dimens') as FormArray;
     control.removeAt(i);
   }
 
@@ -109,14 +83,6 @@ export class ProjectPurposeComponent implements OnInit {
   }
 
   submitBackground() {
-    this.storage.setItem('background', this.backgroundGroupForm.value);
-  }
-
-  submitBalance() {
-    this.storage.setItem('inception.balance', this.balanceGroup.value);
-  }
-
-  submitCanvasForm() {
-    console.log(this.secondFormGroup);
+    this.storage.setItem('background', this.form.value);
   }
 }
