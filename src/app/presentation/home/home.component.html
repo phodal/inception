@@ -175,19 +175,21 @@
         </td>
         <td>
           <input
-            class="form-control"
+            class="form-control flatpickr"
             type="text"
             [(ngModel)]="event.start"
             (ngModelChange)="refresh.next()"
+            (change)="changeDateInput(event)"
             placeholder="Not set"
           />
         </td>
         <td>
           <input
-            class="form-control"
+            class="form-control flatpickr"
             type="text"
             [(ngModel)]="event.end"
             (ngModelChange)="refresh.next()"
+            (change)="changeDateInput(event)"
             placeholder="Not set"
           />
         </td>

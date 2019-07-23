@@ -16,6 +16,8 @@ Context here...
  - SVG Editor ?
  - Architecture Editor ?
  - Agile Plan
+ 
+基本的架构编辑器： https://github.com/tiberiuzuld/angular-gridster2
 
 ## Consequences
 
