@@ -3,7 +3,7 @@ import { CalendarEventAction, CalendarEvent, CalendarView, CalendarEventTimesCha
 import { Subject } from 'rxjs';
 import {
   startOfDay,
-  addHours, endOfDay, format
+  addHours, endOfDay, format, parse
 } from 'date-fns';
 import { isEmpty } from 'lodash';
 import flatpickr from 'flatpickr';
@@ -47,16 +47,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!isEmpty(calendarEvents)) {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < calendarEvents.length; i++) {
-        calendarEvents[i].start = this.formatDateTime(calendarEvents[i].start);
-        calendarEvents[i].end = this.formatDateTime(calendarEvents[i].end);
+        calendarEvents[i].start = parse(calendarEvents[i].start);
+        calendarEvents[i].end = parse(calendarEvents[i].end);
       }
       this.events = calendarEvents;
       this.refresh.next();
     }
-  }
-
-  formatDateTime(dateTime) {
-    return format(dateTime, 'YYYY-MM-DDTHH:mm');
   }
 
   ngAfterViewInit(): void {

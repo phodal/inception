@@ -175,21 +175,32 @@
         </td>
         <td>
           <input
-            class="form-control flatpickr"
+            class="form-control"
             type="text"
+            mwlFlatpickr
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
             [(ngModel)]="event.start"
             (ngModelChange)="refresh.next()"
             (change)="changeDateInput(event)"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
             placeholder="Not set"
           />
         </td>
         <td>
           <input
-            class="form-control flatpickr"
+            class="form-control"
             type="text"
+            mwlFlatpickr
             [(ngModel)]="event.end"
             (ngModelChange)="refresh.next()"
-            (change)="changeDateInput(event)"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
             placeholder="Not set"
           />
         </td>

@@ -784,6 +784,13 @@ angular-resizable-element@^3.2.4:
   dependencies:
     tslib "^1.9.0"
 
+angularx-flatpickr@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/angularx-flatpickr/-/angularx-flatpickr-6.1.0.tgz#e1edad5a360b4c2b56c92cee5334c6319b968def"
+  integrity sha512-qhToIDVrCZ8Z/Z+sNi1+1eUkDtM3pxRsd8IXfZAd3Pp2dEjU5QfEyyrWJ7t3SzbhMnTA+dIKH6XfXF4HxBddSg==
+  dependencies:
+    tslib "^1.9.0"
+
 animation-frame-polyfill@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/animation-frame-polyfill/-/animation-frame-polyfill-1.0.1.tgz#5f5ad993a78794bd176acde5b6dce62867410c9d"

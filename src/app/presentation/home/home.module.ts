@@ -7,6 +7,7 @@ import { ContextMenuModule } from 'ngx-contextmenu';
 
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 const HOME_ROUTER_CONFIG: Routes = [
   { path: '', component: HomeComponent }
@@ -21,6 +22,7 @@ const HOME_ROUTER_CONFIG: Routes = [
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
+    FlatpickrModule.forRoot(),
     ContextMenuModule.forRoot({
       useBootstrap4: true
     }),
