@@ -47,17 +47,12 @@
   </mat-step>
 
   <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>项目期望</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <app-business-canvas></app-business-canvas>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
+    <ng-template matStepLabel>项目期望</ng-template>
+    <app-business-canvas [(form)]="secondFormGroup"></app-business-canvas>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext (click)="submitCanvasForm()">Next</button>
+    </div>
   </mat-step>
   <mat-step [stepControl]="balanceGroup">
     <form [formGroup]="balanceGroup" class="product-balance">

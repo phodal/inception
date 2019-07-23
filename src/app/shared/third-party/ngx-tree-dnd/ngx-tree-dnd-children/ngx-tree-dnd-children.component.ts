@@ -51,7 +51,7 @@ export class NgxTreeChildrenComponent implements AfterViewInit {
 
     // enable subscribers
     this.enableSubscribers();
-    // create form
+    // create canvas
     this.createForm();
   }
 
@@ -86,7 +86,7 @@ export class NgxTreeChildrenComponent implements AfterViewInit {
     this.itemOptions[item] = options[item];
   }
 
-  // create edit form
+  // create edit canvas
   createForm() {
     this.renameForm = this.fb.group({
       name: [this.element.name || '', [
@@ -120,7 +120,7 @@ export class NgxTreeChildrenComponent implements AfterViewInit {
 
   /*
     Event: onfinishRenameItem;
-    Check is form valid.
+    Check is canvas valid.
     Call addNewItem() from tree service.
   */
   submitRename(item) {

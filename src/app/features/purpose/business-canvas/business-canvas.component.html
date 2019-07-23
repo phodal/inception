@@ -1,34 +1,42 @@
-<div class="container">
-  <h1>The Business Model Canvas</h1>
-  <!-- Canvas -->
+<form [formGroup]="form">
+
   <table id="bizcanvas" cellspacing="0" border="1">
     <!-- Upper part -->
     <tr>
       <td colspan="2" rowspan="2">
         <h4>Key Partners</h4>
-        <p>Open Source Contributor</p>
+        <mat-form-field>
+          <input matInput class="table-input" placeholder="" formControlName="keyPartners">
+        </mat-form-field>
+        {{form.controls.keyPartners.value}}
       </td>
       <td colspan="2">
         <h4>Key Activities</h4>
-        <p>Tech Lead Resources</p>
-        <p>Tech Lead Toolbox</p>
+        <mat-form-field>
+          <input matInput class="table-input" placeholder="" formControlName="keyActivities">
+        </mat-form-field>
+        {{form.controls.keyActivities.value}}
       </td>
       <td colspan="2" rowspan="2">
         <h4>Value Proposition</h4>
-        <p>Self Growth</p>
-        <p>Team Release</p>
-        <p>Work Better</p>
+        <mat-form-field>
+          <input matInput class="table-input" placeholder="" formControlName="valueProposition">
+        </mat-form-field>
+        {{form.controls.valueProposition.value}}
       </td>
       <td colspan="2">
         <h4>Customer Relationship</h4>
-        <p>Communities</p>
-        <p>Co-creation</p>
+        <mat-form-field>
+          <input matInput class="table-input" placeholder="" formControlName="customerRelationship">
+        </mat-form-field>
+        {{form.controls.customerRelationship.value}}
       </td>
       <td colspan="2" rowspan="2">
         <h4>Customer Segments</h4>
-        <p>Tech Lead/pre Tech Lead</p>
-        <p>Tech Manager/pre Tech Manager</p>
-        <p>Senior Engineer/Pre Senior Engineer</p>
+        <mat-form-field>
+          <input matInput class="table-input" placeholder="" formControlName="customerSegments">
+        </mat-form-field>
+        {{form.controls.customerSegments.value}}
       </td>
     </tr>
 
@@ -36,26 +44,34 @@
     <tr>
       <td colspan="2">
         <h4>Key Resources</h4>
-        <p>Related Resources</p>
-        <p>Brand</p>
+        <mat-form-field>
+          <input matInput class="table-input" placeholder="" formControlName="keyResources">
+        </mat-form-field>
+        {{form.controls.keyResources.value}}
       </td>
       <td colspan="2">
         <h4>Channels</h4>
-        <p>SEO</p>
-        <p>Social Media</p>
-        <p>Article Marketing</p>
+        <mat-form-field>
+          <input matInput class="table-input" placeholder="" formControlName="channels">
+        </mat-form-field>
+        {{form.controls.channels.value}}
       </td>
     </tr>
     <tr>
       <td colspan="5">
         <h4>Cost Structure</h4>
-        <p>Server</p>
+        <mat-form-field>
+          <input matInput class="table-input" placeholder="" formControlName="costStructure">
+        </mat-form-field>
+        {{form.controls.costStructure.value}}
       </td>
       <td colspan="5">
         <h4>Revenue Streams</h4>
-        <p>Donate</p>
+        <mat-form-field>
+          <input matInput class="table-input" placeholder="" formControlName="revenueStreams">
+        </mat-form-field>
+        {{form.controls.revenueStreams.value}}
       </td>
     </tr>
   </table>
-  <!-- /Canvas -->
-</div>
+</form>

@@ -167,7 +167,7 @@ export class NgxTreeParentComponent implements AfterViewInit {
     );
   }
 
-  // create edit form
+  // create edit canvas
   createForm() {
     this.renameForm = this.fb.group({
       name: [this.userConfig.rootTitle || '', [

@@ -31,7 +31,7 @@ export class ProjectPurposeComponent implements OnInit {
     });
 
     this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      partners: [[''], Validators.required]
     });
 
     this.balanceGroup = this.formBuilder.group({
@@ -114,5 +114,9 @@ export class ProjectPurposeComponent implements OnInit {
 
   submitBalance() {
     this.storage.setItem('inception.balance', this.balanceGroup.value);
+  }
+
+  submitCanvasForm() {
+    console.log(this.secondFormGroup);
   }
 }
