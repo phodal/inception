@@ -4,10 +4,10 @@
 </mat-menu>
 
 <div class="nav-bar">
-  <button mat-menu-item routerLink="/home">日程</button>
-  <button mat-menu-item routerLink="/positioning">定位</button>
-  <button mat-menu-item routerLink="/vision">远景</button>
-  <button mat-menu-item routerLink="/technical">技术架构</button>
+  <button mat-menu-item routerLinkActive="active-link" routerLink="/home">日程</button>
+  <button mat-menu-item routerLinkActive="active-link"  routerLink="/positioning">定位</button>
+  <button mat-menu-item routerLinkActive="active-link"  routerLink="/vision">远景</button>
+  <button mat-menu-item routerLinkActive="active-link"  routerLink="/technical">技术架构</button>
   <button mat-icon-button [matMenuTriggerFor]="appMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
