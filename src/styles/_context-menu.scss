@@ -1,0 +1,28 @@
+.ngx-contextmenu .dropdown-menu {
+  border: solid 1px #eee;
+  background-color: #fff;
+  padding: 0;
+  border-radius: 2px;
+}
+
+.ngx-contextmenu li {
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.ngx-contextmenu li:first-child {
+  border-top: none;
+}
+
+.ngx-contextmenu a {
+  color: #ccc;
+  display: block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+}
+
+.ngx-contextmenu a:hover {
+  color: darkgreen;
+  background-color: chartreuse;
+}
