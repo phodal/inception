@@ -13,7 +13,6 @@ import { DraggableEditableSectionComponent } from './components/draggable-editab
 import { CoordinatesMapComponent } from './components/coordinates-map/coordinates-map.component';
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { MotableModule } from './components/motable/motable.module';
-import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   imports: [

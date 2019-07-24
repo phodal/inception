@@ -26,6 +26,10 @@ const routes: Routes = [
     loadChildren: () => import('./presentation/business/business.module').then(m => m.BusinessModule)
   },
   {
+    path: 'help',
+    loadChildren: () => import('./presentation/help/help.module').then(m => m.HelpModule)
+  },
+  {
     path: 'test',
     loadChildren: () => import('./features/purpose/add-wizard/add-wizard.module').then(m => m.AddWizardModule)
   }
