@@ -1,4 +1,4 @@
-<div class="example-boundary">
+<div class="example-boundary" cdkDropList>
   <div class="example-box"
        cdkDragBoundary=".example-boundary"
        cdkDrag
@@ -9,7 +9,7 @@
   </div>
 
   <editable-section
-    [editable]="true"
+    [editable]="false"
     [(ngModel)]="tile.tile"
     [divStyle]="{ width: '200px', height: '100px', padding: '5px' }"
     [backgroundColors]="['#2ecc71', '#3498db', '#e74c3c']"

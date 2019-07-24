@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CdkDragEnd } from '@angular/cdk/drag-drop';
-import { isEmpty } from 'lodash';
+import { CdkDragDrop, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { StorageService } from '../../../core/services/storage.service';
 
@@ -25,6 +24,7 @@ export class StakeholderMapComponent implements OnInit {
       background: '#2ecc71'
     }
   };
+  tiles: any[];
 
   constructor(private storage: StorageService) {
   }
@@ -38,6 +38,10 @@ export class StakeholderMapComponent implements OnInit {
 
     this.position.x = this.initialPosition.x + this.offset.x;
     this.position.y = this.initialPosition.y + this.offset.y;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.tiles, event.previousIndex, event.currentIndex);
   }
 
   contentChanged($event: any) {

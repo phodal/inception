@@ -9,7 +9,7 @@ import { CdkDragEnd } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'editable-section',
   templateUrl: './editable-section.component.html',
-  styleUrls: ['./editable-section.component.css'],
+  styleUrls: ['./editable-section.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -30,6 +30,10 @@ export class EditableSectionComponent implements ControlValueAccessor {
 
   disabled = false;
   color;
+  distance: { x: number; y: number } = {
+    x: 0,
+    y: 0
+  };
 
   get opacity() {
     return this.disabled ? 0.25 : 1;
@@ -92,7 +96,6 @@ export class EditableSectionComponent implements ControlValueAccessor {
 
   onDragEnd(event: CdkDragEnd) {
     this.editable = false;
-
     this.offset = { ...(event.source._dragRef as any)._passiveTransform };
 
     this.position.x = this.initialPosition.x + this.offset.x;
@@ -105,5 +108,13 @@ export class EditableSectionComponent implements ControlValueAccessor {
 
   disableEditable() {
     this.editable = false;
+  }
+
+
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.editable = false;
+    }
   }
 }

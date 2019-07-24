@@ -1,3 +1,23 @@
+:host {
+  position: relative;
+
+  *:focus {
+    outline: none;
+  }
+}
+
+.editing,
+.draggable-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.menu-container {
+  position: absolute;
+  top: -20px;
+}
+
 .drag-box {
   border-style: dashed;
   border-width: 1px;
