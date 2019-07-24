@@ -1,37 +1,39 @@
 <form [formGroup]="form">
-  <div formArrayName="personas" *ngFor="let unit of formData.controls; let i=index">
-    <mat-divider *ngIf="formData.controls.length > 1 && i > 0"></mat-divider>
-    <br>
-    <div [formGroupName]="i">
-      <button type="button" mat-mini-fab color="warn"
-              *ngIf="formData.controls.length > 1"
-              (click)="removeUnit(i)">
-        删除
-      </button>
+  <button mat-mini-fab color="warn" type="button" color="primary" (click)="addUnit()">
+    <mat-icon>add box</mat-icon>
+  </button>
 
-      <mat-form-field>
-        <input matInput placeholder="用户名" formControlName="name" required>
-      </mat-form-field>
+  <div class="group-list">
+    <div class="personas" formArrayName="personas" *ngFor="let unit of formData.controls; let i=index">
+      <mat-divider *ngIf="formData.controls.length > 1 && i > 0"></mat-divider>
+      <br>
+      <div [formGroupName]="i" class="group-item">
+        <button type="button" mat-mini-fab color="warn"
+                *ngIf="formData.controls.length > 1"
+                (click)="removeUnit(i)">
+          删除
+        </button>
 
-      <mat-form-field>
-        <input matInput placeholder="头像" formControlName="avatar" required>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="用户名" formControlName="name" required>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="资料" formControlName="profiles" required>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="头像" formControlName="avatar" required>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="行为" formControlName="behaviors" required>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="资料" formControlName="profiles" required>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="需要" formControlName="needs" required>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="行为" formControlName="behaviors" required>
+        </mat-form-field>
 
-      <button mat-mini-fab color="warn" type="button" color="primary" (click)="addUnit()">
-        <mat-icon>add box</mat-icon>
-      </button>
+        <mat-form-field>
+          <input matInput placeholder="需要" formControlName="needs" required>
+        </mat-form-field>
+      </div>
     </div>
   </div>
 </form>

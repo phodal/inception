@@ -1,0 +1,15 @@
+.group-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.personas {
+  flex: 1;
+  padding: 10px;
+}
+
+.group-item {
+  display: flex;
+  flex-direction: column;
+}
