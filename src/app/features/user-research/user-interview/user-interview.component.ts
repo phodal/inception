@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
-  selector: 'feature-describe-personas',
-  templateUrl: './describe-personas.component.html',
-  styleUrls: ['./describe-personas.component.scss']
+  selector: 'feature-user-interview',
+  templateUrl: './user-interview.component.html',
+  styleUrls: ['./user-interview.component.scss']
 })
-export class DescribePersonasComponent implements OnInit {
+export class UserInterviewComponent implements OnInit {
   @Input() form: FormGroup;
   @Output() formChange = new EventEmitter<any>();
 
