@@ -8,6 +8,7 @@ import {
   MatStepperModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const MATERIAL_IMPORTS_EXPORTS = [
   MatButtonModule,
@@ -18,7 +19,8 @@ const MATERIAL_IMPORTS_EXPORTS = [
   MatStepperModule,
   MatInputModule,
   MatSliderModule,
-  MatDividerModule
+  MatDividerModule,
+  DragDropModule
 ];
 
 @NgModule({

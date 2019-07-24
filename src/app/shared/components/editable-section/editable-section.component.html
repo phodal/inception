@@ -1,7 +1,7 @@
 <ng-container *ngIf="editable">
 
   <!-- Actions -->
-  <div class="menu-container">
+  <div class="menu-container" (click)="toggleEditable()">
     <ng-container *ngIf="showCommands">
       <button class="button" (click)="bold()">
         <mat-icon>format_bold</mat-icon>
@@ -32,7 +32,11 @@
 <ng-container *ngIf="!editable">
 
   <!-- Non editable section -->
-  <div [ngStyle]="divStyle" [innerHTML]="model?.content.html" [style.background]="model?.background">
+  <div cdkDrag
+       #item
+       (click)="toggleEditable()"
+       (cdkDragEnded)="dragEnd($event)"
+       [ngStyle]="divStyle" [innerHTML]="model?.content.html" [style.background]="model?.background">
   </div>
 
 </ng-container>

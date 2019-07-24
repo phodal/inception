@@ -11,13 +11,6 @@
   </div>
 
   <editable-section
-    cdkDragBoundary=".example-boundary"
-    cdkDrag
-    #item
-    (cdkDragEnded)="dragEnd($event)"
-    [style.top.px]="initialPosition.y"
-    [style.left.px]="initialPosition.x"
-
     [editable]="true"
     [(ngModel)]="tile.tile"
     [divStyle]="{ width: '200px', height: '100px', padding: '5px' }"

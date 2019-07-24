@@ -1,9 +1,10 @@
 import {
   Component,
   Input,
-  forwardRef
+  forwardRef, HostListener, ElementRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'editable-section',
@@ -24,15 +25,19 @@ export class EditableSectionComponent implements ControlValueAccessor {
   @Input() showCommands = true;
   disabled = false;
   color;
+
   get opacity() {
     return this.disabled ? 0.25 : 1;
   }
 
   model = { content: { text: '', html: '' }, background: '#FFFFFF' };
-  onChange = (rating: any) => { };
-  onTouched = () => { };
+  onChange = (rating: any) => {
+  }
+  onTouched = () => {
+  }
 
-  constructor() { }
+  constructor(private elementRef: ElementRef) {
+  }
 
   writeValue(value: any): void {
     this.model = value;
@@ -76,5 +81,23 @@ export class EditableSectionComponent implements ControlValueAccessor {
 
   changeColor(color) {
     document.execCommand('foreColor', false, color);
+  }
+
+  dragEnd($event: CdkDragEnd<any>) {
+    this.editable = false;
+  }
+
+  toggleEditable() {
+    this.editable = !this.editable;
+  }
+
+
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (event.target.classList && event.target.classList.contains('cdk-drag')) {
+      this.editable = true;
+    } else {
+      this.editable = false;
+    }
   }
 }
