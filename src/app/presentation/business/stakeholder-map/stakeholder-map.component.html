@@ -1,24 +1,4 @@
-<div class="example-boundary">
-  <div *ngFor="let tile of tiles;let i = index" cdkDropList>
-    <draggable-editable-section
-      [(ngModel)]="tile"
-      [backgroundColors]="colors"
-      [showCommands]="false"
-      (ngModelChange)="modelChange($event, i)">
-    </draggable-editable-section>
-  </div>
-</div>
-
-<eco-fab-speed-dial class="fab-dial">
-  <eco-fab-speed-dial-trigger>
-    <button mat-fab>
-      <mat-icon>menu</mat-icon>
-    </button>
-  </eco-fab-speed-dial-trigger>
-
-  <eco-fab-speed-dial-actions>
-    <button mat-mini-fab (click)="createNewTile()">
-      <mat-icon>add</mat-icon>
-    </button>
-  </eco-fab-speed-dial-actions>
-</eco-fab-speed-dial>
+<component-coordinates-map
+  [storageName]="'stakeholder'"
+  [title]="'利益相关者地图'">
+</component-coordinates-map>

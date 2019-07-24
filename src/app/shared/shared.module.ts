@@ -10,6 +10,8 @@ import { CalendarHeaderComponent } from './components/calendar-header/calendar-h
 import { CalendarCommonModule } from 'angular-calendar';
 import { ContentEditableDirective } from './directives/content-editable.directive';
 import { DraggableEditableSectionComponent } from './components/draggable-editable-section/draggable-editable-section.component';
+import { CoordinatesMapComponent } from './components/coordinates-map/coordinates-map.component';
+import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 
 @NgModule({
   imports: [
@@ -20,12 +22,14 @@ import { DraggableEditableSectionComponent } from './components/draggable-editab
     ReactiveFormsModule,
     CustomMaterialModule,
     NgxTreeDndModule,
-    CalendarCommonModule
+    CalendarCommonModule,
+    EcoFabSpeedDialModule,
   ],
   declarations: [
     CalendarHeaderComponent,
     DraggableEditableSectionComponent,
-    ContentEditableDirective
+    ContentEditableDirective,
+    CoordinatesMapComponent
   ],
   providers: [
     ContentEditableDirective
@@ -38,7 +42,8 @@ import { DraggableEditableSectionComponent } from './components/draggable-editab
     NgxTreeDndModule,
 
     CalendarHeaderComponent,
-    DraggableEditableSectionComponent
+    DraggableEditableSectionComponent,
+    CoordinatesMapComponent
   ],
   entryComponents: []
 })
