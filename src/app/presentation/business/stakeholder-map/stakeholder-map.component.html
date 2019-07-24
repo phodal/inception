@@ -2,7 +2,7 @@
   <div *ngFor="let tile of tiles" cdkDropList>
     <draggable-editable-section
       [(ngModel)]="tile"
-      [backgroundColors]="['#2ecc71', '#3498db', '#e74c3c']"
+      [backgroundColors]="colors"
       [showCommands]="false"
       (ngModelChange)="contentChanged($event)">
     </draggable-editable-section>
