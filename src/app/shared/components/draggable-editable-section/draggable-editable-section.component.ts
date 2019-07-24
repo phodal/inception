@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
+import { TileModel } from '../../../core/model/tile.model';
 
 @Component({
   selector: 'editable-section',
@@ -19,27 +20,28 @@ import { CdkDragEnd } from '@angular/cdk/drag-drop';
   ]
 })
 export class DraggableEditableSectionComponent implements ControlValueAccessor {
-  @Input() divStyle = { width: '100px', height: '100px' };
-  @Input() editable = false;
   @Input() backgroundColors = null;
   @Input() showCommands = true;
 
   offset = { x: 0, y: 0 };
-  initialPosition = { x: 0, y: 0 };
-  position = { ...this.initialPosition };
-
   disabled = false;
+  editable = false;
   color;
-  distance: { x: number; y: number } = {
-    x: 0,
-    y: 0
-  };
+  model: TileModel =
+    {
+      editable: false,
+      content: { text: '', html: '' },
+      background: '#FFFFFF',
+      position: {
+        x: 0,
+        y: 0
+      }
+    };
+  position = { ...this.model.position };
 
   get opacity() {
     return this.disabled ? 0.25 : 1;
   }
-
-  model = { content: { text: '', html: '' }, background: '#FFFFFF' };
 
   onChange(rating: any) {
   }
@@ -50,8 +52,11 @@ export class DraggableEditableSectionComponent implements ControlValueAccessor {
   constructor(private elementRef: ElementRef) {
   }
 
-  writeValue(value: any): void {
+  writeValue(value: TileModel): void {
     this.model = value;
+    if (this.model && this.model.editable) {
+      this.editable = this.model.editable;
+    }
   }
 
   registerOnChange(fn: (rating: number) => void): void {
@@ -98,8 +103,8 @@ export class DraggableEditableSectionComponent implements ControlValueAccessor {
     this.editable = false;
     this.offset = { ...(event.source._dragRef as any)._passiveTransform };
 
-    this.position.x = this.initialPosition.x + this.offset.x;
-    this.position.y = this.initialPosition.y + this.offset.y;
+    this.position.x = this.model.position.x + this.offset.x;
+    this.position.y = this.model.position.y + this.offset.y;
   }
 
   enableEditable() {

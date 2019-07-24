@@ -1,17 +1,7 @@
-<div class="example-boundary" cdkDropList>
-  <div class="example-box"
-       cdkDragBoundary=".example-boundary"
-       cdkDrag
-       #item
-       (cdkDragEnded)="dragEnd($event)"
-  >
-
-  </div>
-
+<div class="example-boundary" cdkDropList *ngFor="let tile of tiles">
+  {{tile}}
   <editable-section
-    [editable]="false"
-    [(ngModel)]="tile.tile"
-    [divStyle]="{ width: '200px', height: '100px', padding: '5px' }"
+    [(ngModel)]="tile"
     [backgroundColors]="['#2ecc71', '#3498db', '#e74c3c']"
     [showCommands]="false">
   </editable-section>

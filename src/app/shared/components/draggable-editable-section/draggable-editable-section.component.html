@@ -27,7 +27,6 @@
 
     <!-- Editable section -->
     <div class="drag-box"
-         [ngStyle]="divStyle"
          contenteditable="true"
          [style.background]="model?.background"
          [ngModel]="model?.content" (ngModelChange)="contentChanged($event)">
@@ -39,7 +38,6 @@
        class="draggable-section"
        (cdkDragEnded)="onDragEnd($event)"
        [style.zIndex]="editable ? 1 : 2"
-       [ngStyle]="divStyle"
        [innerHTML]="model?.content.html"
        [style.background]="model?.background">
   </div>

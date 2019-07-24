@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CdkDragDrop, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { StorageService } from '../../../core/services/storage.service';
+import { TileModel } from '../../../core/model/tile.model';
 
 @Component({
   selector: 'feature-stakeholder-map',
@@ -14,17 +15,18 @@ export class StakeholderMapComponent implements OnInit {
   initialPosition = { x: 0, y: 0 };
   position = { ...this.initialPosition };
   offset = { x: 0, y: 0 };
-  tile = {
+  tiles: TileModel[] = [{
     editable: false,
-    tile: {
-      content: {
-        text: 'Angular Rocks !!',
-        html: '<i>Angular </i><b>Rocks !!</b>'
-      },
-      background: '#2ecc71'
+    content: {
+      text: 'Angular Rocks !!',
+      html: '<i>Angular </i><b>Rocks !!</b>'
+    },
+    background: '#2ecc71',
+    position: {
+      x: 0,
+      y: 0
     }
-  };
-  tiles: any[];
+  }];
 
   constructor(private storage: StorageService) {
   }

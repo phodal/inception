@@ -18,6 +18,16 @@
   top: -20px;
 }
 
+.drag-box,
+.draggable-section {
+  min-width: 200px;
+  max-width: 300px;
+  min-height: 80px;
+  height: auto;
+  width: auto;
+  overflow-wrap: break-word;
+}
+
 .drag-box {
   border-style: dashed;
   border-width: 1px;
