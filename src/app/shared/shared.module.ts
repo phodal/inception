@@ -12,6 +12,8 @@ import { ContentEditableDirective } from './directives/content-editable.directiv
 import { DraggableEditableSectionComponent } from './components/draggable-editable-section/draggable-editable-section.component';
 import { CoordinatesMapComponent } from './components/coordinates-map/coordinates-map.component';
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
+import { MotableModule } from './components/motable/motable.module';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   imports: [
@@ -24,6 +26,7 @@ import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
     NgxTreeDndModule,
     CalendarCommonModule,
     EcoFabSpeedDialModule,
+    MotableModule
   ],
   declarations: [
     CalendarHeaderComponent,
@@ -40,6 +43,7 @@ import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
     ReactiveFormsModule,
     CustomMaterialModule,
     NgxTreeDndModule,
+    MotableModule,
 
     CalendarHeaderComponent,
     DraggableEditableSectionComponent,

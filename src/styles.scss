@@ -3,6 +3,10 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "../node_modules/flatpickr/dist/flatpickr.css";
 
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
 @import "./app/shared/third-party/ngx-tree-dnd/styles-tree-dnd.scss";
 @import "./styles/_index.scss";
 

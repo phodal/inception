@@ -1,0 +1,67 @@
+<div class="motable">
+  <div class="filter-menu" *ngIf="placeholder">
+    <input
+      type='text'
+      style='padding:8px; margin:15px auto; width:30%;'
+      [placeholder]='placeholder'
+      (keyup)='updateFilter($event)'
+    />
+  </div>
+
+  <div class='float-filter-bar'>
+    <div class="filter-button">
+      <button (click)="toggleShowFilter()">+</button>
+    </div>
+    <div class="filter-bar" *ngIf="isShowDragFilter">
+      <div class="filter-title"><p>列表项筛选和排序</p></div>
+      <div class="filter-toolbar">
+        <div class="check-all">
+          <input type='checkbox' id="check-all-drag" (click)="checkAllField()" [checked]='checkAllFlag'/>
+          <label for="check-all-drag">全选</label>
+        </div>
+      </div>
+      <div [dragula]='"bag-one"' [dragulaModel]='columns' class="drag-toolbar">
+        <div *ngFor='let col of allColumns;let i = index' class="draggable-item">
+          <div class="left">
+            <input type='checkbox' [id]="col.name" (click)='toggle(col)' [checked]='col.display'/>
+            <label [attr.for]="col.name">{{col.name}}</label>
+          </div>
+          <div class="right">
+            <span>=</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="left-wrapper">
+    <ngx-datatable
+      class="bootstrap material"
+      [rows]="rows"
+      [columnMode]="'force'"
+      [rowHeight]="'auto'"
+      [limit]="5"
+      [selected]="selected"
+      [selectionType]="'checkbox'"
+      [selectAllRowsOnPage]="false"
+      (activate)="onActivate($event)"
+      (select)='onSelect($event)'>
+      <ngx-datatable-column
+        [width]="30"
+        [sortable]="false"
+        [canAutoResize]="false"
+        [draggable]="false"
+        [resizeable]="false"
+        [headerCheckboxable]="true"
+        [checkboxable]="true">
+      </ngx-datatable-column>
+      <div *ngFor='let column of columns;'>
+        <ngx-datatable-column
+          *ngIf='column.display'
+          name="{{column.name}}"
+          prop="{{column.prop}}">
+        </ngx-datatable-column>
+      </div>
+    </ngx-datatable>
+  </div>
+</div>

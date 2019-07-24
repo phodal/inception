@@ -1,0 +1,190 @@
+:host {
+  position: relative;
+}
+
+.wrapper {
+  display: table;
+}
+
+.left-wrapper {
+  width: 100%;
+}
+
+.draggable-item {
+  clear: both;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.check-all label {
+  margin-bottom: 8px;
+}
+
+.filter-title p {
+  text-align: center;
+}
+
+.float-filter-bar .filter-button {
+  font-size: 40px;
+  float: right;
+  right: 80px;
+  margin-top: -60px;
+  position: fixed;
+  z-index: 2;
+}
+
+.filter-button button {
+  border: none;
+}
+
+.filter-button button:hover,
+.filter-button button:focus {
+  background-color: #fff;
+}
+
+.filter-bar {
+  background: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  width: 200px;
+  float: right;
+  right: 80px;
+  position: fixed;
+  z-index: 2;
+  margin-top: -20px;
+}
+
+.filter-toolbar {
+  border-bottom: 1px solid #eee;
+}
+
+.drag-toolbar {
+  padding: 8px 0 18px;
+}
+
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+
+.gu-hide {
+  display: none !important;
+}
+
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);;
+}
+
+.ngx-datatable.bootstrap {
+  box-shadow: none;
+  font-size: 13px;
+}
+
+.ngx-datatable.bootstrap .datatable-header {
+  height: unset !important;
+}
+
+.ngx-datatable.bootstrap .datatable-header .datatable-header-cell {
+  vertical-align: bottom;
+  padding: 0.75rem;
+  background: #ddd;
+  border-right: 1px solid #ccc;
+}
+
+.ngx-datatable.bootstrap .datatable-header .datatable-header-cell .datatable-header-cell-label {
+  line-height: 24px;
+}
+
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row {
+  vertical-align: top;
+  border-top: 1px solid #d1d4d7;
+}
+
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row.datatable-row-even {
+  border-right: 1px solid #ddd;
+}
+
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row.datatable-row-odd {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row.active {
+  background-color: #1483ff;
+  color: #FFF;
+}
+
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row .datatable-body-cell {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.75rem;
+  border-right: 1px solid #ddd;
+}
+
+.ngx-datatable.bootstrap .datatable-footer {
+  background: #424242;
+  color: #ededed;
+  margin-top: -1px;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .page-count {
+  line-height: 50px;
+  height: 50px;
+  padding: 0 1.2rem;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager {
+  margin: 0 10px;
+  vertical-align: top;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li {
+  margin: 10px 0px;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a, .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+  background-color: #545454;
+  font-weight: bold;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager a {
+  height: 22px;
+  min-width: 24px;
+  line-height: 22px;
+  padding: 0;
+  border-radius: 3px;
+  margin: 0 3px;
+  text-align: center;
+  vertical-align: top;
+  text-decoration: none;
+  vertical-align: bottom;
+  color: #ededed;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-left,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-skip,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-right,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-prev {
+  font-size: 18px;
+  line-height: 27px;
+  padding: 0 3px;
+}
