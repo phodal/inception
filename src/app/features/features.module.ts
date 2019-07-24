@@ -7,13 +7,11 @@ import { CoreModule } from '../core/core.module';
 import { ProjectPurposeComponent } from './purpose/project-purpose/project-purpose.component';
 import { ElevatorPitchComponent } from './vision/elevator-pitch/elevator-pitch.component';
 import { BusinessCanvasComponent } from './purpose/business-canvas/business-canvas.component';
-import { PurposeComponent } from './purpose/purpose.component';
 import { ProjectBalanceComponent } from './purpose/project-balance/project-balance.component';
 import { UserInterviewComponent } from './user-research/user-interview/user-interview.component';
 
 @NgModule({
   declarations: [
-    PurposeComponent,
     ProjectPurposeComponent,
     BusinessCanvasComponent,
     ProjectBalanceComponent,
@@ -23,7 +21,6 @@ import { UserInterviewComponent } from './user-research/user-interview/user-inte
     ElevatorPitchComponent
   ],
   exports: [
-    PurposeComponent,
     ProjectPurposeComponent,
     BusinessCanvasComponent,
     ProjectBalanceComponent,

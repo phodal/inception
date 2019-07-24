@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PositioningComponent } from './positioning.component';
 import { FeaturesModule } from '../../features/features.module';
+import { SharedModule } from '../../shared/shared.module';
 
 const POSITIONING_ROUTES: Routes = [
   { path: '', component: PositioningComponent }
@@ -13,8 +14,9 @@ const POSITIONING_ROUTES: Routes = [
   declarations: [PositioningComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(POSITIONING_ROUTES),
-    FeaturesModule
+    SharedModule,
+    FeaturesModule,
+    RouterModule.forChild(POSITIONING_ROUTES)
   ]
 })
 export class PositioningModule { }
