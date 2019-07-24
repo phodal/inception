@@ -30,10 +30,7 @@ export class StakeholderMapComponent implements OnInit {
   }
 
   ngOnInit() {
-    const lastPosition = this.storage.getItem('stake.position');
-    if (!isEmpty(lastPosition)) {
-      this.initialPosition = lastPosition;
-    }
+
   }
 
   dragEnd(event: CdkDragEnd) {
@@ -41,10 +38,6 @@ export class StakeholderMapComponent implements OnInit {
 
     this.position.x = this.initialPosition.x + this.offset.x;
     this.position.y = this.initialPosition.y + this.offset.y;
-
-    console.log(this.position, this.initialPosition, this.offset);
-
-    this.storage.setItem('stake.position', this.position);
   }
 
   contentChanged($event: any) {

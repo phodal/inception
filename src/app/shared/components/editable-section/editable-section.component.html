@@ -1,42 +1,54 @@
-<ng-container *ngIf="editable">
+<div class="editable-section" (tap)="enableEditable()" (panmove)="disableEditable()"
+     [style.top.px]="initialPosition.y"
+     [style.left.px]="initialPosition.x">
+  <ng-container *ngIf="editable" >
+    <div>
 
-  <!-- Actions -->
-  <div class="menu-container" (click)="toggleEditable()">
-    <ng-container *ngIf="showCommands">
-      <button class="button" (click)="bold()">
-        <mat-icon>format_bold</mat-icon>
-      </button>
-      <button class="button" (click)="italic()">
-        <mat-icon>format_italic</mat-icon>
-      </button>
-      <button class="button" (click)="link()">
-        <mat-icon>link</mat-icon>
-      </button>
-    </ng-container>
-    <div *ngIf="backgroundColors.length > 0" class="color-menu" [style.background]="model?.background"
-         [matMenuTriggerFor]="menu"></div>
-    <mat-menu #menu="matMenu">
-      <button *ngFor="let color of backgroundColors" [style.background]="color" mat-menu-item
-              (click)="modelChanged({background: color})"></button>
-    </mat-menu>
-  </div>
+      <!-- Actions -->
+      <div class="menu-container">
+        <ng-container *ngIf="showCommands">
+          <button class="button" (click)="bold()">
+            <mat-icon>format_bold</mat-icon>
+          </button>
+          <button class="button" (click)="italic()">
+            <mat-icon>format_italic</mat-icon>
+          </button>
+          <button class="button" (click)="link()">
+            <mat-icon>link</mat-icon>
+          </button>
+        </ng-container>
+        <div *ngIf="backgroundColors.length > 0" class="color-menu" [style.background]="model?.background"
+             [matMenuTriggerFor]="menu"></div>
+        <mat-menu #menu="matMenu">
+          <button *ngFor="let color of backgroundColors" [style.background]="color" mat-menu-item
+                  (click)="modelChanged({background: color})"></button>
+        </mat-menu>
+      </div>
 
-  <!-- Editable section -->
-  <div class="box" [ngStyle]="divStyle" contenteditable="true" [style.background]="model?.background"
-       [ngModel]="model?.content" (ngModelChange)="contentChanged($event)">
-  </div>
+      <!-- Editable section -->
+      <div class="drag-box"
+           [ngStyle]="divStyle"
+           contenteditable="true"
+           [style.background]="model?.background"
+           [ngModel]="model?.content" (ngModelChange)="contentChanged($event)">
+      </div>
+    </div>
+  </ng-container>
 
-</ng-container>
 
+  <ng-container *ngIf="!editable">
 
-<ng-container *ngIf="!editable">
+    <!-- Non editable section -->
+    <div cdkDrag
+         #item
+         class="draggable-section"
+         (cdkDragEnded)="onDragEnd($event)"
+         [style.top.px]="initialPosition.y"
+         [style.left.px]="initialPosition.x"
+         [ngStyle]="divStyle"
+         [innerHTML]="model?.content.html"
+         [style.background]="model?.background">
+    </div>
 
-  <!-- Non editable section -->
-  <div cdkDrag
-       #item
-       (click)="toggleEditable()"
-       (cdkDragEnded)="dragEnd($event)"
-       [ngStyle]="divStyle" [innerHTML]="model?.content.html" [style.background]="model?.background">
-  </div>
-
-</ng-container>
+  </ng-container>
+</div>

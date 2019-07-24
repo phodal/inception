@@ -23,6 +23,11 @@ export class EditableSectionComponent implements ControlValueAccessor {
   @Input() editable = false;
   @Input() backgroundColors = null;
   @Input() showCommands = true;
+
+  offset = { x: 0, y: 0 };
+  initialPosition = { x: 0, y: 0 };
+  position = { ...this.initialPosition };
+
   disabled = false;
   color;
 
@@ -31,9 +36,11 @@ export class EditableSectionComponent implements ControlValueAccessor {
   }
 
   model = { content: { text: '', html: '' }, background: '#FFFFFF' };
-  onChange = (rating: any) => {
+
+  onChange(rating: any) {
   }
-  onTouched = () => {
+
+  onTouched() {
   }
 
   constructor(private elementRef: ElementRef) {
@@ -83,21 +90,20 @@ export class EditableSectionComponent implements ControlValueAccessor {
     document.execCommand('foreColor', false, color);
   }
 
-  dragEnd($event: CdkDragEnd<any>) {
+  onDragEnd(event: CdkDragEnd) {
     this.editable = false;
+
+    this.offset = { ...(event.source._dragRef as any)._passiveTransform };
+
+    this.position.x = this.initialPosition.x + this.offset.x;
+    this.position.y = this.initialPosition.y + this.offset.y;
   }
 
-  toggleEditable() {
-    this.editable = !this.editable;
+  enableEditable() {
+    this.editable = true;
   }
 
-
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
-    if (event.target.classList && event.target.classList.contains('cdk-drag')) {
-      this.editable = true;
-    } else {
-      this.editable = false;
-    }
+  disableEditable() {
+    this.editable = false;
   }
 }
