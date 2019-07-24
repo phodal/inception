@@ -9,7 +9,7 @@ import { ElevatorPitchComponent } from './vision/elevator-pitch/elevator-pitch.c
 import { BusinessCanvasComponent } from './purpose/business-canvas/business-canvas.component';
 import { PurposeComponent } from './purpose/purpose.component';
 import { ProjectBalanceComponent } from './purpose/project-balance/project-balance.component';
-import { AddWizardComponent } from './purpose/add-wizard/add-wizard.component';
+import { DescribePersonasComponent } from './user-research/describe-personas/describe-personas.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,8 @@ import { AddWizardComponent } from './purpose/add-wizard/add-wizard.component';
     BusinessCanvasComponent,
     ProjectBalanceComponent,
 
+    DescribePersonasComponent,
+
     ElevatorPitchComponent
   ],
   exports: [
@@ -25,6 +27,8 @@ import { AddWizardComponent } from './purpose/add-wizard/add-wizard.component';
     ProjectPurposeComponent,
     BusinessCanvasComponent,
     ProjectBalanceComponent,
+
+    DescribePersonasComponent,
 
     ElevatorPitchComponent
   ],
