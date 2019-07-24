@@ -25,6 +25,7 @@ export class UserInterviewComponent implements OnInit {
 
     this.form.valueChanges.subscribe(() => {
       this.formChange.emit(this.form);
+      this.submitPersonasForm();
     });
 
     this.initForm();
@@ -36,12 +37,16 @@ export class UserInterviewComponent implements OnInit {
       return;
     }
 
-    this.form.patchValue({
-      name: users.name,
-      avatar: users.avatar,
-      profiles: users.profiles,
-      behaviors: users.behaviors,
-      needs: users.needs
+    const control = this.form.get('personas') as FormArray;
+    control.clear();
+    users.personas.forEach(persona => {
+      control.push(this.formBuilder.group({
+        name: persona.name,
+        avatar: persona.avatar,
+        profiles: persona.profiles,
+        behaviors: persona.behaviors,
+        needs: persona.needs
+      }));
     });
   }
 
