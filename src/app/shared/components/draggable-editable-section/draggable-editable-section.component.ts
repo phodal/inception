@@ -1,7 +1,7 @@
 import {
   Component,
   Input,
-  forwardRef, HostListener, ElementRef, ViewChild
+  forwardRef, HostListener, ElementRef, ViewChild, OnInit, AfterViewInit
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
@@ -19,7 +19,7 @@ import { TileModel } from '../../../core/model/tile.model';
     }
   ]
 })
-export class DraggableEditableSectionComponent implements ControlValueAccessor {
+export class DraggableEditableSectionComponent implements AfterViewInit, ControlValueAccessor {
   @Input() backgroundColors = null;
   @Input() showCommands = true;
 
@@ -129,4 +129,5 @@ export class DraggableEditableSectionComponent implements ControlValueAccessor {
       this.editable = false;
     }
   }
+
 }

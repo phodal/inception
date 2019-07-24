@@ -38,15 +38,15 @@ export class StakeholderMapComponent implements OnInit {
 
   ngOnInit() {
     const tiles = this.storage.getItem('stakeholder.map.tiles');
-    console.log(tiles);
     if (tiles && tiles.length > 0) {
       this.tiles = tiles;
     }
   }
 
   modelChange($event: any, index: number) {
-    this.tiles[index] = $event;
-    this.storage.setItem('stakeholder.map.tiles', this.tiles);
+    const tempTiles: TileModel[] = JSON.parse(JSON.stringify(this.tiles));
+    tempTiles[index] = $event;
+    this.storage.setItem('stakeholder.map.tiles', tempTiles);
   }
 
   createNewTile() {
