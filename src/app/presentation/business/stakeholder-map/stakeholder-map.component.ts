@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { random } from 'lodash';
 
 import { StorageService } from '../../../core/services/storage.service';
 import { TileModel } from '../../../core/model/tile.model';
@@ -56,7 +57,7 @@ export class StakeholderMapComponent implements OnInit {
         text: '',
         html: ''
       },
-      background: '',
+      background: this.colors[random(0, this.colors.length)],
       position: {
         x: 0,
         y: 0
