@@ -8,17 +8,17 @@ import { CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'editable-section',
-  templateUrl: './editable-section.component.html',
-  styleUrls: ['./editable-section.component.scss'],
+  templateUrl: './draggable-editable-section.component.html',
+  styleUrls: ['./draggable-editable-section.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => EditableSectionComponent),
+      useExisting: forwardRef(() => DraggableEditableSectionComponent),
       multi: true
     }
   ]
 })
-export class EditableSectionComponent implements ControlValueAccessor {
+export class DraggableEditableSectionComponent implements ControlValueAccessor {
   @Input() divStyle = { width: '100px', height: '100px' };
   @Input() editable = false;
   @Input() backgroundColors = null;

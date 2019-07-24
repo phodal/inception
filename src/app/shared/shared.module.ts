@@ -9,7 +9,7 @@ import { NgxTreeDndModule } from './third-party/ngx-tree-dnd/ngx-tree-dnd.module
 import { CalendarHeaderComponent } from './components/calendar-header/calendar-header.component';
 import { CalendarCommonModule } from 'angular-calendar';
 import { ContentEditableDirective } from './directives/content-editable.directive';
-import { EditableSectionComponent } from './components/editable-section/editable-section.component';
+import { DraggableEditableSectionComponent } from './components/draggable-editable-section/draggable-editable-section.component';
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import { EditableSectionComponent } from './components/editable-section/editable
   ],
   declarations: [
     CalendarHeaderComponent,
-    EditableSectionComponent,
+    DraggableEditableSectionComponent,
     ContentEditableDirective
   ],
   providers: [
@@ -38,7 +38,7 @@ import { EditableSectionComponent } from './components/editable-section/editable
     NgxTreeDndModule,
 
     CalendarHeaderComponent,
-    EditableSectionComponent
+    DraggableEditableSectionComponent
   ],
   entryComponents: []
 })
