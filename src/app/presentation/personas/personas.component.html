@@ -1,1 +1,14 @@
-<p>personas works!</p>
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="userPersonasForm">
+    <ng-template matStepLabel>用户调研</ng-template>
+    <form [formGroup]="userPersonasForm">
+      <feature-describe-personas [(form)]="userPersonasForm"></feature-describe-personas>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>用户访谈</ng-template>
+  </mat-step>
+  <mat-step [stepControl]="customerPersonasForm">
+    <ng-template matStepLabel>客户调研</ng-template>
+  </mat-step>
+</mat-horizontal-stepper>

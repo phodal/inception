@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
-  selector: 'app-describe-personas',
+  selector: 'feature-describe-personas',
   templateUrl: './describe-personas.component.html',
   styleUrls: ['./describe-personas.component.scss']
 })
