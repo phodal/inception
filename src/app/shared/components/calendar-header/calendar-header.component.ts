@@ -17,7 +17,7 @@ export class CalendarHeaderComponent implements OnInit {
   @Output() viewDateChange: EventEmitter<Date> = new EventEmitter();
 
   constructor(private storage: StorageService) {
-    console.log(this.view);
+
   }
 
   ngOnInit(): void {

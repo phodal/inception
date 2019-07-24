@@ -121,7 +121,7 @@ export class MotableComponent implements OnInit {
 
   onActivate(event) {
     if (event.type === 'click') {
-      console.log('Activate Event', event);
+
     }
   }
 
