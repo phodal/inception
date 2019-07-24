@@ -344,6 +344,13 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@ecodev/fab-speed-dial@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@ecodev/fab-speed-dial/-/fab-speed-dial-3.1.4.tgz#0946b5837ea1b354c0d7b58487f7b26aae2af52f"
+  integrity sha512-/9ky9jDw+gbg1yNGdwUsVEakgFh90SM699ZSsiObSe0rHiPfSuGRNGlZ63q+uR0Wnrrzmj8miqiCZEaI3DiI+g==
+  dependencies:
+    tslib "^1.9.0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

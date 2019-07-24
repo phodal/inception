@@ -3,6 +3,7 @@ import { CdkDragDrop, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop
 
 import { StorageService } from '../../../core/services/storage.service';
 import { TileModel } from '../../../core/model/tile.model';
+import { $e } from 'codelyzer/angular/styles/chars';
 
 @Component({
   selector: 'feature-stakeholder-map',
@@ -47,6 +48,21 @@ export class StakeholderMapComponent implements OnInit {
   }
 
   contentChanged($event: any) {
+    console.log($event);
+  }
 
+  createNewTile() {
+    this.tiles.push({
+      editable: false,
+      content: {
+        text: '',
+        html: ''
+      },
+      background: '#2ecc71',
+      position: {
+        x: 0,
+        y: 0
+      }
+    });
   }
 }

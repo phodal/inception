@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "@ecodev/fab-speed-dial": "^3.1.4",
     "angular-calendar": "^0.27.14",
     "angularx-flatpickr": "^6.1.0",
     "core-js": "^2.5.4",

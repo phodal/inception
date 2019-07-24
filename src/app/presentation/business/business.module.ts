@@ -8,6 +8,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
 import { BusinessMapComponent } from './business-map/business-map.component';
 import { StakeholderMapComponent } from './stakeholder-map/stakeholder-map.component';
+import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 
 const routes: Routes = [
   { path: '', component: BusinessComponent }
@@ -20,6 +21,7 @@ const routes: Routes = [
     SharedModule,
     FormsModule,
     CommonModule,
+    EcoFabSpeedDialModule,
     RouterModule.forChild(routes)
   ]
 })
