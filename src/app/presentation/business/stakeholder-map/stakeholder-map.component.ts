@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { isEmpty } from 'lodash';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { StorageService } from '../../../core/services/storage.service';
 import { TileModel } from '../../../core/model/tile.model';
@@ -9,7 +8,7 @@ import { TileModel } from '../../../core/model/tile.model';
   templateUrl: './stakeholder-map.component.html',
   styleUrls: ['./stakeholder-map.component.scss']
 })
-export class StakeholderMapComponent implements AfterViewInit {
+export class StakeholderMapComponent implements OnInit {
   @ViewChild('item', null) item: ElementRef;
 
   tiles: TileModel[] = [{
@@ -37,7 +36,7 @@ export class StakeholderMapComponent implements AfterViewInit {
   constructor(private storage: StorageService) {
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     const tiles = this.storage.getItem('stakeholder.map.tiles');
     console.log(tiles);
     if (tiles && tiles.length > 0) {
@@ -45,7 +44,8 @@ export class StakeholderMapComponent implements AfterViewInit {
     }
   }
 
-  contentChanged($event: any) {
+  modelChange($event: any, index: number) {
+    this.tiles[index] = $event;
     this.storage.setItem('stakeholder.map.tiles', this.tiles);
   }
 
@@ -56,7 +56,7 @@ export class StakeholderMapComponent implements AfterViewInit {
         text: '',
         html: ''
       },
-      background: '#2ecc71',
+      background: '',
       position: {
         x: 0,
         y: 0

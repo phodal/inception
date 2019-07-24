@@ -33,7 +33,7 @@ export class DraggableEditableSectionComponent implements ControlValueAccessor {
     {
       editable: false,
       content: { text: '', html: '' },
-      background: '#FFFFFF',
+      background: '',
       position: {
         x: 0,
         y: 0
@@ -109,9 +109,6 @@ export class DraggableEditableSectionComponent implements ControlValueAccessor {
     const values = regex.exec(transform);
     this.offset = { x: parseInt(values[1], 10), y: parseInt(values[2], 10) };
 
-    // this.position.x = this.initialPosition.x + this.offset.x;
-    // this.position.y = this.initialPosition.y + this.offset.y;
-
     this.model.position.x = this.initialPosition.x + this.offset.x;
     this.model.position.y = this.initialPosition.y + this.offset.y;
 
@@ -125,7 +122,6 @@ export class DraggableEditableSectionComponent implements ControlValueAccessor {
   disableEditable() {
     this.editable = false;
   }
-
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
