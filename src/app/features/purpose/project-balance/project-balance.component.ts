@@ -25,7 +25,6 @@ export class ProjectBalanceComponent implements OnInit {
     this.initForm();
   }
 
-
   initForm() {
     const balance = this.storage.getItem('inception.balance');
     if (!balance) {

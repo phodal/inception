@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
@@ -19,22 +19,58 @@ export class UserInterviewComponent implements OnInit {
     // based on: https://martinfowler.com/articles/lean-inception/describe-personas.html
     this.form = this.formBuilder.group({
       personas: this.formBuilder.array([
-        this.formBuilder.group({
-          name: ['', Validators.required],
-          url: ['', Validators.required],
-          profiles: [[''], Validators.required],
-          behaviors: [[''], Validators.required],
-          needs: [[''], Validators.required],
-        })
+        this.getNewAction()
       ])
     });
 
     this.form.valueChanges.subscribe(() => {
       this.formChange.emit(this.form);
     });
+
+    this.initForm();
+  }
+
+  initForm() {
+    const users = this.storage.getItem('inception.personas.user');
+    if (!users) {
+      return;
+    }
+
+    this.form.patchValue({
+      name: users.name,
+      avatar: users.avatar,
+      profiles: users.profiles,
+      behaviors: users.behaviors,
+      needs: users.needs
+    });
+  }
+
+
+  addUnit() {
+    const control = this.form.get('personas') as FormArray;
+    control.push(this.getNewAction());
+  }
+
+  get formData() {
+    return this.form.get('personas') as FormArray;
+  }
+
+  removeUnit(i: number) {
+    const control = this.form.get('personas') as FormArray;
+    control.removeAt(i);
+  }
+
+  private getNewAction() {
+    return this.formBuilder.group({
+      name: ['', Validators.required],
+      avatar: ['', Validators.required],
+      profiles: [[''], Validators.required],
+      behaviors: [[''], Validators.required],
+      needs: [[''], Validators.required]
+    });
   }
 
   submitPersonasForm() {
-    this.storage.setItem('inception.describe.personas', this.form.value);
+    this.storage.setItem('inception.personas.user', this.form.value);
   }
 }
