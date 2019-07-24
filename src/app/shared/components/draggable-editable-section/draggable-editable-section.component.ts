@@ -19,7 +19,7 @@ import { TileModel } from '../../../core/model/tile.model';
     }
   ]
 })
-export class DraggableEditableSectionComponent implements AfterViewInit, ControlValueAccessor {
+export class DraggableEditableSectionComponent implements ControlValueAccessor {
   @Input() backgroundColors = null;
   @Input() showCommands = true;
 
