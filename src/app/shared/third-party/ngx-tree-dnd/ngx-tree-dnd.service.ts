@@ -152,19 +152,11 @@ export class NgxTreeService {
       parent: this.findingResults.parentItem || 'root'
     };
     this.onStartDeleteItem.next(eventEmit);
-    let text: string;
-    if (this.findingResults.foundItem.name) {
-      text = `Do you really want to delete '${this.findingResults.foundItem.name}'?`;
-    } else {
-      text = `Cancel creating a new item?`;
-    }
-    if (confirm(text)) {
-      this.onFinishDeleteItem.next(eventEmit);
-      const i = this.findingResults.itemsList.indexOf(this.findingResults.foundItem);
-      this.findingResults.itemsList.splice(i, 1);
-    } else {
-      this.onCancelDeleteItem.next(eventEmit);
-    }
+
+    this.onFinishDeleteItem.next(eventEmit);
+    const i = this.findingResults.itemsList.indexOf(this.findingResults.foundItem);
+    this.findingResults.itemsList.splice(i, 1);
+
     this.clearAction();
   }
 
