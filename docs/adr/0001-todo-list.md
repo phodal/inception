@@ -31,6 +31,10 @@ https://github.com/konvajs/ng2-konva
 
  - https://github.com/artf/grapesjs/issues/220
 
+SVG：
+
+ - https://github.com/arkon/ng-inline-svg
+
 ## Consequences
 
 Consequences here...
