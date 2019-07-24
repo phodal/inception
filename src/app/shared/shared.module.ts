@@ -25,8 +25,7 @@ import { GridEditorComponent } from './components/grid-editor/grid-editor.compon
     CustomMaterialModule,
     NgxTreeDndModule,
     CalendarCommonModule,
-    EcoFabSpeedDialModule,
-    MotableModule
+    EcoFabSpeedDialModule
   ],
   declarations: [
     CalendarHeaderComponent,
@@ -44,7 +43,6 @@ import { GridEditorComponent } from './components/grid-editor/grid-editor.compon
     ReactiveFormsModule,
     CustomMaterialModule,
     NgxTreeDndModule,
-    MotableModule,
 
     CalendarHeaderComponent,
     DraggableEditableSectionComponent,
