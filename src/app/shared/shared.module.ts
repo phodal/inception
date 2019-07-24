@@ -12,8 +12,8 @@ import { ContentEditableDirective } from './directives/content-editable.directiv
 import { DraggableEditableSectionComponent } from './components/draggable-editable-section/draggable-editable-section.component';
 import { CoordinatesMapComponent } from './components/coordinates-map/coordinates-map.component';
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
-import { MotableModule } from './components/motable/motable.module';
 import { GridEditorComponent } from './components/grid-editor/grid-editor.component';
+import { CoordinatesBackgroundComponent } from './components/coordinates-background/coordinates-background.component';
 
 @NgModule({
   imports: [
@@ -32,7 +32,8 @@ import { GridEditorComponent } from './components/grid-editor/grid-editor.compon
     DraggableEditableSectionComponent,
     ContentEditableDirective,
     CoordinatesMapComponent,
-    GridEditorComponent
+    GridEditorComponent,
+    CoordinatesBackgroundComponent
   ],
   providers: [
     ContentEditableDirective
@@ -47,7 +48,8 @@ import { GridEditorComponent } from './components/grid-editor/grid-editor.compon
     CalendarHeaderComponent,
     DraggableEditableSectionComponent,
     CoordinatesMapComponent,
-    GridEditorComponent
+    GridEditorComponent,
+    CoordinatesBackgroundComponent
   ],
   entryComponents: []
 })
