@@ -1,21 +1,17 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CdkDragDrop, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { isEmpty } from 'lodash';
 
 import { StorageService } from '../../../core/services/storage.service';
 import { TileModel } from '../../../core/model/tile.model';
-import { $e } from 'codelyzer/angular/styles/chars';
 
 @Component({
   selector: 'feature-stakeholder-map',
   templateUrl: './stakeholder-map.component.html',
   styleUrls: ['./stakeholder-map.component.scss']
 })
-export class StakeholderMapComponent implements OnInit {
+export class StakeholderMapComponent implements AfterViewInit {
   @ViewChild('item', null) item: ElementRef;
 
-  initialPosition = { x: 0, y: 0 };
-  position = { ...this.initialPosition };
-  offset = { x: 0, y: 0 };
   tiles: TileModel[] = [{
     editable: false,
     content: {
@@ -32,23 +28,16 @@ export class StakeholderMapComponent implements OnInit {
   constructor(private storage: StorageService) {
   }
 
-  ngOnInit() {
-
-  }
-
-  dragEnd(event: CdkDragEnd) {
-    this.offset = { ...(event.source._dragRef as any)._passiveTransform };
-
-    this.position.x = this.initialPosition.x + this.offset.x;
-    this.position.y = this.initialPosition.y + this.offset.y;
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.tiles, event.previousIndex, event.currentIndex);
+  ngAfterViewInit() {
+    const tiles = this.storage.getItem('stakeholder.map.tiles');
+    console.log(tiles);
+    if (tiles && tiles.length > 0) {
+      this.tiles = tiles;
+    }
   }
 
   contentChanged($event: any) {
-    console.log($event);
+    this.storage.setItem('stakeholder.map.tiles', this.tiles);
   }
 
   createNewTile() {

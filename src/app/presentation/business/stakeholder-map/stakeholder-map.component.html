@@ -1,11 +1,11 @@
 <div class="example-boundary">
   <div *ngFor="let tile of tiles" cdkDropList>
-    <editable-section
+    <draggable-editable-section
       [(ngModel)]="tile"
       [backgroundColors]="['#2ecc71', '#3498db', '#e74c3c']"
       [showCommands]="false"
       (ngModelChange)="contentChanged($event)">
-    </editable-section>
+    </draggable-editable-section>
   </div>
 </div>
 

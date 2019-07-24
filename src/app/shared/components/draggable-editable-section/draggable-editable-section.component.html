@@ -2,8 +2,8 @@
   <div class="editing"
        [style.zIndex]="editable ? 2 : 1"
        [style.opacity]="editable ? 1 : 0"
-       [style.top.px]="position.y"
-       [style.left.px]="position.x">
+       [style.top.px]="model?.position.y"
+       [style.left.px]="model?.position.x">
     <!-- Actions -->
     <div class="menu-container">
       <ng-container *ngIf="showCommands">
@@ -39,7 +39,9 @@
        (cdkDragEnded)="onDragEnd($event)"
        [style.zIndex]="editable ? 1 : 2"
        [innerHTML]="model?.content.html"
-       [style.background]="model?.background">
+       [style.background]="model?.background"
+       [style.top.px]="initialPosition.y"
+       [style.left.px]="initialPosition.x">
   </div>
 
 </div>

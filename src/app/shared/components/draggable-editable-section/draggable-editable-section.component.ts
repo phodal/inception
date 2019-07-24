@@ -1,14 +1,14 @@
 import {
   Component,
   Input,
-  forwardRef, HostListener, ElementRef
+  forwardRef, HostListener, ElementRef, ViewChild
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { TileModel } from '../../../core/model/tile.model';
 
 @Component({
-  selector: 'editable-section',
+  selector: 'draggable-editable-section',
   templateUrl: './draggable-editable-section.component.html',
   styleUrls: ['./draggable-editable-section.component.scss'],
   providers: [
@@ -22,6 +22,8 @@ import { TileModel } from '../../../core/model/tile.model';
 export class DraggableEditableSectionComponent implements ControlValueAccessor {
   @Input() backgroundColors = null;
   @Input() showCommands = true;
+
+  @ViewChild('item', null) item: ElementRef;
 
   offset = { x: 0, y: 0 };
   disabled = false;
@@ -38,6 +40,7 @@ export class DraggableEditableSectionComponent implements ControlValueAccessor {
       }
     };
   position = { ...this.model.position };
+  initialPosition = { ...this.model.position };
 
   get opacity() {
     return this.disabled ? 0.25 : 1;
@@ -54,8 +57,9 @@ export class DraggableEditableSectionComponent implements ControlValueAccessor {
 
   writeValue(value: TileModel): void {
     this.model = value;
-    if (this.model && this.model.editable) {
+    if (this.model) {
       this.editable = this.model.editable;
+      this.initialPosition = { ...this.model.position };
     }
   }
 
@@ -100,11 +104,18 @@ export class DraggableEditableSectionComponent implements ControlValueAccessor {
   }
 
   onDragEnd(event: CdkDragEnd) {
-    this.editable = false;
-    this.offset = { ...(event.source._dragRef as any)._passiveTransform };
+    const transform = this.item.nativeElement.style.transform;
+    const regex = /translate3d\(\s?(?<x>[-]?\d*)px,\s?(?<y>[-]?\d*)px,\s?(?<z>[-]?\d*)px\)/;
+    const values = regex.exec(transform);
+    this.offset = { x: parseInt(values[1], 10), y: parseInt(values[2], 10) };
 
-    this.position.x = this.model.position.x + this.offset.x;
-    this.position.y = this.model.position.y + this.offset.y;
+    // this.position.x = this.initialPosition.x + this.offset.x;
+    // this.position.y = this.initialPosition.y + this.offset.y;
+
+    this.model.position.x = this.initialPosition.x + this.offset.x;
+    this.model.position.y = this.initialPosition.y + this.offset.y;
+
+    this.onChange(this.model);
   }
 
   enableEditable() {
