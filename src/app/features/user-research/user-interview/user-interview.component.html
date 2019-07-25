@@ -21,15 +21,26 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="资料" formControlName="profiles" required>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5" placeholder="资料" formControlName="profiles" required></textarea>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="行为" formControlName="behaviors" required>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    placeholder="行为" formControlName="behaviors" required></textarea>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="需要" formControlName="needs" required>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1" placeholder="需要" formControlName="needs" required></textarea>
         </mat-form-field>
       </div>
     </div>
