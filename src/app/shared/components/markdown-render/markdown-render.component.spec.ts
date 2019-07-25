@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MarkdownModule, MarkdownService } from 'ngx-markdown';
+import { MarkdownModule, MarkdownService, MarkedOptions } from 'ngx-markdown';
 
 import { MarkdownRenderComponent } from './markdown-render.component';
 import { SharedModule } from '../../shared.module';
@@ -12,10 +12,18 @@ describe('MarkdownRenderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, FeaturesModule, MarkdownModule],
-      providers: [MarkdownService],
-      declarations: [ MarkdownRenderComponent ]
+      providers: [MarkdownService,
+        {
+          provide: MarkedOptions,
+          useValue: {
+            gfm: true,
+            tables: true
+          }
+        }
+      ],
+      declarations: [MarkdownRenderComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -10,8 +10,7 @@ describe('CoordinatesMapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, FeaturesModule],
-      declarations: [ CoordinatesMapComponent ]
+      imports: [SharedModule, FeaturesModule]
     })
     .compileComponents();
   }));

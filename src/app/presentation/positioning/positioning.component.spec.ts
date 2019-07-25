@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PositioningComponent } from './positioning.component';
 import { SharedModule } from '../../shared/shared.module';
@@ -11,7 +12,7 @@ describe('PositioningComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, FeaturesModule],
+      imports: [SharedModule, FeaturesModule, BrowserAnimationsModule],
       providers: [StorageService],
       declarations: [ PositioningComponent ]
     })
