@@ -3,7 +3,7 @@ import {
   MatCheckboxModule, MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatListModule,
   MatMenuModule, MatSliderModule,
   MatStepperModule
 } from '@angular/material';
@@ -20,7 +20,8 @@ const MATERIAL_IMPORTS_EXPORTS = [
   MatInputModule,
   MatSliderModule,
   MatDividerModule,
-  DragDropModule
+  DragDropModule,
+  MatListModule
 ];
 
 @NgModule({

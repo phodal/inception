@@ -11,6 +11,7 @@ import { ProjectBalanceComponent } from './purpose/project-balance/project-balan
 import { UserInterviewComponent } from './user-research/user-interview/user-interview.component';
 import { BranchModelComponent } from './technical/branch-model/branch-model.component';
 import { OrganizationMapComponent } from './user-research/organization-map/organization-map.component';
+import { TodoComponent } from './planning/todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { OrganizationMapComponent } from './user-research/organization-map/organ
 
     ElevatorPitchComponent,
 
-    BranchModelComponent
+    BranchModelComponent,
+
+    TodoComponent
   ],
   exports: [
     ProjectPurposeComponent,
@@ -37,7 +40,9 @@ import { OrganizationMapComponent } from './user-research/organization-map/organ
 
     ElevatorPitchComponent,
 
-    BranchModelComponent
+    BranchModelComponent,
+
+    TodoComponent
   ],
   imports: [
     CoreModule,
