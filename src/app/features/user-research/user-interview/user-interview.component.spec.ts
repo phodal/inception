@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserInterviewComponent } from './user-interview.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { StorageService } from '../../../core/services/storage.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CdkStepper } from '@angular/cdk/stepper';
 
 describe('UserInterviewComponent', () => {
   let component: UserInterviewComponent;
@@ -10,8 +12,8 @@ describe('UserInterviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule],
-      providers: [StorageService],
+      imports: [SharedModule, BrowserAnimationsModule],
+      providers: [StorageService, { provide: CdkStepper, useExisting: null }],
       declarations: [ UserInterviewComponent ]
     })
     .compileComponents();

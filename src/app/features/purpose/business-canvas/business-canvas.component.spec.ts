@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CdkStepper } from '@angular/cdk/stepper';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BusinessCanvasComponent } from './business-canvas.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { StorageService } from '../../../core/services/storage.service';
-import { MatStepperModule } from '@angular/material';
 
 describe('BusinessCanvasComponent', () => {
   let component: BusinessCanvasComponent;
@@ -11,11 +12,11 @@ describe('BusinessCanvasComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, MatStepperModule],
-      providers: [StorageService],
-      declarations: [ BusinessCanvasComponent ]
+      imports: [SharedModule, BrowserAnimationsModule],
+      providers: [StorageService, { provide: CdkStepper, useExisting: null }],
+      declarations: [BusinessCanvasComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

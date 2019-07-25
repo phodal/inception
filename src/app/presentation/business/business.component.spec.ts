@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BusinessComponent } from './business.component';
 import { StorageService } from '../../core/services/storage.service';
@@ -11,7 +12,7 @@ describe('BusinessComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, FeaturesModule],
+      imports: [SharedModule, FeaturesModule, BrowserAnimationsModule],
       providers: [StorageService],
       declarations: [ BusinessComponent ]
     })

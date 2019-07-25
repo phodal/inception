@@ -12,35 +12,37 @@ import { UserInterviewComponent } from './user-research/user-interview/user-inte
 import { BranchModelComponent } from './technical/branch-model/branch-model.component';
 import { OrganizationMapComponent } from './user-research/organization-map/organization-map.component';
 import { TodoComponent } from './planning/todo/todo.component';
+import { BusinessMapComponent } from './business/business-map/business-map.component';
+import { StakeholderMapComponent } from './business/stakeholder-map/stakeholder-map.component';
 
 @NgModule({
   declarations: [
-    ProjectPurposeComponent,
-    BusinessCanvasComponent,
-    ProjectBalanceComponent,
+    ProjectPurposeComponent, BusinessCanvasComponent, ProjectBalanceComponent,
 
     // UserResearch
-    UserInterviewComponent,
-    OrganizationMapComponent,
+    UserInterviewComponent, OrganizationMapComponent,
 
     ElevatorPitchComponent,
 
     BranchModelComponent,
+
+    // Business
+    BusinessMapComponent, StakeholderMapComponent,
 
     TodoComponent
   ],
   exports: [
-    ProjectPurposeComponent,
-    BusinessCanvasComponent,
-    ProjectBalanceComponent,
+    ProjectPurposeComponent, BusinessCanvasComponent, ProjectBalanceComponent,
 
     // UserResearch
-    UserInterviewComponent,
-    OrganizationMapComponent,
+    UserInterviewComponent, OrganizationMapComponent,
 
     ElevatorPitchComponent,
 
     BranchModelComponent,
+
+    // Business
+    BusinessMapComponent, StakeholderMapComponent,
 
     TodoComponent
   ],
@@ -50,4 +52,5 @@ import { TodoComponent } from './planning/todo/todo.component';
     CommonModule
   ]
 })
-export class FeaturesModule { }
+export class FeaturesModule {
+}

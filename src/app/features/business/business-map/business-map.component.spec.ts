@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BusinessMapComponent } from './business-map.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { FeaturesModule } from '../../../features/features.module';
+import { FeaturesModule } from '../../features.module';
 import { StorageService } from '../../../core/services/storage.service';
 
 describe('BusinessMapComponent', () => {
@@ -11,7 +11,7 @@ describe('BusinessMapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, FeaturesModule],
+      imports: [SharedModule],
       providers: [StorageService],
       declarations: [ BusinessMapComponent ]
     })

@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CdkStepper } from '@angular/cdk/stepper';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HelpComponent } from './help.component';
+import { SharedModule } from '../../shared/shared.module';
+import { StorageService } from '../../core/services/storage.service';
+import { FeaturesModule } from '../../features/features.module';
+import { MarkdownRenderModule } from '../../shared/components/markdown-render/markdown-render.module';
 
 describe('HelpComponent', () => {
   let component: HelpComponent;
@@ -8,6 +14,8 @@ describe('HelpComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [SharedModule,  MarkdownRenderModule, FeaturesModule, BrowserAnimationsModule],
+      providers: [StorageService, { provide: CdkStepper, useExisting: null }],
       declarations: [ HelpComponent ]
     })
     .compileComponents();

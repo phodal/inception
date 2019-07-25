@@ -4,6 +4,7 @@ import { PlanningComponent } from './planning.component';
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
 import { StorageService } from '../../core/services/storage.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('PlanningComponent', () => {
   let component: PlanningComponent;
@@ -11,7 +12,7 @@ describe('PlanningComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, FeaturesModule],
+      imports: [SharedModule, FeaturesModule, BrowserAnimationsModule],
       providers: [StorageService],
       declarations: [ PlanningComponent ]
     })

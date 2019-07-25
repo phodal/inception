@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StakeholderMapComponent } from './stakeholder-map.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { StorageService } from '../../../core/services/storage.service';
 
 describe('StakeholderMapComponent', () => {
   let component: StakeholderMapComponent;
@@ -8,6 +10,8 @@ describe('StakeholderMapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [SharedModule],
+      providers: [StorageService],
       declarations: [ StakeholderMapComponent ]
     })
     .compileComponents();
