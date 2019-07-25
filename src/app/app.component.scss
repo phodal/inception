@@ -1,12 +1,16 @@
 .nav-bar {
   display: flex;
   justify-content: flex-start;
-
-  button {
-    width: 140px;
-  }
 }
 
 .active-link {
   background-color: #ccc;
+}
+
+.github {
+  svg {
+    top: 8px;
+    position: relative;
+    margin-right: 4px;
+  }
 }
