@@ -9,6 +9,7 @@ import { ElevatorPitchComponent } from './vision/elevator-pitch/elevator-pitch.c
 import { BusinessCanvasComponent } from './purpose/business-canvas/business-canvas.component';
 import { ProjectBalanceComponent } from './purpose/project-balance/project-balance.component';
 import { UserInterviewComponent } from './user-research/user-interview/user-interview.component';
+import { BranchModelComponent } from './technical/branch-model/branch-model.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { UserInterviewComponent } from './user-research/user-interview/user-inte
 
     UserInterviewComponent,
 
-    ElevatorPitchComponent
+    ElevatorPitchComponent,
+
+    BranchModelComponent
   ],
   exports: [
     ProjectPurposeComponent,
@@ -27,7 +30,9 @@ import { UserInterviewComponent } from './user-research/user-interview/user-inte
 
     UserInterviewComponent,
 
-    ElevatorPitchComponent
+    ElevatorPitchComponent,
+
+    BranchModelComponent
   ],
   imports: [
     CoreModule,
