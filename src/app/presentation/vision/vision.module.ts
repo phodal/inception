@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { VisionComponent } from './vision.component';
 import { FeaturesModule } from '../../features/features.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CoreModule } from '../../core/core.module';
+import { SharedModule } from '../../shared/shared.module';
 
 const VISION_ROUTES: Routes = [
   { path: '', component: VisionComponent }
@@ -15,11 +15,10 @@ const VISION_ROUTES: Routes = [
   declarations: [VisionComponent],
   imports: [
     FormsModule,
-    ReactiveFormsModule,
     CommonModule,
+    FeaturesModule,
+    SharedModule,
     RouterModule.forChild(VISION_ROUTES),
-    CoreModule,
-    FeaturesModule
   ]
 })
 

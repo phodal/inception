@@ -1,1 +1,10 @@
-<feature-elevator-pitch></feature-elevator-pitch>
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="businessGroupForm">
+    <ng-template matStepLabel>业务远景</ng-template>
+    <feature-elevator-pitch></feature-elevator-pitch>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>技术远景</ng-template>
+  </mat-step>
+</mat-horizontal-stepper>
+
