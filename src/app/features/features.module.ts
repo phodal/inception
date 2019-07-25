@@ -10,6 +10,7 @@ import { BusinessCanvasComponent } from './purpose/business-canvas/business-canv
 import { ProjectBalanceComponent } from './purpose/project-balance/project-balance.component';
 import { UserInterviewComponent } from './user-research/user-interview/user-interview.component';
 import { BranchModelComponent } from './technical/branch-model/branch-model.component';
+import { OrganizationMapComponent } from './user-research/organization-map/organization-map.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { BranchModelComponent } from './technical/branch-model/branch-model.comp
     BusinessCanvasComponent,
     ProjectBalanceComponent,
 
+    // UserResearch
     UserInterviewComponent,
+    OrganizationMapComponent,
 
     ElevatorPitchComponent,
 
@@ -28,7 +31,9 @@ import { BranchModelComponent } from './technical/branch-model/branch-model.comp
     BusinessCanvasComponent,
     ProjectBalanceComponent,
 
+    // UserResearch
     UserInterviewComponent,
+    OrganizationMapComponent,
 
     ElevatorPitchComponent,
 
