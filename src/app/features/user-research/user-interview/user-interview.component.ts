@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from '../../../core/services/storage.service';
 
@@ -7,7 +7,7 @@ import { StorageService } from '../../../core/services/storage.service';
   templateUrl: './user-interview.component.html',
   styleUrls: ['./user-interview.component.scss']
 })
-export class UserInterviewComponent implements OnInit {
+export class UserInterviewComponent implements OnInit, AfterViewInit {
   @Input() form: FormGroup;
   @Output() formChange = new EventEmitter<any>();
 
@@ -27,20 +27,23 @@ export class UserInterviewComponent implements OnInit {
       this.formChange.emit(this.form);
       this.submitPersonasForm();
     });
-
-    this.initForm();
   }
 
-  initForm() {
-    const users = this.storage.getItem('inception.personas.user');
+  ngAfterViewInit(): void {
+    const that = this;
+    setTimeout(() => that.initForm(that), 20);
+  }
+
+  initForm(that) {
+    const users = that.storage.getItem('inception.personas.user');
     if (!users) {
       return;
     }
 
-    const control = this.form.get('personas') as FormArray;
+    const control = that.form.get('personas') as FormArray;
     control.clear();
     users.personas.forEach(persona => {
-      control.push(this.formBuilder.group({
+      control.push(that.formBuilder.group({
         name: persona.name,
         avatar: persona.avatar,
         profiles: persona.profiles,

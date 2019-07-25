@@ -1,9 +1,7 @@
 <mat-horizontal-stepper #stepper>
   <mat-step [stepControl]="userPersonasForm">
     <ng-template matStepLabel>用户调研</ng-template>
-    <form [formGroup]="userPersonasForm">
-      <feature-user-interview [(form)]="userPersonasForm"></feature-user-interview>
-    </form>
+    <feature-user-interview [(form)]="userPersonasForm"></feature-user-interview>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>用户访谈</ng-template>
