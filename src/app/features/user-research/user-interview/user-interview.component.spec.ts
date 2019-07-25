@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserInterviewComponent } from './user-interview.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { StorageService } from '../../../core/services/storage.service';
 
 describe('UserInterviewComponent', () => {
   let component: UserInterviewComponent;
@@ -8,6 +10,8 @@ describe('UserInterviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [SharedModule],
+      providers: [StorageService],
       declarations: [ UserInterviewComponent ]
     })
     .compileComponents();

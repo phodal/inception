@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BranchModelComponent } from './branch-model.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { StorageService } from '../../../core/services/storage.service';
 
 describe('BranchModelComponent', () => {
   let component: BranchModelComponent;
@@ -8,6 +10,8 @@ describe('BranchModelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [SharedModule],
+      providers: [StorageService],
       declarations: [ BranchModelComponent ]
     })
     .compileComponents();

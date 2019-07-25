@@ -1,10 +1,13 @@
 import {
   MatButtonModule,
-  MatCheckboxModule, MatDividerModule,
+  MatCheckboxModule,
+  MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatListModule,
-  MatMenuModule, MatSliderModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatSliderModule,
   MatStepperModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectPurposeComponent } from './project-purpose.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { StorageService } from '../../../core/services/storage.service';
 
 describe('ProjectPurposeComponent', () => {
   let component: ProjectPurposeComponent;
@@ -8,6 +10,8 @@ describe('ProjectPurposeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [SharedModule],
+      providers: [StorageService],
       declarations: [ ProjectPurposeComponent ]
     })
     .compileComponents();

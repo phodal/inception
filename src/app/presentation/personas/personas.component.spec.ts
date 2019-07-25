@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PersonasComponent } from './personas.component';
+import { SharedModule } from '../../shared/shared.module';
+import { FeaturesModule } from '../../features/features.module';
+import { StorageService } from '../../core/services/storage.service';
 
 describe('PersonasComponent', () => {
   let component: PersonasComponent;
@@ -8,6 +11,8 @@ describe('PersonasComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [SharedModule, FeaturesModule],
+      providers: [StorageService],
       declarations: [ PersonasComponent ]
     })
     .compileComponents();

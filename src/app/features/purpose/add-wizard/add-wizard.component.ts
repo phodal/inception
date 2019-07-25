@@ -28,6 +28,9 @@ export class AddWizardComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.route.snapshot.routeConfig) {
+      return;
+    }
     this.steps = this.route.snapshot.routeConfig.children.map(child => {
       return child.path;
     });

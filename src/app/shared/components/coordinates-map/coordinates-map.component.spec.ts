@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CoordinatesMapComponent } from './coordinates-map.component';
+import { SharedModule } from '../../shared.module';
+import { FeaturesModule } from '../../../features/features.module';
 
 describe('CoordinatesMapComponent', () => {
   let component: CoordinatesMapComponent;
@@ -8,6 +10,7 @@ describe('CoordinatesMapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [SharedModule, FeaturesModule],
       declarations: [ CoordinatesMapComponent ]
     })
     .compileComponents();
