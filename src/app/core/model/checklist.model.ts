@@ -3,6 +3,7 @@ export interface ChecklistModel {
   priority: string;
   description: string;
   tools: string[];
+  complete?: string;
   documentation: string[];
   tags: [];
   subitems: CheckItem[];

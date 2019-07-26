@@ -3,6 +3,7 @@ import { isEmpty } from 'lodash';
 
 import { ChecklistModel } from '../../../core/model/checklist.model';
 import { StorageService } from '../../../core/services/storage.service';
+import { MatCheckboxChange } from '@angular/material';
 
 @Component({
   selector: 'component-checklist',
@@ -23,7 +24,11 @@ export class ChecklistComponent implements OnInit {
     }
   }
 
-  changeTodo($event: any) {
+  changeTodo($event: any, index: number) {
     this.storage.setItem('inception.checklist.' + this.name, this.checklists);
+  }
+
+  completeChange($event: MatCheckboxChange, toDo: any) {
+
   }
 }
