@@ -10,5 +10,6 @@ export interface ChecklistModel {
 
 export interface CheckItem {
   title: string;
+  complete?: boolean;
   description: string;
 }
