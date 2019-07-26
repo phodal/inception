@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { TodoModel } from '../../../core/model/todo.model';
 import { Subject } from 'rxjs';
@@ -24,7 +24,10 @@ export class TodoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      todo: [['']]
+      todo: ['', [
+        Validators.required,
+        Validators.minLength(2)
+      ]]
     });
 
     this.form.valueChanges.subscribe(() => {
@@ -50,7 +53,9 @@ export class TodoComponent implements OnInit, OnDestroy {
   }
 
   submitTodo() {
-    this.addToDo(this.form.value.todo);
-    this.form.controls.todo.setValue(null);
+    if (this.form.valid) {
+      this.addToDo(this.form.value.todo);
+      this.form.controls.todo.setValue(null);
+    }
   }
 }
