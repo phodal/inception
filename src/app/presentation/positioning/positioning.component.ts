@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { StorageService } from '../../core/services/storage.service';
 
 @Component({
   selector: 'app-positioning',
