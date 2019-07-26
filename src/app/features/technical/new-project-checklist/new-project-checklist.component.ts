@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import TECH_CHECKLIST from '../../../../assets/data/checklists/technology.json';
-import DOMAIN_CHECKLIST from '../../../../assets/data/checklists/domain.json';
-import PROJECT_CHECKLIST from '../../../../assets/data/checklists/process.json';
-import PEOPLE_CHECKLIST from '../../../../assets/data/checklists/people.json';
+const TECH_CHECKLIST = require('../../../../assets/data/checklists/technology.json');
+const DOMAIN_CHECKLIST = require('../../../../assets/data/checklists/domain.json');
+const PROJECT_CHECKLIST = require('../../../../assets/data/checklists/process.json');
+const PEOPLE_CHECKLIST = require('../../../../assets/data/checklists/people.json');
 
 @Component({
   selector: 'feature-new-project-checklist',
