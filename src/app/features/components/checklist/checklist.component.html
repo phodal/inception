@@ -1,0 +1,6 @@
+<div *ngFor="let checklist of checklists">
+  <span class="title">{{checklist.title}}</span>
+  <span *ngIf="checklist.description" class="description">: &nbsp;&nbsp; {{checklist.description}}</span>
+  <component-todo [disableInput]="true" [toDos]="checklist.subitems"></component-todo>
+</div>
+

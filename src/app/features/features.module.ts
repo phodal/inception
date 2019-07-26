@@ -15,6 +15,7 @@ import { TodoComponent } from './components/todo/todo.component';
 import { BusinessMapComponent } from './business/business-map/business-map.component';
 import { StakeholderMapComponent } from './business/stakeholder-map/stakeholder-map.component';
 import { NewProjectChecklistComponent } from './technical/new-project-checklist/new-project-checklist.component';
+import { ChecklistComponent } from './components/checklist/checklist.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NewProjectChecklistComponent } from './technical/new-project-checklist/
     // Business
     BusinessMapComponent, StakeholderMapComponent,
 
-    TodoComponent
+    // Components
+    TodoComponent, ChecklistComponent
   ],
   exports: [
     ProjectPurposeComponent, BusinessCanvasComponent, ProjectBalanceComponent,
@@ -47,7 +49,8 @@ import { NewProjectChecklistComponent } from './technical/new-project-checklist/
     // Business
     BusinessMapComponent, StakeholderMapComponent,
 
-    TodoComponent
+    // Components
+    TodoComponent, ChecklistComponent
   ],
   imports: [
     CoreModule,

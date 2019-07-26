@@ -39,7 +39,7 @@ export class TodoComponent implements OnInit, OnDestroy {
     this.toDos.push({
       id: Math.random(),
       complete: false,
-      task: value
+      title: value
     });
   }
 

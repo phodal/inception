@@ -6,10 +6,11 @@
   <button mat-button (click)="submitTodo()">Add</button>
 </form>
 
-<span>事项</span>
-
 <mat-list>
   <mat-list-item *ngFor="let toDo of toDos" [class.complete]="toDo?.complete">
-    <mat-checkbox [checked]="toDo.complete" (change)="completeChange($event, toDo)">{{ toDo?.task }}</mat-checkbox>
+    <mat-checkbox [checked]="toDo.complete" (change)="completeChange($event, toDo)">
+      <span class="title">{{ toDo?.title }}</span>
+      <span *ngIf="toDo.description" class="description">&nbsp;&nbsp; {{toDo.description}}</span>
+    </mat-checkbox>
   </mat-list-item>
 </mat-list>
