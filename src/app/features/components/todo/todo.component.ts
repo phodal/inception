@@ -49,7 +49,7 @@ export class TodoComponent implements OnInit, OnDestroy {
   }
 
   completeChange($event: MatCheckboxChange, toDo: TodoModel) {
-    toDo.complete = true;
+    toDo.complete = $event.checked;
   }
 
   submitTodo() {
