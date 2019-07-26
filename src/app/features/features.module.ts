@@ -14,6 +14,7 @@ import { OrganizationMapComponent } from './user-research/organization-map/organ
 import { TodoComponent } from './planning/todo/todo.component';
 import { BusinessMapComponent } from './business/business-map/business-map.component';
 import { StakeholderMapComponent } from './business/stakeholder-map/stakeholder-map.component';
+import { NewProjectChecklistComponent } from './technical/new-project-checklist/new-project-checklist.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { StakeholderMapComponent } from './business/stakeholder-map/stakeholder-
 
     ElevatorPitchComponent,
 
-    BranchModelComponent,
+    // Technical
+    BranchModelComponent, NewProjectChecklistComponent,
 
     // Business
     BusinessMapComponent, StakeholderMapComponent,
@@ -39,7 +41,8 @@ import { StakeholderMapComponent } from './business/stakeholder-map/stakeholder-
 
     ElevatorPitchComponent,
 
-    BranchModelComponent,
+    // Technical
+    BranchModelComponent, NewProjectChecklistComponent,
 
     // Business
     BusinessMapComponent, StakeholderMapComponent,

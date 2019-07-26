@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./planning.component.scss']
 })
 export class PlanningComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
   }
-
 }

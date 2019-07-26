@@ -14,9 +14,9 @@ describe('PlanningComponent', () => {
     TestBed.configureTestingModule({
       imports: [SharedModule, FeaturesModule, BrowserAnimationsModule],
       providers: [StorageService],
-      declarations: [ PlanningComponent ]
+      declarations: [PlanningComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
