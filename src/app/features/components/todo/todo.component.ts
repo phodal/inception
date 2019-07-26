@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 import { TodoModel } from '../../../core/model/todo.model';
-import { Subject } from 'rxjs';
 import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
@@ -13,9 +13,9 @@ import { StorageService } from '../../../core/services/storage.service';
 })
 export class TodoComponent implements OnInit, OnDestroy {
   @Input() form: FormGroup;
+  @Input() toDos: TodoModel[] = [];
+  @Input() disableInput = false;
   @Output() formChange = new EventEmitter<any>();
-
-  toDos: TodoModel[] = [];
 
   private unsubscribe = new Subject<void>();
 

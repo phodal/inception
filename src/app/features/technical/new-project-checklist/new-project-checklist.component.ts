@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-project-checklist.component.scss']
 })
 export class NewProjectChecklistComponent implements OnInit {
+  newProjectChecklist: any;
 
   constructor() { }
 

@@ -11,7 +11,7 @@ import { ProjectBalanceComponent } from './purpose/project-balance/project-balan
 import { UserInterviewComponent } from './user-research/user-interview/user-interview.component';
 import { BranchModelComponent } from './technical/branch-model/branch-model.component';
 import { OrganizationMapComponent } from './user-research/organization-map/organization-map.component';
-import { TodoComponent } from './planning/todo/todo.component';
+import { TodoComponent } from './components/todo/todo.component';
 import { BusinessMapComponent } from './business/business-map/business-map.component';
 import { StakeholderMapComponent } from './business/stakeholder-map/stakeholder-map.component';
 import { NewProjectChecklistComponent } from './technical/new-project-checklist/new-project-checklist.component';
