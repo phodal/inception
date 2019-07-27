@@ -1,19 +1,17 @@
-<mat-menu #appMenu="matMenu">
-  <button mat-menu-item>Settings</button>
-  <button mat-menu-item routerLink="/help">Help</button>
-</mat-menu>
+<div>
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item>Settings</button>
+    <button mat-menu-item routerLink="/help">Help</button>
+  </mat-menu>
 
-<nav class="nav-bar">
-  <button mat-menu-item routerLinkActive="active-link" routerLink="/">Home</button>
-  <button mat-menu-item routerLinkActive="active-link" routerLink="/discover">Discover</button>
-  <button mat-menu-item routerLinkActive="active-link" routerLink="/inception">Inception</button>
-  <button mat-menu-item routerLinkActive="active-link" routerLink="/delivery">Delivery</button>
-  <button mat-menu-item routerLinkActive="active-link" routerLink="/maintain">Maintain</button>
-  <button mat-menu-item routerLinkActive="active-link" routerLink="/evolution">Evolution</button>
-  <button mat-icon-button [matMenuTriggerFor]="appMenu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-</nav>
+  <nav class="nav-bar">
+    <button mat-menu-item routerLinkActive="active-link" routerLink="/">Home</button>
+    <button mat-menu-item routerLinkActive="active-link" routerLink="/inception">Works</button>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </nav>
+</div>
 
 <div>
   <router-outlet></router-outlet>

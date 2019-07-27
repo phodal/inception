@@ -14,6 +14,7 @@ import { CoordinatesMapComponent } from './components/coordinates-map/coordinate
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { GridEditorComponent } from './components/grid-editor/grid-editor.component';
 import { CoordinatesBackgroundComponent } from './components/coordinates-background/coordinates-background.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { CoordinatesBackgroundComponent } from './components/coordinates-backgro
     CustomMaterialModule,
     NgxTreeDndModule,
     CalendarCommonModule,
-    EcoFabSpeedDialModule
+    EcoFabSpeedDialModule,
+    FlexLayoutModule
   ],
   declarations: [
     CalendarHeaderComponent,
@@ -44,6 +46,7 @@ import { CoordinatesBackgroundComponent } from './components/coordinates-backgro
     ReactiveFormsModule,
     CustomMaterialModule,
     NgxTreeDndModule,
+    FlexLayoutModule,
 
     CalendarHeaderComponent,
     DraggableEditableSectionComponent,
