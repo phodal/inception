@@ -5,14 +5,14 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { ContextMenuModule, ContextMenuService } from 'ngx-contextmenu';
 
-import { HomeComponent } from './home.component';
+import { ScheduleComponent } from './schedule.component';
 import { SharedModule } from '../../shared/shared.module';
 import { StorageService } from '../../core/services/storage.service';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('ScheduleComponent', () => {
+  let component: ScheduleComponent;
+  let fixture: ComponentFixture<ScheduleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,13 +31,13 @@ describe('HomeComponent', () => {
         StorageService,
         ContextMenuService
       ],
-      declarations: [HomeComponent]
+      declarations: [ScheduleComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(ScheduleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

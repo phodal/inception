@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/home' },
+  { path: '', pathMatch: 'full', redirectTo: '/schedule' },
   {
-    path: 'home',
-    loadChildren: () => import('./presentation/home/home.module').then(m => m.HomeModule),
+    path: 'schedule',
+    loadChildren: () => import('./presentation/schedule/schedule.module').then(m => m.ScheduleModule),
     data: { animation: 'HomePage' }
   },
   {

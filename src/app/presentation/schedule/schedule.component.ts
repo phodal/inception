@@ -28,10 +28,10 @@ export const colors: any = {
 @Component({
   selector: 'app-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './schedule.component.html',
+  styleUrls: ['./schedule.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ScheduleComponent implements OnInit, AfterViewInit, OnDestroy {
   view: CalendarView = CalendarView.Day;
   CalendarView = CalendarView;
   refresh: Subject<any> = new Subject();
