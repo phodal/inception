@@ -14,6 +14,7 @@ import { CoordinatesMapComponent } from './components/coordinates-map/coordinate
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { GridEditorComponent } from './components/grid-editor/grid-editor.component';
 import { CoordinatesBackgroundComponent } from './components/coordinates-background/coordinates-background.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { CoordinatesBackgroundComponent } from './components/coordinates-backgro
     ContentEditableDirective,
     CoordinatesMapComponent,
     GridEditorComponent,
-    CoordinatesBackgroundComponent
+    CoordinatesBackgroundComponent,
+    NavBarComponent
   ],
   providers: [
     ContentEditableDirective
@@ -49,7 +51,8 @@ import { CoordinatesBackgroundComponent } from './components/coordinates-backgro
     DraggableEditableSectionComponent,
     CoordinatesMapComponent,
     GridEditorComponent,
-    CoordinatesBackgroundComponent
+    CoordinatesBackgroundComponent,
+    NavBarComponent
   ],
   entryComponents: []
 })
