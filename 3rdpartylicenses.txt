@@ -87,11 +87,17 @@ THE SOFTWARE.
 
 @angular/material/button
 
+@angular/material/checkbox
+
+@angular/material/core
+
 @angular/material/divider
 
 @angular/material/form-field
 
 @angular/material/icon
+
+@angular/material/list
 
 @angular/material/menu
 
