@@ -1,12 +1,10 @@
 <div>
   <mat-menu #appMenu="matMenu">
-    <button mat-menu-item>Settings</button>
     <button mat-menu-item routerLink="/help">Help</button>
   </mat-menu>
 
   <nav class="nav-bar">
     <button mat-menu-item routerLinkActive="active-link" routerLink="/">Home</button>
-    <button mat-menu-item routerLinkActive="active-link" routerLink="/inception">Works</button>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
