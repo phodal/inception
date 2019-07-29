@@ -15,7 +15,8 @@ import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { GridEditorComponent } from './components/grid-editor/grid-editor.component';
 import { CoordinatesBackgroundComponent } from './components/coordinates-background/coordinates-background.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RichTextEditorComponent } from './components/markdown-editor/rich-text-editor.component';
+import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
+import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { RichTextEditorComponent } from './components/markdown-editor/rich-text-
     CoordinatesMapComponent,
     GridEditorComponent,
     CoordinatesBackgroundComponent,
+    MarkdownEditorComponent,
     RichTextEditorComponent
   ],
   providers: [
@@ -55,6 +57,7 @@ import { RichTextEditorComponent } from './components/markdown-editor/rich-text-
     CoordinatesMapComponent,
     GridEditorComponent,
     CoordinatesBackgroundComponent,
+    MarkdownEditorComponent,
     RichTextEditorComponent
   ],
   entryComponents: []

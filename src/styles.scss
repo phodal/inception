@@ -7,6 +7,9 @@
 @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
+
 @import "./app/shared/third-party/ngx-tree-dnd/styles-tree-dnd.scss";
 @import "./styles/_index.scss";
 

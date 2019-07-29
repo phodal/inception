@@ -1,0 +1,21 @@
+.markdown-editor-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 100vh;
+
+  .editor {
+    flex: 1;
+    padding: 1rem;
+  }
+
+  .preview {
+    background-color: #ccc;
+    flex: 1;
+    padding: 1rem;
+  }
+
+  pre {
+    margin: 0;
+  }
+}
