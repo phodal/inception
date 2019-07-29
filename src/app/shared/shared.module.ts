@@ -20,6 +20,7 @@ import { MarkdownEditorComponent } from './components/markdown-editor/markdown-e
 import { MarkdownRenderModule } from './components/markdown-render/markdown-render.module';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { MarkdownTaskItemComponent } from './components/markdown-task-item/markdown-task-item.component';
+import { MarkdownTaskRenderComponent } from './components/markdown-task-render/markdown-task-render.component';
 
 @NgModule({
   imports: [
@@ -50,9 +51,11 @@ import { MarkdownTaskItemComponent } from './components/markdown-task-item/markd
     CoordinatesMapComponent,
     GridEditorComponent,
     CoordinatesBackgroundComponent,
+
     MarkdownEditorComponent,
     MarkdownTaskItemComponent,
-    RichTextEditorComponent
+    RichTextEditorComponent,
+    MarkdownTaskRenderComponent
   ],
   providers: [
     ContentEditableDirective
@@ -70,8 +73,10 @@ import { MarkdownTaskItemComponent } from './components/markdown-task-item/markd
     CoordinatesMapComponent,
     GridEditorComponent,
     CoordinatesBackgroundComponent,
+
     MarkdownEditorComponent,
     MarkdownTaskItemComponent,
+    MarkdownTaskRenderComponent,
     RichTextEditorComponent
   ],
   entryComponents: []
