@@ -1,0 +1,22 @@
+.markdown-editor {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 100vh;
+
+  .editor {
+    background-color: #ff9e2c;
+    flex: 1;
+    padding: 1rem;
+  }
+
+  .markdown {
+    background-color: #b6701e;
+    flex: 1;
+    padding: 1rem;
+  }
+
+  pre {
+    margin: 0;
+  }
+}
