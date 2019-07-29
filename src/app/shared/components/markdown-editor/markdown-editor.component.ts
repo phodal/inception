@@ -6,6 +6,10 @@ export interface MarkdownTaskModel {
   startDate?: string;
   endDate?: string;
   text: string;
+  context?: string;
+  priority?: string;
+  mail?: string;
+  tag?: string;
 }
 
 @Component({
@@ -15,7 +19,7 @@ export interface MarkdownTaskModel {
 })
 export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   value = `
- - [x] [type] 2016-03-14 2016-03-18 1.323 +tag +tag2 @context due: 2016-05-30
+ - [x] (A) 2016-03-14 2016-03-18 1.323 +tag +tag2 @context due: 2016-05-30
  - 33..
     - 1.23
     - 1.44.
@@ -25,6 +29,9 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   COMPLETED_PATTERN = /([X,x] )(.*)/g;
   COMPLETED_PREPENDED_DATES_PATTERN = /(\d{4}-\d{2}-\d{2}) (\d{4}-\d{2}-\d{2}) (.*)/g;
   SINGLE_DATE_PATTERN = /(\d{4}-\d{2}-\d{2}) (.*)/g;
+  CONTEXT_PATTERN = /(?:^|\s)@(\S*\w)/g;
+  TAG_PATTERN = /(?:^|\s)\+(\S*\w)/g;
+  PRIORITY_PATTERN = /\(([A-Z])\) (.*)/g;
 
   constructor(private markdownService: MarkdownService) {
     this.markdownService.renderer.list = this.renderList.bind(this);
@@ -72,11 +79,20 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     const splitText = this.splitterText(text);
     text = splitText.text;
 
+    if (splitText.tag) {
+      text = `<span class='tag'>${splitText.tag}</span> ${text}`;
+    }
+    if (splitText.priority) {
+      text = `<span class='priority'>${splitText.priority}</span> ${text}`;
+    }
     if (splitText.startDate) {
       text = `<span class='start-date'>${splitText.startDate}</span> ${text}`;
     }
     if (splitText.endDate) {
-      text = `<span class='end'>${splitText.endDate}</span> ${text}`;
+      text = `<span class='end-date'>${splitText.endDate}</span> ${text}`;
+    }
+    if (splitText.context) {
+      text = `<span class='end-date'>${splitText.context}</span> ${text}`;
     }
     return '<li>' + text + '</li>\n';
   }
@@ -87,11 +103,20 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     let completed = false;
     let startDate;
     let endDate;
+    let context;
+    let priority;
+    let tag;
 
     const completeMatch = this.COMPLETED_PATTERN.exec(text);
     if (completeMatch && completeMatch.length && completeMatch.length > 1) {
       completed = true;
       text = completeMatch[2];
+    }
+
+    const priorityMatch = this.PRIORITY_PATTERN.exec(text);
+    if (priorityMatch && priorityMatch.length && priorityMatch.length > 1) {
+      priority = priorityMatch[1];
+      text = priorityMatch[2];
     }
 
     const dateMatch = this.COMPLETED_PREPENDED_DATES_PATTERN.exec(text);
@@ -107,11 +132,25 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
       }
     }
 
-    console.log(startDate, endDate, text);
+    const contextMatch = this.CONTEXT_PATTERN.exec(text);
+    if (contextMatch && contextMatch.length && contextMatch.length > 1) {
+      context = contextMatch[1];
+      text = text.replace(this.CONTEXT_PATTERN, '');
+    }
+
+    const tagMatch = this.TAG_PATTERN.exec(text);
+    if (tagMatch && tagMatch.length && tagMatch.length > 1) {
+      tag = tagMatch[1];
+      text = text.replace(this.TAG_PATTERN, '');
+  }
+
     return {
       completed,
       startDate,
       endDate,
+      tag,
+      context,
+      priority,
       text
     };
   }

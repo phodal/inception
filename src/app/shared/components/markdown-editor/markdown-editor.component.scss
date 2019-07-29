@@ -26,4 +26,21 @@
   ul, li, a {
     line-height: 1;
   }
+
+  .start-date {
+    color: green;
+  }
+
+  .end-date {
+    color: red;
+  }
+
+  .priority {
+    color: #1abc9c;
+  }
+
+  .tag {
+    padding: 10px;
+    background: #f53d3d;
+  }
 }
