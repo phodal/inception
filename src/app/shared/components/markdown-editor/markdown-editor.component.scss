@@ -19,10 +19,13 @@
     background-color: #ccc;
     flex: 1;
     padding: 1rem;
-    white-space: pre;
   }
+}
 
-  pre {
-    margin: 0;
+.preview ::ng-deep {
+  white-space: normal;
+
+  ul, li, a {
+    line-height: 1;
   }
 }
