@@ -60,7 +60,9 @@ const MarkdownHelper = {
 
     const tagMatch = TAG_PATTERN.exec(text);
     if (tagMatch && tagMatch.length && tagMatch.length > 1) {
-      tag = text.match(TAG_PATTERN);
+      tag = text.match(TAG_PATTERN).map(t => {
+        return t.replace(/(?:^|\s)\+/, '');
+      });
       text = text.replace(TAG_PATTERN, '');
     }
 

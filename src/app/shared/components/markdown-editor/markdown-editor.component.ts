@@ -62,7 +62,6 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     const type = ordered ? 'ol' : 'ul';
     const startatt = (ordered && start !== 1) ? (' start="' + start + '"') : '';
 
-    console.log(this.tempListItems);
     this.tempListItems = [];
     return '<' + type + startatt + '>\n' + body + '</' + type + '>\n';
   }
