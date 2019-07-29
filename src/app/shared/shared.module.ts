@@ -16,11 +16,11 @@ import { GridEditorComponent } from './components/grid-editor/grid-editor.compon
 import { CoordinatesBackgroundComponent } from './components/coordinates-background/coordinates-background.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
-import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
-import { MarkdownRenderModule } from './components/markdown-render/markdown-render.module';
+import { MarkdownEditorComponent } from './markdown/markdown-editor/markdown-editor.component';
+import { MarkdownRenderModule } from './markdown/markdown-render/markdown-render.module';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
-import { MarkdownTaskItemComponent } from './components/markdown-task-item/markdown-task-item.component';
-import { MarkdownTaskRenderComponent } from './components/markdown-task-render/markdown-task-render.component';
+import { MarkdownTaskItemComponent } from './markdown/markdown-task-item/markdown-task-item.component';
+import { MarkdownTaskRenderComponent } from './markdown/markdown-task-render/markdown-task-render.component';
 
 @NgModule({
   imports: [

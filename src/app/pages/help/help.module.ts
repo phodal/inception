@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
-import { MarkdownRenderModule } from '../../shared/components/markdown-render/markdown-render.module';
+import { MarkdownRenderModule } from '../../shared/markdown/markdown-render/markdown-render.module';
 
 
 const routes: Routes = [

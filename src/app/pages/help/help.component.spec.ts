@@ -6,7 +6,7 @@ import { HelpComponent } from './help.component';
 import { SharedModule } from '../../shared/shared.module';
 import { StorageService } from '../../core/services/storage.service';
 import { FeaturesModule } from '../../features/features.module';
-import { MarkdownRenderModule } from '../../shared/components/markdown-render/markdown-render.module';
+import { MarkdownRenderModule } from '../../shared/markdown/markdown-render/markdown-render.module';
 
 describe('HelpComponent', () => {
   let component: HelpComponent;
