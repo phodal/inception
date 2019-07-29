@@ -6,6 +6,13 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
   styleUrls: ['./markdown-editor.component.scss']
 })
 export class MarkdownEditorComponent implements OnInit, AfterViewInit {
+  value = `
+ - 1.323
+ - 33..
+    - 1.23
+    - 1.44.
+ - 23.34
+    `;
 
   constructor() {
   }
@@ -15,6 +22,7 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const that = this;
     const simplemde = new (window as any).SimpleMDE({
       autoDownloadFontAwesome: false,
       autosave: true,
@@ -25,13 +33,18 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
           el.innerHTML = '0 Keystrokes';
         },
         onUpdate(el) {
-          console.log(el);
           el.innerHTML = ++this.keystrokes + ' Keystrokes';
         }
       }],
       element: document.querySelector('.markdown-editor')
     });
-    console.log(simplemde);
+    simplemde.value(this.value);
+    simplemde.codemirror.on('change', () => {
+      that.updateValue(simplemde.value());
+    });
   }
 
+  updateValue(value) {
+    this.value = value;
+  }
 }

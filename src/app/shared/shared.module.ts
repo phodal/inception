@@ -17,6 +17,8 @@ import { CoordinatesBackgroundComponent } from './components/coordinates-backgro
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
 import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
+import { MarkdownRenderModule } from './components/markdown-render/markdown-render.module';
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 @NgModule({
   imports: [
@@ -29,7 +31,16 @@ import { MarkdownEditorComponent } from './components/markdown-editor/markdown-e
     NgxTreeDndModule,
     CalendarCommonModule,
     EcoFabSpeedDialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          gfm: true,
+          tables: true
+        },
+      },
+    })
   ],
   declarations: [
     CalendarHeaderComponent,
