@@ -1,10 +1,19 @@
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
+:host {
+  width: 100%;
+  text-align:center;
+  margin: 0 auto;
 }
 
-button {
+.nav-bar {
+  display:flex;
+  flex-flow: row nowrap;
+
+}
+
+a {
+  flex:0 0 auto;
   padding: 12px 0;
+  width: 14%;
 }
 
 .active-link {
