@@ -6,7 +6,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule,
+  MatMenuModule, MatSidenavModule,
   MatSliderModule,
   MatStepperModule
 } from '@angular/material';
@@ -25,7 +25,8 @@ const MATERIAL_IMPORTS_EXPORTS = [
   MatDividerModule,
   DragDropModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatSidenavModule
 ];
 
 @NgModule({

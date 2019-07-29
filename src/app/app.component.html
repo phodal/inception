@@ -1,16 +1,12 @@
-<div>
-  <mat-menu #appMenu="matMenu">
-    <button mat-menu-item routerLink="/help">Help</button>
-  </mat-menu>
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+  <mat-drawer #drawer [mode]="'push'">
+    <nav class="nav-bar">
+      <button mat-menu-item routerLinkActive="active-link" routerLink="/">Home</button>
+      <button mat-menu-item routerLink="/help">Help</button>
+    </nav>
+  </mat-drawer>
 
-  <nav class="nav-bar">
-    <button mat-menu-item routerLinkActive="active-link" routerLink="/">Home</button>
-    <button mat-icon-button [matMenuTriggerFor]="appMenu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-  </nav>
-</div>
-
-<div>
-  <router-outlet></router-outlet>
-</div>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
