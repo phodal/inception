@@ -3,6 +3,6 @@
     <textarea class="markdown-editor"></textarea>
   </div>
   <div class="preview" *ngIf="value">
-    <markdown [data]="value"></markdown>
+    <markdown [data]="value" ngPreserveWhitespaces></markdown>
   </div>
 </div>
