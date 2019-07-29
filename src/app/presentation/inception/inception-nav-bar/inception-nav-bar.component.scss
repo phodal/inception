@@ -1,6 +1,10 @@
 .nav-bar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+}
+
+button {
+  padding: 12px 0;
 }
 
 .active-link {
