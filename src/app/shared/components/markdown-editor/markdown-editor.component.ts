@@ -1,16 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MarkdownService } from 'ngx-markdown';
-
-export interface MarkdownTaskModel {
-  completed: boolean;
-  startDate?: string;
-  endDate?: string;
-  text: string;
-  context?: string;
-  priority?: string;
-  mail?: string;
-  tag?: string;
-}
+import MarkdownHelper from './utils/markdown.helper';
 
 @Component({
   selector: 'component-markdown-editor',
@@ -20,18 +10,16 @@ export interface MarkdownTaskModel {
 export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   value = `
  - [x] (A) 2016-03-14 2016-03-18 1.323 +tag +tag2 @context due: 2016-05-30
- - 33..
+ - 33
     - 1.23
-    - 1.44.
+    - 1.44
+      - 1.55
+      - 2.55
  - 23.34
     `;
 
-  COMPLETED_PATTERN = /([X,x] )(.*)/g;
-  COMPLETED_PREPENDED_DATES_PATTERN = /(\d{4}-\d{2}-\d{2}) (\d{4}-\d{2}-\d{2}) (.*)/g;
-  SINGLE_DATE_PATTERN = /(\d{4}-\d{2}-\d{2}) (.*)/g;
-  CONTEXT_PATTERN = /(?:^|\s)@(\S*\w)/g;
-  TAG_PATTERN = /(?:^|\s)\+(\S*\w)/g;
-  PRIORITY_PATTERN = /\(([A-Z])\) (.*)/g;
+  private tempListItems = [];
+  private tempLists = [];
 
   constructor(private markdownService: MarkdownService) {
     this.markdownService.renderer.list = this.renderList.bind(this);
@@ -70,13 +58,17 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   }
 
   renderList(body: string, ordered: boolean, start: number): string {
+    this.tempLists.push(this.tempListItems);
     const type = ordered ? 'ol' : 'ul';
     const startatt = (ordered && start !== 1) ? (' start="' + start + '"') : '';
+
+    console.log(this.tempListItems);
+    this.tempListItems = [];
     return '<' + type + startatt + '>\n' + body + '</' + type + '>\n';
   }
 
   renderListItem(text): string {
-    const splitText = this.splitterText(text);
+    const splitText = MarkdownHelper.todoCompiled(text);
     text = splitText.text;
 
     if (splitText.tag) {
@@ -94,64 +86,8 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     if (splitText.context) {
       text = `<span class='end-date'>${splitText.context}</span> ${text}`;
     }
+
+    this.tempListItems.push(splitText);
     return '<li>' + text + '</li>\n';
-  }
-
-  // tslint:disable-next-line:max-line-length
-  // REFS: https://github.com/todotxt/todo.txt-android/blob/614e0b5eb688cae8236f33c64d7e791d1030cf3c/app/src/main/java/com/todotxt/todotxttouch/task/TextSplitter.java
-  splitterText(text: any): MarkdownTaskModel {
-    let completed = false;
-    let startDate;
-    let endDate;
-    let context;
-    let priority;
-    let tag;
-
-    const completeMatch = this.COMPLETED_PATTERN.exec(text);
-    if (completeMatch && completeMatch.length && completeMatch.length > 1) {
-      completed = true;
-      text = completeMatch[2];
-    }
-
-    const priorityMatch = this.PRIORITY_PATTERN.exec(text);
-    if (priorityMatch && priorityMatch.length && priorityMatch.length > 1) {
-      priority = priorityMatch[1];
-      text = priorityMatch[2];
-    }
-
-    const dateMatch = this.COMPLETED_PREPENDED_DATES_PATTERN.exec(text);
-    if (dateMatch && dateMatch.length && dateMatch.length > 2) {
-      startDate = dateMatch[1];
-      endDate = dateMatch[2];
-      text = dateMatch[3];
-    } else {
-      const singleDateMatch = this.SINGLE_DATE_PATTERN.exec(text);
-      if (singleDateMatch && singleDateMatch.length && singleDateMatch.length >= 2) {
-        endDate = singleDateMatch[1];
-        text = singleDateMatch[2];
-      }
-    }
-
-    const contextMatch = this.CONTEXT_PATTERN.exec(text);
-    if (contextMatch && contextMatch.length && contextMatch.length > 1) {
-      context = contextMatch[1];
-      text = text.replace(this.CONTEXT_PATTERN, '');
-    }
-
-    const tagMatch = this.TAG_PATTERN.exec(text);
-    if (tagMatch && tagMatch.length && tagMatch.length > 1) {
-      tag = tagMatch[1];
-      text = text.replace(this.TAG_PATTERN, '');
-  }
-
-    return {
-      completed,
-      startDate,
-      endDate,
-      tag,
-      context,
-      priority,
-      text
-    };
   }
 }
