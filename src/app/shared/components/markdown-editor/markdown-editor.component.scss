@@ -1,3 +1,9 @@
+::ng-deep {
+  .CodeMirror, .CodeMirror-scroll {
+    height: calc(100vh - 100px);
+  }
+}
+
 .markdown-editor-container {
   display: flex;
   justify-content: space-between;
