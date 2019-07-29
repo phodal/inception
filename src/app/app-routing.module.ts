@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./presentation/inception/inception.module').then(m => m.InceptionModule)
   },
   {
+    path: 'knowledge-management',
+    loadChildren: () => import('./presentation/knowledge-management/knowledge-management.module').then(m => m.KnowledgeManagementModule)
+  },
+  {
     path: 'help',
     loadChildren: () => import('./pages/help/help.module').then(m => m.HelpModule)
   },

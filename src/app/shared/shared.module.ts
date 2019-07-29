@@ -15,6 +15,7 @@ import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { GridEditorComponent } from './components/grid-editor/grid-editor.component';
 import { CoordinatesBackgroundComponent } from './components/coordinates-background/coordinates-background.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CoordinatesMapComponent,
     GridEditorComponent,
     CoordinatesBackgroundComponent,
+    MarkdownEditorComponent
   ],
   providers: [
     ContentEditableDirective
@@ -52,7 +54,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DraggableEditableSectionComponent,
     CoordinatesMapComponent,
     GridEditorComponent,
-    CoordinatesBackgroundComponent
+    CoordinatesBackgroundComponent,
+    MarkdownEditorComponent
   ],
   entryComponents: []
 })
