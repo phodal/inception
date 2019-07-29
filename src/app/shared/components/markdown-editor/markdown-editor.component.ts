@@ -127,7 +127,7 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     } else {
       const singleDateMatch = this.SINGLE_DATE_PATTERN.exec(text);
       if (singleDateMatch && singleDateMatch.length && singleDateMatch.length >= 2) {
-        endDate = dateMatch[1];
+        endDate = singleDateMatch[1];
         text = singleDateMatch[2];
       }
     }
