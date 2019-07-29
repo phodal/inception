@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MarkdownService } from 'ngx-markdown';
+
+const marked = require('marked');
+
 import MarkdownHelper from './utils/markdown.helper';
 
 @Component({
@@ -31,6 +34,9 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const tokens = marked.lexer(this.value);
+    this.parseList(tokens);
+
     const that = this;
     const simplemde = new (window as any).SimpleMDE({
       autoDownloadFontAwesome: false,
@@ -63,12 +69,16 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     const startatt = (ordered && start !== 1) ? (' start="' + start + '"') : '';
 
     this.tempListItems = [];
+
+    console.log('<ul>');
     return '<' + type + startatt + '>\n' + body + '</' + type + '>\n';
   }
 
   renderListItem(text): string {
     const splitText = MarkdownHelper.todoCompiled(text);
     text = splitText.text;
+
+    console.log(text);
 
     if (splitText.tag) {
       text = `<span class='tag'>${splitText.tag}</span> ${text}`;
@@ -88,5 +98,40 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
 
     this.tempListItems.push(splitText);
     return '<li>' + text + '</li>\n';
+  }
+
+  private parseList(tokens: marked.Token[]) {
+    let result = '{';
+    for (const token of tokens) {
+      switch (token.type) {
+        case 'list_start': {
+          result += '"lists": [';
+          break;
+        }
+        case 'list_item_start': {
+          result += '{ "items": ';
+          break;
+        }
+        case 'text': {
+          result += `{ "text": "${token.text}"},`;
+          break;
+        }
+        case 'list_item_end': {
+          result += '},';
+          break;
+        }
+        case 'list_end': {
+          result += ']';
+          break;
+        }
+        default: {
+          console.log(token);
+        }
+      }
+    }
+
+    result = result.replace(/\,\]/g, ']').replace(/},}/g, '}}');
+    result += '}';
+    console.log(JSON.parse(result));
   }
 }
