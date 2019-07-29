@@ -2,7 +2,10 @@
   <div class="editor">
     <textarea class="markdown-editor"></textarea>
   </div>
-  <div class="preview" *ngIf="value">
+  <div class="preview" *ngIf="tasks">
+    <component-markdown-task-item [list]="tasks"></component-markdown-task-item>
+  </div>
+  <div class="preview" *ngIf="value && !tasks">
     <markdown [data]="value" ngPreserveWhitespaces></markdown>
   </div>
 </div>

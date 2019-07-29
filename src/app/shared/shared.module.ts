@@ -19,6 +19,7 @@ import { RichTextEditorComponent } from './components/rich-text-editor/rich-text
 import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 import { MarkdownRenderModule } from './components/markdown-render/markdown-render.module';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import { MarkdownTaskItemComponent } from './components/markdown-task-item/markdown-task-item.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
     GridEditorComponent,
     CoordinatesBackgroundComponent,
     MarkdownEditorComponent,
+    MarkdownTaskItemComponent,
     RichTextEditorComponent
   ],
   providers: [
@@ -69,6 +71,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
     GridEditorComponent,
     CoordinatesBackgroundComponent,
     MarkdownEditorComponent,
+    MarkdownTaskItemComponent,
     RichTextEditorComponent
   ],
   entryComponents: []

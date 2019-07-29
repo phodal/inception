@@ -23,6 +23,7 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
 
   private tempListItems = [];
   private tempLists = [];
+  tasks;
 
   constructor(private markdownService: MarkdownService) {
     this.markdownService.renderer.list = this.renderList.bind(this);
@@ -130,8 +131,9 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
       }
     }
 
-    result = result.replace(/\,\]/g, ']').replace(/},}/g, '}}');
+    result = result.replace(/,\]/g, ']').replace(/},}/g, '}}');
     result += '}';
-    console.log(JSON.parse(result));
+
+    this.tasks = JSON.parse(result).lists;
   }
 }
