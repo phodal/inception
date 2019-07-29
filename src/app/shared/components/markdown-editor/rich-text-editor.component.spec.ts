@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MarkdownEditorComponent } from './markdown-editor.component';
+import { RichTextEditorComponent } from './rich-text-editor.component';
 
 describe('MarkdownEditorComponent', () => {
-  let component: MarkdownEditorComponent;
-  let fixture: ComponentFixture<MarkdownEditorComponent>;
+  let component: RichTextEditorComponent;
+  let fixture: ComponentFixture<RichTextEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MarkdownEditorComponent ]
+      declarations: [ RichTextEditorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MarkdownEditorComponent);
+    fixture = TestBed.createComponent(RichTextEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
