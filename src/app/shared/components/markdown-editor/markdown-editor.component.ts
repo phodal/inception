@@ -134,6 +134,10 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     result = result.replace(/,\]/g, ']').replace(/},}/g, '}}');
     result += '}';
 
-    this.tasks = JSON.parse(result).lists;
+    try {
+      this.tasks = JSON.parse(result).lists;
+    } catch (e) {
+
+    }
   }
 }
