@@ -1,5 +1,5 @@
 <ul *ngFor="let task of list">
-  <li *ngIf="task.item">
+  <li>
     <mat-checkbox class="complete"
                   [(ngModel)]="task.item.completed" (change)="checkValue($event, task.item)">
     </mat-checkbox>
@@ -20,12 +20,13 @@
       <span *ngFor="let tag of task.item.tag;let last = last">{{tag}}
         <ng-template *ngIf="!last">,</ng-template> </span>
     </span>
+
+    <ul *ngIf="task.childrens">
+      <component-markdown-task-item
+        ngDefaultControl
+        [(ngModel)]="task.childrens"
+        (ngModelChange)="checkValue($event, null)">
+      </component-markdown-task-item>
+    </ul>
   </li>
-  <ul *ngIf="task.childrens">
-    <component-markdown-task-item
-      ngDefaultControl
-      [(ngModel)]="task.childrens"
-      (ngModelChange)="checkValue($event, null)">
-    </component-markdown-task-item>
-  </ul>
 </ul>
