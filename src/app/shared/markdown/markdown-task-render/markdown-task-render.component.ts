@@ -95,5 +95,6 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
 
   modelChange() {
     console.log(this.tasks);
+    this.onChange(this.tasks);
   }
 }

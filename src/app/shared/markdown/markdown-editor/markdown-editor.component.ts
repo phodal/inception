@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MarkdownService } from 'ngx-markdown';
+import { MarkdownTaskModel } from '../model/markdown.model';
 
 @Component({
   selector: 'component-markdown-editor',
@@ -17,6 +18,11 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
  - 23.34
     `;
   @Output() change = new EventEmitter();
+  private tempValue: string;
+  private taskIndex: number;
+  private simplemde: any;
+  private indexString: string;
+
   constructor(private markdownService: MarkdownService) {
   }
 
@@ -26,7 +32,7 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const that = this;
-    const simplemde = new (window as any).SimpleMDE({
+    this.simplemde = new (window as any).SimpleMDE({
       autoDownloadFontAwesome: false,
       autosave: true,
       status: ['autosave', 'lines', 'words', 'cursor', {
@@ -41,9 +47,9 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
       }],
       element: document.querySelector('.markdown-editor')
     });
-    simplemde.value(this.value);
-    simplemde.codemirror.on('change', () => {
-      that.updateValue(simplemde.value());
+    this.simplemde.value(this.value);
+    this.simplemde.codemirror.on('change', () => {
+      that.updateValue(that.simplemde.value());
     });
   }
 
@@ -53,10 +59,52 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   }
 
   updateModel() {
+    this.taskIndex = 0;
+    this.tempValue = '';
+    this.indexString = '';
+
     this.taskToMarkdownList(this.value);
+    console.log(this.tempValue);
+    this.simplemde.value(this.tempValue);
   }
 
-  taskToMarkdownList(value: any) {
+  taskToMarkdownList(tasks: any) {
+    let hasChildren = false;
 
+    for (const task of tasks) {
+      if (task.item) {
+        const item = task.item as MarkdownTaskModel;
+        this.tempValue += this.indexString + ` -`;
+        if (item.completed) {
+          this.tempValue += ' [x]';
+        }
+        if (item.priority) {
+          this.tempValue += ` (${item.priority})`;
+        }
+        if (item.startDate) {
+          this.tempValue += ` (${item.startDate})`;
+        }
+        if (item.endDate) {
+          this.tempValue += ` (${item.endDate})`;
+        }
+        this.tempValue += ` ${item.text} \n`;
+
+        this.indexString = '';
+      }
+
+      if (task.childrens) {
+        hasChildren = true;
+        this.taskIndex++;
+        if (this.taskIndex > 0) {
+          this.indexString = '  '.repeat(this.taskIndex);
+        }
+
+        this.taskToMarkdownList(task.childrens);
+      }
+    }
+
+    if (!hasChildren) {
+      this.taskIndex--;
+    }
   }
 }
