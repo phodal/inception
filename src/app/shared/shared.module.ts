@@ -21,6 +21,7 @@ import { MarkdownRenderModule } from './markdown/markdown-render/markdown-render
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { MarkdownTaskItemComponent } from './markdown/markdown-task-item/markdown-task-item.component';
 import { MarkdownTaskRenderComponent } from './markdown/markdown-task-render/markdown-task-render.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { MarkdownTaskRenderComponent } from './markdown/markdown-task-render/mar
     CalendarCommonModule,
     EcoFabSpeedDialModule,
     FlexLayoutModule,
+    FlatpickrModule.forRoot(),
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,
@@ -67,6 +69,7 @@ import { MarkdownTaskRenderComponent } from './markdown/markdown-task-render/mar
     CustomMaterialModule,
     NgxTreeDndModule,
     FlexLayoutModule,
+    FlatpickrModule,
 
     CalendarHeaderComponent,
     DraggableEditableSectionComponent,

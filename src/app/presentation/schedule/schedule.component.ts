@@ -1,9 +1,9 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { CalendarEventAction, CalendarEvent, CalendarView, CalendarEventTimesChangedEvent } from 'angular-calendar';
+import { CalendarEvent, CalendarView, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import {
   startOfDay,
-  addHours, endOfDay, format, parse
+  addHours, endOfDay, parse
 } from 'date-fns';
 import { isEmpty } from 'lodash';
 import flatpickr from 'flatpickr';
