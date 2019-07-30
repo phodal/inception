@@ -128,6 +128,8 @@ THE SOFTWARE.
 
 @angular/material/menu
 
+@angular/material/select
+
 @angular/material/sidenav
 
 @angular/material/slider
