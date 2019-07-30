@@ -23,6 +23,7 @@ import { MarkdownTaskItemComponent } from './markdown/markdown-task-item/markdow
 import { MarkdownTaskRenderComponent } from './markdown/markdown-task-render/markdown-task-render.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { MarkdownTaskItemService } from './markdown/markdown-task-item/markdown-task-item.service';
+import { MindMapModule } from './modules/mind-map/mind-map.module';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { MarkdownTaskItemService } from './markdown/markdown-task-item/markdown-
           tables: true
         },
       },
-    })
+    }),
+    MindMapModule
   ],
   declarations: [
     CalendarHeaderComponent,
@@ -72,6 +74,7 @@ import { MarkdownTaskItemService } from './markdown/markdown-task-item/markdown-
     NgxTreeDndModule,
     FlexLayoutModule,
     FlatpickrModule,
+    MindMapModule,
 
     CalendarHeaderComponent,
     DraggableEditableSectionComponent,

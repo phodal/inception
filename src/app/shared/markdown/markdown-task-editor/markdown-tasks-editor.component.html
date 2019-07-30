@@ -18,7 +18,9 @@
 
     </component-markdown-task-render>
     <div *ngIf="displayType === 'mindmap'">
-      Mind Map
+      <component-mindmap [nodes]="data.nodes"
+                         [connections]="data.connections"
+                         [editable]="true"></component-mindmap>
     </div>
   </div>
 </div>
