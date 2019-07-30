@@ -2,6 +2,7 @@ import { Component, forwardRef, OnInit } from '@angular/core';
 import { MarkdownTaskModel } from '../model/markdown.model';
 import MarkdownHelper from '../markdown-editor/utils/markdown.helper';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
 const marked = require('marked');
 
 @Component({
@@ -27,7 +28,8 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
   onTouched() {
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
 
@@ -55,7 +57,12 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
 
   private parseList(tokens: marked.Token[]) {
     let result = '{';
+    let checkString = '';
+
     for (const token of tokens) {
+      if (token.type !== 'text') {
+        checkString = '';
+      }
       switch (token.type) {
         case 'list_start': {
           result += '"childrens": [';
@@ -63,10 +70,18 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
         }
         case 'list_item_start': {
           result += '{ "item": ';
+          if ((token as any).checked) {
+            checkString = '[x] ';
+          } else {
+            checkString = '';
+          }
           break;
         }
         case 'text': {
-          result += JSON.stringify(MarkdownHelper.todoCompiled(token.text)) + ',';
+          if (token.text.includes('[x] ') || token.text.includes('[X] ') || token.text.includes('[ ] ')) {
+            checkString = '';
+          }
+          result += JSON.stringify(MarkdownHelper.todoCompiled(checkString + token.text)) + ',';
           break;
         }
         case 'list_item_end': {
