@@ -7,13 +7,7 @@
       <span class="priority" *ngIf="task.item.priority">{{task.item.priority}} </span>
       <span class="start-date" *ngIf="task.item.startDate">
         <input  mwlFlatpickr
-                dateFormat="Y-m-d"
-                altFormat="Y-m-d"
                 [(ngModel)]="task.item.startDate"
-                (change)="changeDateInput($event, task.item)"
-                [altInput]="true"
-                [convertModelValue]="true"
-                [enableTime]="true"
         >
       </span>
       <span class="end-date" *ngIf="task.item.endDate">{{task.item.endDate}} </span>
