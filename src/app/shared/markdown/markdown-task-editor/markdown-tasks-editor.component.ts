@@ -3,11 +3,11 @@ import { MarkdownService } from 'ngx-markdown';
 import { MarkdownTaskModel } from '../model/markdown.model';
 
 @Component({
-  selector: 'component-markdown-editor',
-  templateUrl: './markdown-editor.component.html',
-  styleUrls: ['./markdown-editor.component.scss']
+  selector: 'component-markdown-task-editor',
+  templateUrl: './markdown-tasks-editor.component.html',
+  styleUrls: ['./markdown-tasks-editor.component.scss']
 })
-export class MarkdownEditorComponent implements OnInit, AfterViewInit {
+export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
   @Input() value = `
  - [x] (A) 2016-03-14 2016-03-18 1.323 +tag +tag2 @context due: 2016-05-30
  - 33
@@ -45,7 +45,7 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
           el.innerHTML = ++this.keystrokes + ' Keystrokes';
         }
       }],
-      element: document.querySelector('.markdown-editor')
+      element: document.querySelector('.markdown-task-editor')
     });
     this.simplemde.value(this.value);
     this.simplemde.codemirror.on('change', () => {

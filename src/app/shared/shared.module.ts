@@ -16,7 +16,7 @@ import { GridEditorComponent } from './components/grid-editor/grid-editor.compon
 import { CoordinatesBackgroundComponent } from './components/coordinates-background/coordinates-background.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RichTextEditorComponent } from './components/rich-text-editor/rich-text-editor.component';
-import { MarkdownEditorComponent } from './markdown/markdown-editor/markdown-editor.component';
+import { MarkdownTasksEditorComponent } from './markdown/markdown-task-editor/markdown-tasks-editor.component';
 import { MarkdownRenderModule } from './markdown/markdown-render/markdown-render.module';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { MarkdownTaskItemComponent } from './markdown/markdown-task-item/markdown-task-item.component';
@@ -55,7 +55,7 @@ import { MarkdownTaskItemService } from './markdown/markdown-task-item/markdown-
     GridEditorComponent,
     CoordinatesBackgroundComponent,
 
-    MarkdownEditorComponent,
+    MarkdownTasksEditorComponent,
     MarkdownTaskItemComponent,
     RichTextEditorComponent,
     MarkdownTaskRenderComponent
@@ -79,7 +79,7 @@ import { MarkdownTaskItemService } from './markdown/markdown-task-item/markdown-
     GridEditorComponent,
     CoordinatesBackgroundComponent,
 
-    MarkdownEditorComponent,
+    MarkdownTasksEditorComponent,
     MarkdownTaskItemComponent,
     MarkdownTaskRenderComponent,
     RichTextEditorComponent

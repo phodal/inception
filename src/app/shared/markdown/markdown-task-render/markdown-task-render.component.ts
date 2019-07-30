@@ -1,6 +1,6 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { MarkdownTaskModel } from '../model/markdown.model';
-import MarkdownHelper from '../markdown-editor/utils/markdown.helper';
+import MarkdownHelper from '../markdown-task-editor/utils/markdown.helper';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-item.service';
