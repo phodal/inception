@@ -14,3 +14,11 @@ ul {
     padding: 1px 12px;
   }
 }
+
+.start-date, .end-date {
+  ::ng-deep {
+    .mat-form-field-infix {
+
+    }
+  }
+}
