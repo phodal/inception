@@ -3,6 +3,17 @@
     <textarea class="markdown-task-editor"></textarea>
   </div>
   <div class="preview">
-    <component-markdown-task-render [(ngModel)]="value" (ngModelChange)="updateModel($event)"></component-markdown-task-render>
+    <mat-form-field>
+      <mat-label>Render Type</mat-label>
+      <mat-select>
+        <mat-option value="todo">Todo</mat-option>
+        <mat-option value="mindmap">Mind Map</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <component-markdown-task-render
+      [(ngModel)]="value"
+      (ngModelChange)="updateModel($event)">
+
+    </component-markdown-task-render>
   </div>
 </div>

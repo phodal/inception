@@ -1,0 +1,16 @@
+::ng-deep {
+  .mat-checkbox {
+    margin-right: 12px;
+  }
+}
+
+ul {
+  list-style: none;
+
+  margin: 0;
+  padding: 2px 0 2px 12px;
+
+  li {
+    padding: 1px 12px;
+  }
+}
