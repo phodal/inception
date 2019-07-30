@@ -14,7 +14,7 @@ const subnodesToHTML = (subnodes = [], fcolor) => {
 
   return subnodes.map((subnode) => {
     let href = `href="${subnode.url}"`;
-    let emoji = categoryToIMG(subnode.category);
+    let emoji = subnode.category;
 
     if (!subnode.url) {
       href = "";

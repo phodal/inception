@@ -35,15 +35,15 @@ export const d3Nodes = (svg, nodes) => {
   const d3nodes = selection
     .append("foreignObject")
     .attr("class", "mindmap-node")
-    .attr("width", node => node.width + 4)
-    .attr("height", node => node.height)
+    .attr("width", node => node.nodesWidth + 4 > 120 ? node.nodesWidth + 4 : 120)
+    .attr("height", node => node.nodesHeight > 60 ? node.nodesHeight : 80)
     .html(node => node.html);
 
   const d3subnodes = selection
     .append("foreignObject")
     .attr("class", "mindmap-subnodes")
-    .attr("width", node => node.nodesWidth + 4)
-    .attr("height", node => node.nodesHeight)
+    .attr("width", node => node.nodesWidth + 4 > 120 ? node.nodesWidth + 4 : 120)
+    .attr("height", node => node.nodesHeight > 60 ? node.nodesHeight : 60)
     .html(node => node.nodesHTML);
 
   return {

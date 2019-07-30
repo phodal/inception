@@ -7,7 +7,7 @@ import { categoryToIMG } from "../parser/emojis";
  */
 export default (node) => {
   let href = `href="${node.url}"`;
-  let emoji = categoryToIMG(node.category);
+  let emoji = node.category;
 
   // If url is not specified remove the emoji and the href attribute,
   // so that the node isn't clickable, and the user can see that without
