@@ -4,13 +4,14 @@
                   [(ngModel)]="task.item.completed" (change)="checkValue($event, task.item)">
       <span class="priority" *ngIf="task.item.priority">{{task.item.priority}} </span>
       <span class="start-date" *ngIf="task.item.startDate">
-        <input  mwlFlatpickr
-                (ngModelChange)="changeDateInput($event, task.item)"
-                [(ngModel)]="task.item.startDate"
-        >
+        <input mwlFlatpickr
+               (ngModelChange)="changeDateInput($event, task.item)"
+               [(ngModel)]="task.item.startDate">
       </span>
       <span class="end-date" *ngIf="task.item.endDate">{{task.item.endDate}} </span>
-      {{task.item.text}}
+
+      <input type="text" [(ngModel)]="task.item.text">
+
       <span class="context" *ngIf="task.item.context">{{task.item.context}} </span>
       <span class="tag" *ngIf="task.item.tag">
       <span *ngFor="let tag of task.item.tag;let last = last">{{tag}}
