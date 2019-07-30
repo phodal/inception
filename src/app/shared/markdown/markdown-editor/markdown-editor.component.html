@@ -2,5 +2,7 @@
   <div class="editor">
     <textarea class="markdown-editor"></textarea>
   </div>
-  <component-markdown-task-render [value]="value"></component-markdown-task-render>
+  <div class="preview">
+    <component-markdown-task-render [(ngModel)]="value"></component-markdown-task-render>
+  </div>
 </div>

@@ -1,24 +1,57 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { MarkdownTaskModel } from '../model/markdown.model';
 import MarkdownHelper from '../markdown-editor/utils/markdown.helper';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 const marked = require('marked');
 
 @Component({
   selector: 'component-markdown-task-render',
   templateUrl: './markdown-task-render.component.html',
-  styleUrls: ['./markdown-task-render.component.scss']
+  styleUrls: ['./markdown-task-render.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MarkdownTaskRenderComponent),
+      multi: true
+    }
+  ]
 })
-export class MarkdownTaskRenderComponent implements OnInit {
-  @Input() value: string;
+export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor {
+  value: string;
   private tasks: MarkdownTaskModel[];
+  private disabled = false;
+
+  onChange(rating: any) {
+  }
+
+  onTouched() {
+  }
 
   constructor() { }
 
   ngOnInit() {
-    const tokens = marked.lexer(this.value);
-    this.parseList(tokens);
+
   }
 
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  writeValue(obj: any): void {
+    this.value = obj;
+    if (this.value) {
+      const tokens = marked.lexer(this.value);
+      this.parseList(tokens);
+    }
+  }
 
   private parseList(tokens: marked.Token[]) {
     let result = '{';
@@ -53,7 +86,6 @@ export class MarkdownTaskRenderComponent implements OnInit {
     result = result.replace(/,\]/g, ']').replace(/},}/g, '}}');
     result += '}';
 
-    console.log(result);
     try {
       this.tasks = JSON.parse(result).lists;
     } catch (e) {
