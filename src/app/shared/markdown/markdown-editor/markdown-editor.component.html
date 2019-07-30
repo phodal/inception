@@ -3,6 +3,6 @@
     <textarea class="markdown-editor"></textarea>
   </div>
   <div class="preview">
-    <component-markdown-task-render [(ngModel)]="value"></component-markdown-task-render>
+    <component-markdown-task-render [(ngModel)]="value" (ngModelChange)="updateModel()"></component-markdown-task-render>
   </div>
 </div>

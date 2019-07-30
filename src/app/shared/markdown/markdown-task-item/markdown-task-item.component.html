@@ -9,7 +9,7 @@
     <span class="context" *ngIf="task.item.context">{{task.item.context}} </span>
     <span class="tag" *ngIf="task.item.tag">{{task.item.tag}} </span>
   </li>
-  <ul *ngIf="task.lists">
-    <component-markdown-task-item ngDefaultControl [(ngModel)]="task.lists" (ngModelChange)="checkValue()"></component-markdown-task-item>
+  <ul *ngIf="task.childrens">
+    <component-markdown-task-item ngDefaultControl [(ngModel)]="task.childrens" (ngModelChange)="checkValue()"></component-markdown-task-item>
   </ul>
 </ul>

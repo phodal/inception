@@ -21,7 +21,7 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
   private tasks: MarkdownTaskModel[];
   private disabled = false;
 
-  onChange(rating: any) {
+  onChange(value: any) {
   }
 
   onTouched() {
@@ -58,7 +58,7 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
     for (const token of tokens) {
       switch (token.type) {
         case 'list_start': {
-          result += '"lists": [';
+          result += '"childrens": [';
           break;
         }
         case 'list_item_start': {
@@ -83,11 +83,11 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
       }
     }
 
-    result = result.replace(/,\]/g, ']').replace(/},}/g, '}}');
+    result = result.replace(/,]/g, ']').replace(/},}/g, '}}');
     result += '}';
 
     try {
-      this.tasks = JSON.parse(result).lists;
+      this.tasks = JSON.parse(result).childrens;
     } catch (e) {
 
     }
