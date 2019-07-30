@@ -5,15 +5,20 @@
   <div class="preview">
     <mat-form-field>
       <mat-label>Render Type</mat-label>
-      <mat-select>
+      <mat-select [(value)]="displayType">
         <mat-option value="todo">Todo</mat-option>
         <mat-option value="mindmap">Mind Map</mat-option>
       </mat-select>
     </mat-form-field>
+
     <component-markdown-task-render
+      *ngIf="displayType === 'todo'"
       [(ngModel)]="value"
       (ngModelChange)="updateModel($event)">
 
     </component-markdown-task-render>
+    <div *ngIf="displayType === 'mindmap'">
+      Mind Map
+    </div>
   </div>
 </div>
