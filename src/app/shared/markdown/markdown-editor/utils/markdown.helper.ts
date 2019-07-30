@@ -1,5 +1,8 @@
 // tslint:disable-next-line:max-line-length
 // REFS: https://github.com/todotxt/todo.txt-android/blob/614e0b5eb688cae8236f33c64d7e791d1030cf3c/app/src/main/java/com/todotxt/todotxttouch/task/TextSplitter.java
+
+const shortid = require('shortid');
+
 import { MarkdownTaskModel } from '../../model/markdown.model';
 
 const COMPLETED_PATTERN = /(\[[x|X]] )(.*)/;
@@ -59,7 +62,9 @@ const MarkdownHelper = {
       text = text.replace(TAG_PATTERN, '');
     }
 
+    const id = shortid.generate();
     return {
+      id,
       completed,
       startDate,
       endDate,

@@ -22,6 +22,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { MarkdownTaskItemComponent } from './markdown/markdown-task-item/markdown-task-item.component';
 import { MarkdownTaskRenderComponent } from './markdown/markdown-task-render/markdown-task-render.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { MarkdownTaskItemService } from './markdown/markdown-task-item/markdown-task-item.service';
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     MarkdownTaskRenderComponent
   ],
   providers: [
-    ContentEditableDirective
+    ContentEditableDirective,
+    MarkdownTaskItemService
   ],
   exports: [
     CommonModule,

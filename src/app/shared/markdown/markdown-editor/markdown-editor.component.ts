@@ -58,12 +58,12 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     this.change.emit(value);
   }
 
-  updateModel() {
+  updateModel($event) {
     this.taskIndex = 0;
     this.tempValue = '';
     this.indexString = '';
 
-    this.taskToMarkdownList(this.value);
+    this.taskToMarkdownList($event);
     this.simplemde.value(this.tempValue);
   }
 

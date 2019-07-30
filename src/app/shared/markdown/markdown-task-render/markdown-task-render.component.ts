@@ -3,6 +3,8 @@ import { MarkdownTaskModel } from '../model/markdown.model';
 import MarkdownHelper from '../markdown-editor/utils/markdown.helper';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-item.service';
+
 const marked = require('marked');
 
 @Component({
@@ -20,6 +22,7 @@ const marked = require('marked');
 export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor {
   value: string;
   tasks: MarkdownTaskModel[];
+  hasSubscribe = false;
   private disabled = false;
 
   onChange(value: any) {
@@ -28,7 +31,7 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
   onTouched() {
   }
 
-  constructor() {
+  constructor(private markdownTaskItemService: MarkdownTaskItemService) {
   }
 
   ngOnInit() {
@@ -52,6 +55,15 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
     if (this.value) {
       const tokens = marked.lexer(this.value);
       this.parseList(tokens);
+      this.markdownTaskItemService.setTasks(this.tasks);
+
+      if (this.hasSubscribe) {
+        return;
+      }
+      this.markdownTaskItemService.subTasks('hello').subscribe((results) => {
+        this.onChange(results);
+        this.hasSubscribe = true;
+      });
     }
   }
 

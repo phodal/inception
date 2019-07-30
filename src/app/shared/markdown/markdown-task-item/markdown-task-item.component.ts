@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MarkdownTaskItemService } from './markdown-task-item.service';
 
 @Component({
   selector: 'component-markdown-task-item',
@@ -24,6 +25,10 @@ export class MarkdownTaskItemComponent implements OnInit, ControlValueAccessor {
   onTouched(_) {
   }
 
+  constructor(private markdownTaskItemService: MarkdownTaskItemService) {
+
+  }
+
   ngOnInit(): void {
   }
 
@@ -45,15 +50,12 @@ export class MarkdownTaskItemComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  checkValue($event: any) {
-    this.onChange(this.list);
-  }
-
-  log(item: any) {
-    return JSON.stringify(item);
+  checkValue($event: any, item) {
+    this.markdownTaskItemService.updateTask($event, item);
   }
 
   changeDateInput(event: any, item) {
-    console.log(event, item);
+    item.startDate = event;
+    this.markdownTaskItemService.updateTask(event, item);
   }
 }

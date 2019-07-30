@@ -1,12 +1,11 @@
 <ul *ngFor="let task of list">
   <li *ngIf="task.item">
     <mat-checkbox class="complete"
-                  checked="task.item.completed"
-                  ngDefaultControl
-                  [(ngModel)]="task.item.completed" (change)="checkValue($event)">
+                  [(ngModel)]="task.item.completed" (change)="checkValue($event, task.item)">
       <span class="priority" *ngIf="task.item.priority">{{task.item.priority}} </span>
       <span class="start-date" *ngIf="task.item.startDate">
         <input  mwlFlatpickr
+                (ngModelChange)="changeDateInput($event, task.item)"
                 [(ngModel)]="task.item.startDate"
         >
       </span>
@@ -23,7 +22,7 @@
     <component-markdown-task-item
       ngDefaultControl
       [(ngModel)]="task.childrens"
-      (ngModelChange)="checkValue($event)">
+      (ngModelChange)="checkValue($event, null)">
     </component-markdown-task-item>
   </ul>
 </ul>

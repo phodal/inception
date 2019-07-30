@@ -1,4 +1,5 @@
 export interface MarkdownTaskModel {
+  id: string;
   completed: boolean;
   startDate?: string;
   endDate?: string;
