@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms
   ]
 })
 export class MarkdownTaskItemComponent implements OnInit, ControlValueAccessor {
-  @Input() list: NgModel;
+  @Input() list: [];
 
   private disabled = false;
 
@@ -40,12 +40,13 @@ export class MarkdownTaskItemComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    this.list = obj;
+    console.log(obj);
+    if (obj) {
+      this.list = obj;
+    }
   }
 
   checkValue($event: any) {
-    console.log($event);
-    console.log(this.list);
     this.onChange(this.list);
   }
 
