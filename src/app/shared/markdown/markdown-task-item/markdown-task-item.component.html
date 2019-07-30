@@ -1,15 +1,20 @@
 <ul *ngFor="let task of list">
   <li *ngIf="task.item">
-    <mat-checkbox class="complete" [(ngModel)]="task.item.completed" (change)="checkValue()"></mat-checkbox>
+    <mat-checkbox class="complete"
+                  checked="task.item.completed"
+                  ngDefaultControl
+                  [(ngModel)]="task.item.completed" (change)="checkValue($event)"></mat-checkbox>
 
     <span class="priority" *ngIf="task.item.priority">{{task.item.priority}} </span>
     <span class="start-date" *ngIf="task.item.startDate">{{task.item.startDate}} </span>
     <span class="end-date" *ngIf="task.item.endDate">{{task.item.endDate}} </span>
     {{task.item.text}}
     <span class="context" *ngIf="task.item.context">{{task.item.context}} </span>
-    <span class="tag" *ngIf="task.item.tag">{{task.item.tag}} </span>
+    <span class="tag" *ngIf="task.item.tag">
+      <span *ngFor="let tag of task.item.tag;let last = last">{{tag}} <ng-template *ngIf="!last">,</ng-template> </span>
+    </span>
   </li>
   <ul *ngIf="task.childrens">
-    <component-markdown-task-item ngDefaultControl [(ngModel)]="task.childrens" (ngModelChange)="checkValue()"></component-markdown-task-item>
+    <component-markdown-task-item ngDefaultControl [(ngModel)]="task.childrens" (ngModelChange)="checkValue($event)"></component-markdown-task-item>
   </ul>
 </ul>

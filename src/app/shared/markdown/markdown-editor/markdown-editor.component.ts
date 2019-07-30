@@ -64,7 +64,6 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     this.indexString = '';
 
     this.taskToMarkdownList(this.value);
-    console.log(this.tempValue);
     this.simplemde.value(this.tempValue);
   }
 
@@ -88,12 +87,21 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
           this.tempValue += ` (${item.priority})`;
         }
         if (item.startDate) {
-          this.tempValue += ` (${item.startDate})`;
+          this.tempValue += ` ${item.startDate}`;
         }
         if (item.endDate) {
-          this.tempValue += ` (${item.endDate})`;
+          this.tempValue += ` ${item.endDate}`;
         }
-        this.tempValue += ` ${item.text} \n`;
+        this.tempValue += ` ${item.text}`;
+        if (item.tag) {
+          for (const tag of item.tag) {
+            this.tempValue += ` +${tag}`;
+          }
+        }
+        if (item.context) {
+          this.tempValue += ` @${item.context}`;
+        }
+        this.tempValue += `\n`;
         this.indexString = '';
       }
 

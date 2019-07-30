@@ -1,5 +1,5 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'component-markdown-task-item',
@@ -13,8 +13,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class MarkdownTaskItemComponent implements ControlValueAccessor {
-  @Input() list: [];
+export class MarkdownTaskItemComponent implements OnInit, ControlValueAccessor {
+  @Input() list: NgModel;
 
   private disabled = false;
 
@@ -22,6 +22,9 @@ export class MarkdownTaskItemComponent implements ControlValueAccessor {
   }
 
   onTouched(_) {
+  }
+
+  ngOnInit(): void {
   }
 
   registerOnChange(fn: any): void {
@@ -40,7 +43,13 @@ export class MarkdownTaskItemComponent implements ControlValueAccessor {
     this.list = obj;
   }
 
-  checkValue() {
+  checkValue($event: any) {
+    console.log($event);
+    console.log(this.list);
     this.onChange(this.list);
+  }
+
+  log(item: any) {
+    return JSON.stringify(item);
   }
 }
