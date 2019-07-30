@@ -1,6 +1,14 @@
-<ul *ngFor="let item of list">
-  <li *ngIf="item.items">{{item.items.text}}</li>
-  <ul *ngIf="item.lists">
-      <component-markdown-task-item [list]="item.lists"></component-markdown-task-item>
+<ul *ngFor="let task of list">
+  <li *ngIf="task.item">
+    <span class="priority" *ngIf="task.item.priority">{{task.item.priority}} </span>
+    <span class="completed" *ngIf="task.item.completed">{{task.item.completed}} </span>
+    <span class="start-date" *ngIf="task.item.startDate">{{task.item.startDate}} </span>
+    <span class="end-date" *ngIf="task.item.endDate">{{task.item.endDate}} </span>
+    {{task.item.text}}
+    <span class="context" *ngIf="task.item.context">{{task.item.context}} </span>
+    <span class="tag" *ngIf="task.item.tag">{{task.item.tag}} </span>
+  </li>
+  <ul *ngIf="task.lists">
+    <component-markdown-task-item [list]="task.lists"></component-markdown-task-item>
   </ul>
 </ul>

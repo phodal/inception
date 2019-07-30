@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MarkdownService } from 'ngx-markdown';
 
-import MarkdownHelper from './utils/markdown.helper';
-
 @Component({
   selector: 'component-markdown-editor',
   templateUrl: './markdown-editor.component.html',

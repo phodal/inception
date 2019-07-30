@@ -1,16 +1,7 @@
-export interface MarkdownTaskModel {
-  completed: boolean;
-  startDate?: string;
-  endDate?: string;
-  text: string;
-  context?: string;
-  priority?: string;
-  mail?: string;
-  tag?: string;
-}
-
 // tslint:disable-next-line:max-line-length
 // REFS: https://github.com/todotxt/todo.txt-android/blob/614e0b5eb688cae8236f33c64d7e791d1030cf3c/app/src/main/java/com/todotxt/todotxttouch/task/TextSplitter.java
+import { MarkdownTaskModel } from '../../model/markdown.model';
+
 const COMPLETED_PATTERN = /([X,x] )(.*)/g;
 const COMPLETED_PREPENDED_DATES_PATTERN = /(\d{4}-\d{2}-\d{2}) (\d{4}-\d{2}-\d{2}) (.*)/g;
 const SINGLE_DATE_PATTERN = /(\d{4}-\d{2}-\d{2}) (.*)/g;

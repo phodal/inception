@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MarkdownTaskModel } from '../model/markdown.model';
+import MarkdownHelper from '../markdown-editor/utils/markdown.helper';
 const marked = require('marked');
 
 @Component({
@@ -8,7 +10,7 @@ const marked = require('marked');
 })
 export class MarkdownTaskRenderComponent implements OnInit {
   @Input() value: string;
-  private tasks: any;
+  private tasks: MarkdownTaskModel[];
 
   constructor() { }
 
@@ -27,11 +29,11 @@ export class MarkdownTaskRenderComponent implements OnInit {
           break;
         }
         case 'list_item_start': {
-          result += '{ "items": ';
+          result += '{ "item": ';
           break;
         }
         case 'text': {
-          result += `{ "text": "${token.text}"},`;
+          result += JSON.stringify(MarkdownHelper.todoCompiled(token.text)) + ',';
           break;
         }
         case 'list_item_end': {
@@ -51,6 +53,7 @@ export class MarkdownTaskRenderComponent implements OnInit {
     result = result.replace(/,\]/g, ']').replace(/},}/g, '}}');
     result += '}';
 
+    console.log(result);
     try {
       this.tasks = JSON.parse(result).lists;
     } catch (e) {
