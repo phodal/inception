@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, OnInit } from '@angular/core';
 import { MarkdownTaskModel } from '../model/markdown.model';
 import MarkdownHelper from '../markdown-editor/utils/markdown.helper';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -91,5 +91,9 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
     } catch (e) {
 
     }
+  }
+
+  modelChange() {
+    console.log(this.tasks);
   }
 }

@@ -1,3 +1,6 @@
 <div class="preview" *ngIf="tasks">
-  <component-markdown-task-item [list]="tasks"></component-markdown-task-item>
+  <component-markdown-task-item
+    ngDefaultControl
+    [(ngModel)]="tasks"
+    (ngModelChange)="modelChange()"></component-markdown-task-item>
 </div>
