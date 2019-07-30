@@ -18,7 +18,7 @@ const marked = require('marked');
 })
 export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor {
   value: string;
-  private tasks: MarkdownTaskModel[];
+  tasks: MarkdownTaskModel[];
   private disabled = false;
 
   onChange(value: any) {
