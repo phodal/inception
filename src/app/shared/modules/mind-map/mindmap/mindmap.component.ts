@@ -210,15 +210,6 @@ export class MindmapComponent implements OnInit, AfterViewInit {
     let tree = d3.layout.tree()
       .size([h, w]);
 
-    let calcLeft = function(d) {
-      let l = d.y;
-      if (d.position === 'left') {
-        l = (d.y) - w / 2;
-        l = (w / 2) + l;
-      }
-      return { x: d.x, y: l };
-    };
-
     let diagonal = d3.svg.diagonal()
       .projection(function(d) { return [d.y, d.x]; });
 
@@ -365,20 +356,18 @@ export class MindmapComponent implements OnInit, AfterViewInit {
         })
         .nodes(root)
         .reverse();
+
       root.children = root.left.concat(root.right);
       root._children = null;
       let nodes = toArray(root);
 
       // Normalize for fixed-depth.
       // nodes.forEach(function(d) { d.y = d.depth * 180; });
-
-      // Update the nodes…
       let node = vis.selectAll('g.node')
         .data(nodes, function(d) {
           return d.id || (d.id = ++i);
         });
 
-      // Enter any new nodes at the parent's previous position.
       let nodeEnter = node.enter().append('svg:g')
         .attr('class', function(d) {
           return d.selected ? 'node selected' : 'node';
@@ -390,14 +379,12 @@ export class MindmapComponent implements OnInit, AfterViewInit {
 
       nodeEnter.append('svg:circle')
         .attr('r', 1e-6);
-      // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
       nodeEnter.append('svg:text')
         .attr('x', function(d) {
           return d.children || d._children ? -10 : 10;
         })
-        //            .attr("dy", ".35em")
-        //            .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+
         .attr('dy', 14)
         .attr('text-anchor', 'middle')
         .text(function(d) {
@@ -405,9 +392,7 @@ export class MindmapComponent implements OnInit, AfterViewInit {
         })
         .style('fill-opacity', 1);
 
-      // Transition nodes to their new position.
       let nodeUpdate = node.transition()
-      // .attr("class", function(d){ return d.selected?"node selected":"node"; })
         .duration(duration)
         .attr('transform', function(d) {
           return 'translate(' + d.y + ',' + d.x + ')';
@@ -420,16 +405,7 @@ export class MindmapComponent implements OnInit, AfterViewInit {
 
       nodeUpdate.select('circle')
         .attr('r', 4.5);
-      // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
-      /*
-              nodeUpdate.select("text")
-                  .attr("dy", 14)
-                  .attr("text-anchor", "middle")
-                  .style("fill-opacity", 1);
-      */
-
-      // Transition exiting nodes to the parent's new position.
       let nodeExit = node.exit().transition()
         .duration(duration)
         .attr('transform', function(d) {
@@ -479,17 +455,6 @@ export class MindmapComponent implements OnInit, AfterViewInit {
         d.x0 = d.x;
         d.y0 = d.y;
       });
-    }
-
-    // Toggle children.
-    function toggle(d) {
-      if (d.children) {
-        d._children = d.children;
-        d.children = null;
-      } else {
-        d.children = d._children;
-        d._children = null;
-      }
     }
 
     loadJSON('/assets/data/mindmap/data.json');
