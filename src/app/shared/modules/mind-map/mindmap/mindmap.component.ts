@@ -81,9 +81,11 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
     let selectNode = function(target) {
       if (target) {
-        let sel = d3.selectAll('#d3-mindmap svg .node').filter(function(d) {
-          return d.id == target.id;
-        })[0][0];
+        let sel = d3
+          .selectAll('#d3-mindmap svg .node')
+          .filter(d => d.id == target.id)
+          .nodes()[0];
+
         if (sel) {
           select(sel);
         }
@@ -253,13 +255,17 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       update(d);
     };
 
-    let tree = d3.layout.tree()
+    let tree = d3.tree()
       .size([h, w]);
+    //
+    // let diagonal = d3.svg.diagonal()
+    //   .projection(function(d) {
+    //     return [d.y, d.x];
+    //   });
 
-    let diagonal = d3.svg.diagonal()
-      .projection(function(d) {
-        return [d.y, d.x];
-      });
+    let diagonal = d3.linkHorizontal()
+      .x(d => d.x)
+      .y(d => d.y);
 
     let connector = diagonal;
 
@@ -389,19 +395,19 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
       // Compute the new tree layout.
       let nodesLeft = tree
-        .size([h, (w / 2) - 20])
-        .children(function(d) {
-          return (d.depth === 0) ? d.left : d.children;
-        })
-        .nodes(root)
-        .reverse();
+        .size([h, (w / 2) - 20])(
+          d3.hierarchy(root, d => (d.depth === 0) ? d.left : d.children)
+        ).descendants();
+        // .separation(d => (d.depth === 0) ? d.left : d.children)
+        // .nodes(root)
+        // .reverse();
       let nodesRight = tree
-        .size([h, w / 2])
-        .children(function(d) {
-          return (d.depth === 0) ? d.right : d.children;
-        })
-        .nodes(root)
-        .reverse();
+        .size([h, w / 2])(
+          d3.hierarchy(root, d => (d.depth === 0) ? d.right : d.children)
+        ).descendants();
+        // .separation(d => (d.depth === 0) ? d.right : d.children)
+        // .nodes(root)
+        // .reverse();
 
       root.children = root.left.concat(root.right);
       root._children = null;
@@ -419,6 +425,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
           return d.selected ? 'node selected' : 'node';
         })
         .attr('transform', function(d) {
+          console.log(d, source);
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
         .on('click', handleClick);
@@ -467,7 +474,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
       // Update the links…
       let link = vis.selectAll('path.link')
-        .data(tree.links(nodes), function(d) {
+        .data(tree(d3.hierarchy(nodes, )).links(), function(d) {
           return d.target.id;
         });
 
