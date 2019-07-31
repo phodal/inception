@@ -138,7 +138,7 @@ export class MindmapComponent implements OnInit, AfterViewInit {
       return false;
     });
 
-    Mousetrap.bind('ins', function() {
+    Mousetrap.bind(['ins', 'enter'], function() {
       let selection = d3.select('.node.selected')[0][0];
       if (selection) {
         let data = selection.__data__;
@@ -186,7 +186,7 @@ export class MindmapComponent implements OnInit, AfterViewInit {
       }
     });
 
-    Mousetrap.bind('enter', function() {
+    Mousetrap.bind('space', function() {
       let selection = d3.select('.node.selected')[0][0];
       if (selection) {
         let data = selection.__data__;
@@ -195,37 +195,11 @@ export class MindmapComponent implements OnInit, AfterViewInit {
       }
     });
 
-    let addNodes = function(dir) {
-      root[dir].push({ name: 'bar', position: dir }, { name: 'none', position: dir }, { name: 'some', position: dir }, {
-        name: 'value',
-        position: dir
-      });
-      update(root);
-    };
-
-    let moveNodes = function(from, to) {
-      let tmp = root[from].shift();
-      tmp.position = to;
-      root[to].push(tmp);
-      update(root);
-    };
-
-    let setConnector = function(type) {
-      connector = window[type];
-      update(root);
-    };
-
     let select = function(node) {
       // Find previously selected, unselect
       d3.select('.selected').classed('selected', false);
       // Select current item
       d3.select(node).classed('selected', true);
-    };
-
-    let createNew = function() {
-      root = { name: 'Root', children: [], left: [], right: [] };
-      update(root, true);
-      selectNode(root);
     };
 
     let handleClick = function(d, index) {
@@ -248,14 +222,6 @@ export class MindmapComponent implements OnInit, AfterViewInit {
     let diagonal = d3.svg.diagonal()
       .projection(function(d) { return [d.y, d.x]; });
 
-    let elbow = function(d, i?) {
-      let source = calcLeft(d.source);
-      let target = calcLeft(d.target);
-      let hy = (target.y - source.y) / 2;
-      return 'M' + source.y + ',' + source.x
-        + 'H' + (source.y + hy)
-        + 'V' + target.x + 'H' + target.y;
-    };
     let connector = diagonal;
 
     let vis = d3.select('#d3-mindmap')
