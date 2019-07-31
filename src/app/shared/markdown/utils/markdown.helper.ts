@@ -144,7 +144,7 @@ const MarkdownHelper = {
     for (const taskItem of markdownJson) {
       const item = {
         name: (taskItem as any).item.text,
-        originText: (taskItem as any).item.originText,
+        item: (taskItem as any).item,
         children: []
       };
       if (taskItem.childrens) {
@@ -159,7 +159,7 @@ const MarkdownHelper = {
     for (const taskItem of childrens) {
       const item = {
         name: (taskItem as any).item.text,
-        originText: (taskItem as any).item.originText,
+        item: (taskItem as any).item,
         children: []
       };
       if (taskItem.childrens) {

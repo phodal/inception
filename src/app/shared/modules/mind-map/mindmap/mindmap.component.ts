@@ -5,6 +5,7 @@ import MarkdownHelper from '../../../markdown/utils/markdown.helper';
 import marked from 'marked';
 import { MatDialog } from '@angular/material';
 import { MarkdownTaskItemFormComponent } from 'src/app/shared/markdown/markdown-task-item-form/markdown-task-item-form.component';
+import { MarkdownTaskModel } from '../../../markdown/model/markdown.model';
 
 const d3 = require('d3');
 const Mousetrap = require('mousetrap');
@@ -260,7 +261,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       console.log(d, index);
       select(this);
       update(d);
-      that.updateItem(d.originText);
+      that.updateItem(d.item);
     };
 
     let tree = d3.layout.tree()
@@ -543,11 +544,11 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     this.onChange(this.value);
   }
 
-  updateItem(originText: any | string) {
+  updateItem(item: MarkdownTaskModel) {
     const dialogRef = this.dialog.open(MarkdownTaskItemFormComponent);
 
     let instance = dialogRef.componentInstance;
-    instance.item = MarkdownHelper.todoCompiled(originText);
+    instance.item = item;
     instance.itemChange.subscribe((item) => {
       console.log(item);
     });
