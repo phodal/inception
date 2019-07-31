@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+const d3 = require('d3');
+const Mousetrap = require('mousetrap');
 
 @Component({
   selector: 'component-mindmap',
@@ -12,9 +14,6 @@ export class MindmapComponent implements OnInit, AfterViewInit {
 
   /* tslint:disable */
   ngAfterViewInit(): void {
-    const d3 = (window as any).d3;
-    const Mousetrap = (window as any).Mousetrap;
-
     let m = [20, 120, 20, 120],
       // w = 1280 - m[1] - m[3],
       w = 900 - m[1] - m[3],
