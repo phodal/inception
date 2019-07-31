@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material';
 import { MarkdownTaskModel } from '../model/markdown.model';
@@ -16,9 +16,10 @@ import { MarkdownTaskModel } from '../model/markdown.model';
   ]
 })
 export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccessor {
-  @Input() id: string;
+  @Input() item: MarkdownTaskModel;
+  @Output() itemChange = new EventEmitter();
+
   private disabled = false;
-  item: MarkdownTaskModel;
 
   onChange(param1) {
   }
@@ -34,7 +35,7 @@ export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccess
 
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.itemChange.emit = fn;
   }
 
   registerOnTouched(fn: any): void {
@@ -46,7 +47,6 @@ export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccess
   }
 
   writeValue(obj: any): void {
-    console.log(this.id, obj);
     if (obj !== null) {
       this.item = obj;
       if (this.item && !this.item.completed) {
@@ -57,25 +57,25 @@ export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccess
 
   updateText($event: any) {
     this.item.editable = false;
-    this.onChange(this.item);
+    this.itemChange.emit(this.item);
   }
 
   changeStartDateInput($event: any) {
     this.item.startDate = $event;
-    this.onChange(this.item);
+    this.itemChange.emit(this.item);
   }
 
   changeEndDateInput($event: any) {
     this.item.endDate = $event;
-    this.onChange(this.item);
+    this.itemChange.emit(this.item);
   }
 
   enableEdit(event) {
     this.item.editable = true;
-    this.onChange(this.item);
+    this.itemChange.emit(this.item);
   }
 
   checkValue($event: MatCheckboxChange) {
-    this.onChange(this.item);
+    this.itemChange.emit(this.item);
   }
 }

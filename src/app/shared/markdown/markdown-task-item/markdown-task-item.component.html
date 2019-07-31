@@ -1,9 +1,8 @@
 <ul *ngFor="let task of list">
   <li>
     <component-markdown-task-item-form
-      [(ngModel)]="task.item"
-      [id]="task.item.id"
-      (ngModelChange)="changeForm($event, task.item)">
+      [item]="task.item"
+      (itemChange)="changeForm($event, task.item)">
     </component-markdown-task-item-form>
 
     <ul *ngIf="task.childrens">
