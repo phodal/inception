@@ -4,6 +4,7 @@ export interface MarkdownTaskModel {
   startDate?: string;
   endDate?: string;
   text: string;
+  originText?: string;
   context?: string;
   priority?: string;
   mail?: string;

@@ -16,6 +16,7 @@ const PRIORITY_PATTERN = /\(([A-Z])\) (.*)/;
 
 const MarkdownHelper = {
   todoCompiled(text: any): MarkdownTaskModel {
+    const originText = text;
     let completed = false;
     let startDate;
     let endDate;
@@ -66,6 +67,7 @@ const MarkdownHelper = {
 
     const id = shortid.generate();
     return {
+      originText,
       id,
       completed,
       startDate,
@@ -142,6 +144,7 @@ const MarkdownHelper = {
     for (const taskItem of markdownJson) {
       const item = {
         name: (taskItem as any).item.text,
+        originText: (taskItem as any).item.originText,
         children: []
       };
       if (taskItem.childrens) {
@@ -156,6 +159,7 @@ const MarkdownHelper = {
     for (const taskItem of childrens) {
       const item = {
         name: (taskItem as any).item.text,
+        originText: (taskItem as any).item.originText,
         children: []
       };
       if (taskItem.childrens) {

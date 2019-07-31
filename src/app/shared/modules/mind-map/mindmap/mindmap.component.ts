@@ -21,7 +21,7 @@ const Mousetrap = require('mousetrap');
 })
 export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   value: string;
-  tasks: any;
+  items: any;
   private subject = new Subject<any>();
   private disabled = false;
 
@@ -49,9 +49,10 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       return;
     }
     const tokens = marked.lexer(this.value);
-    const markdownJson = MarkdownHelper.markdownToJSON(tokens, this.tasks);
-    this.tasks = MarkdownHelper.toMindMapData(markdownJson);
-    this.subject.next(this.tasks);
+    const markdownJson = MarkdownHelper.markdownToJSON(tokens, this.items);
+    console.log(markdownJson);
+    this.items = MarkdownHelper.toMindMapData(markdownJson);
+    this.subject.next(this.items);
   }
 
   // Refs: http://bl.ocks.org/jdarling/2d4e84460d5f5df9c0ff
@@ -248,6 +249,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     };
 
     let handleClick = function(d, index) {
+      console.log(d, index);
       select(this);
       update(d);
     };
@@ -521,7 +523,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       });
     }
 
-    loadTasks(this.tasks);
+    loadTasks(this.items);
 
     this.subject.asObservable().subscribe((value) => {
       loadTasks(value);
