@@ -1,6 +1,6 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { MarkdownTaskModel } from '../model/markdown.model';
-import MarkdownHelper from '../markdown-task-editor/utils/markdown.helper';
+import MarkdownHelper from '../utils/markdown.helper';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-item.service';
@@ -54,7 +54,7 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
     this.value = obj;
     if (this.value) {
       const tokens = marked.lexer(this.value);
-      this.parseList(tokens);
+      this.tasks = MarkdownHelper.markdownToJSON(tokens, this.tasks);
       this.markdownTaskItemService.setTasks(this.tasks);
 
       if (this.hasSubscribe) {
@@ -64,59 +64,6 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
         this.onChange(results);
         this.hasSubscribe = true;
       });
-    }
-  }
-
-  private parseList(tokens: marked.Token[]) {
-    let result = '{';
-    let checkString = '';
-
-    for (const token of tokens) {
-      if (token.type !== 'text') {
-        checkString = '';
-      }
-      switch (token.type) {
-        case 'list_start': {
-          result += '"childrens": [';
-          break;
-        }
-        case 'list_item_start': {
-          result += '{ "item": ';
-          if ((token as any).checked) {
-            checkString = '[x] ';
-          } else {
-            checkString = '';
-          }
-          break;
-        }
-        case 'text': {
-          if (token.text.includes('[x] ') || token.text.includes('[X] ') || token.text.includes('[ ] ')) {
-            checkString = '';
-          }
-          result += JSON.stringify(MarkdownHelper.todoCompiled(checkString + token.text)) + ',';
-          break;
-        }
-        case 'list_item_end': {
-          result += '},';
-          break;
-        }
-        case 'list_end': {
-          result += ']';
-          break;
-        }
-        default: {
-          console.log(token);
-        }
-      }
-    }
-
-    result = result.replace(/,]/g, ']').replace(/},}/g, '}}');
-    result += '}';
-
-    try {
-      this.tasks = JSON.parse(result).childrens;
-    } catch (e) {
-
     }
   }
 

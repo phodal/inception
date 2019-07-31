@@ -3,7 +3,7 @@
 
 const shortid = require('shortid');
 
-import { MarkdownTaskModel } from '../../model/markdown.model';
+import { MarkdownTaskModel } from '../model/markdown.model';
 
 const COMPLETED_PATTERN = /(\[[x|X]] )(.*)/;
 const COMPLETED_PREPENDED_DATES_PATTERN = /(\d{4}-\d{2}-\d{2}) (\d{4}-\d{2}-\d{2}) (.*)/;
@@ -73,6 +73,61 @@ const MarkdownHelper = {
       priority,
       text
     };
+  },
+  markdownToJSON(tokens: marked.Token[], originTasks) {
+    let tasks;
+    let result = '{';
+    let checkString = '';
+
+    for (const token of tokens) {
+      if (token.type !== 'text') {
+        checkString = '';
+      }
+      switch (token.type) {
+        case 'list_start': {
+          result += '"childrens": [';
+          break;
+        }
+        case 'list_item_start': {
+          result += '{ "item": ';
+          if ((token as any).checked) {
+            checkString = '[x] ';
+          } else {
+            checkString = '';
+          }
+          break;
+        }
+        case 'text': {
+          if (token.text.includes('[x] ') || token.text.includes('[X] ') || token.text.includes('[ ] ')) {
+            checkString = '';
+          }
+          result += JSON.stringify(MarkdownHelper.todoCompiled(checkString + token.text)) + ',';
+          break;
+        }
+        case 'list_item_end': {
+          result += '},';
+          break;
+        }
+        case 'list_end': {
+          result += ']';
+          break;
+        }
+        default: {
+          console.log(token);
+        }
+      }
+    }
+
+    result = result.replace(/,]/g, ']').replace(/},}/g, '}}');
+    result += '}';
+
+    try {
+      tasks = JSON.parse(result).childrens;
+    } catch (e) {
+      tasks = originTasks;
+    }
+
+    return tasks;
   }
 };
 
