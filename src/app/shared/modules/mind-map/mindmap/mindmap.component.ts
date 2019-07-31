@@ -383,6 +383,11 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       return arr;
     };
 
+    // Define the div for the tooltip
+    var div = d3.select('#d3-mindmap').append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0);
+
     function update(source, slow?) {
       let duration = (d3.event && d3.event.altKey) || slow ? 1000 : 100;
 
@@ -423,7 +428,21 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
         .on('click', handleClick);
 
       nodeEnter.append('svg:circle')
-        .attr('r', 1e-6);
+        .attr('r', 1e-6)
+        .on('mouseover', function(d) {
+          console.log(d);
+          div.transition()
+            .duration(200)
+            .style('opacity', .9);
+          div.html(d.name)
+            .style('left', (d3.event.pageX) + 'px')
+            .style('top', (d3.event.pageY - 28) + 'px');
+        })
+        .on('mouseout', function(d) {
+          div.transition()
+            .duration(500)
+            .style('opacity', 0);
+        });
 
       nodeEnter.append('svg:text')
         .attr('x', function(d) {
