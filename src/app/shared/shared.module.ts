@@ -90,7 +90,9 @@ import { MarkdownTaskItemFormComponent } from './markdown/markdown-task-item-for
     RichTextEditorComponent,
     MarkdownTaskItemFormComponent
   ],
-  entryComponents: []
+  entryComponents: [
+    MarkdownTaskItemFormComponent
+  ]
 })
 export class SharedModule {
 }

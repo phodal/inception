@@ -3,6 +3,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import MarkdownHelper from '../../../markdown/utils/markdown.helper';
 import marked from 'marked';
+import { MatDialog } from '@angular/material';
+import { MarkdownTaskItemFormComponent } from 'src/app/shared/markdown/markdown-task-item-form/markdown-task-item-form.component';
 
 const d3 = require('d3');
 const Mousetrap = require('mousetrap');
@@ -55,12 +57,18 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     this.subject.next(this.items);
   }
 
-  // Refs: http://bl.ocks.org/jdarling/2d4e84460d5f5df9c0ff
+
+  constructor(public dialog: MatDialog) {
+
+  }
+
+// Refs: http://bl.ocks.org/jdarling/2d4e84460d5f5df9c0ff
   ngOnInit(): void {
   }
 
   /* tslint:disable */
   ngAfterViewInit(): void {
+    const that = this;
     let m = [20, 120, 20, 120],
       // w = 1280 - m[1] - m[3],
       w = 900 - m[1] - m[3],
@@ -252,6 +260,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       console.log(d, index);
       select(this);
       update(d);
+      that.updateItem(d.originText);
     };
 
     let tree = d3.layout.tree()
@@ -532,5 +541,19 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
   changeNode() {
     this.onChange(this.value);
+  }
+
+  updateItem(originText: any | string) {
+    const dialogRef = this.dialog.open(MarkdownTaskItemFormComponent);
+
+    let instance = dialogRef.componentInstance;
+    instance.item = MarkdownHelper.todoCompiled(originText);
+    instance.itemChange.subscribe((item) => {
+      console.log(item);
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

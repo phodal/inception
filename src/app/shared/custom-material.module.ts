@@ -1,6 +1,6 @@
 import {
   MatButtonModule, MatCardModule,
-  MatCheckboxModule,
+  MatCheckboxModule, MatDialogModule,
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
@@ -28,7 +28,8 @@ const MATERIAL_IMPORTS_EXPORTS = [
   MatCardModule,
   MatSidenavModule,
   MatOptionModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule
 ];
 
 @NgModule({
