@@ -51,7 +51,6 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     const tokens = marked.lexer(this.value);
     const markdownJson = MarkdownHelper.markdownToJSON(tokens, this.tasks);
     this.tasks = MarkdownHelper.toMindMapData(markdownJson);
-    console.log(this.tasks);
     this.subject.next(this.tasks);
   }
 
@@ -450,7 +449,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
         });
 
       nodeUpdate.select('circle')
-        .attr('r', 6);
+        .attr('r', 8);
 
       let nodeExit = node.exit().transition()
         .duration(duration)
