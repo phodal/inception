@@ -21,7 +21,7 @@ const Mousetrap = require('mousetrap');
 })
 export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   value: string;
-  tasks: [];
+  tasks: any;
   private subject = new Subject<any>();
   private disabled = false;
 
@@ -49,9 +49,10 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       return;
     }
     const tokens = marked.lexer(this.value);
-    this.tasks = MarkdownHelper.markdownToJSON(tokens, this.tasks);
+    const markdownJson = MarkdownHelper.markdownToJSON(tokens, this.tasks);
+    this.tasks = MarkdownHelper.toMindMapData(markdownJson);
     console.log(this.tasks);
-    // this.subject.next(this.tasks);
+    this.subject.next(this.tasks);
   }
 
   // Refs: http://bl.ocks.org/jdarling/2d4e84460d5f5df9c0ff
@@ -273,29 +274,28 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     ;
 
 // *
-    let loadJSON = function(fileName) {
-      // d3.json("/data/data.json", function(json) {
-      d3.json(fileName, function(json) {
-        let i = 0, l = json.children.length;
-        (window as any).data = root = json;
-        root.x0 = h / 2;
-        root.y0 = 0;
+    let loadTasks = function(json) {
+      if (!json) {
+        return;
+      }
+      let i = 0, l = json.children.length;
+      (window as any).data = root = json;
+      root.x0 = h / 2;
+      root.y0 = 0;
 
-        json.left = [];
-        json.right = [];
-        for (; i < l; i++) {
-          if (i % 2) {
-            json.left.push(json.children[i]);
-            json.children[i].position = 'left';
-          } else {
-            json.right.push(json.children[i]);
-            json.children[i].position = 'right';
-          }
+      json.left = [];
+      json.right = [];
+      for (; i < l; i++) {
+        if (i % 2) {
+          json.left.push(json.children[i]);
+          json.children[i].position = 'left';
+        } else {
+          json.right.push(json.children[i]);
+          json.children[i].position = 'right';
         }
-
-        update(root, true);
-        selectNode(root);
-      });
+      }
+      update(root, true);
+      selectNode(root);
     };
 // */
 
@@ -503,11 +503,11 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       });
     }
 
-    loadJSON('/assets/data/mindmap/data.json');
+    loadTasks(this.tasks);
 
     this.subject.asObservable().subscribe((value) => {
-      loadJSON(value);
-    })
+      loadTasks(value);
+    });
   }
 
   changeNode() {

@@ -1,6 +1,8 @@
 // tslint:disable-next-line:max-line-length
 // REFS: https://github.com/todotxt/todo.txt-android/blob/614e0b5eb688cae8236f33c64d7e791d1030cf3c/app/src/main/java/com/todotxt/todotxttouch/task/TextSplitter.java
 
+import { TreeModel } from '../../third-party/ngx-tree-dnd/models/tree-view.model';
+
 const shortid = require('shortid');
 
 import { MarkdownTaskModel } from '../model/markdown.model';
@@ -128,6 +130,42 @@ const MarkdownHelper = {
     }
 
     return tasks;
+  },
+  toMindMapData(markdownJson: any) {
+    if (!markdownJson) {
+      return [];
+    }
+    const results = {
+      name: 'Root',
+      children: []
+    };
+    for (const taskItem of markdownJson) {
+      const item = {
+        name: (taskItem as any).item.text,
+        children: []
+      };
+      if (taskItem.childrens) {
+        item.children = MarkdownHelper.convertMindMapChildren(taskItem.childrens, item.children);
+      }
+
+      results.children.push(item);
+    }
+    return results;
+  },
+  convertMindMapChildren(childrens: any[] | TreeModel[], results) {
+    for (const taskItem of childrens) {
+      const item = {
+        name: (taskItem as any).item.text,
+        children: []
+      };
+      if (taskItem.childrens) {
+        item.children = MarkdownHelper.convertMindMapChildren(taskItem.childrens, item.children);
+      }
+
+      results.push(item);
+    }
+
+    return results;
   }
 };
 
