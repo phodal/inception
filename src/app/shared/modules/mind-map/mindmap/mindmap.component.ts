@@ -6,6 +6,7 @@ import marked from 'marked';
 import { MatDialog } from '@angular/material';
 import { MarkdownTaskItemFormComponent } from 'src/app/shared/markdown/markdown-task-item-form/markdown-task-item-form.component';
 import { MarkdownTaskModel } from '../../../markdown/model/markdown.model';
+import { MarkdownTaskItemService } from '../../../markdown/markdown-task-item/markdown-task-item.service';
 
 const d3 = require('d3');
 const Mousetrap = require('mousetrap');
@@ -53,13 +54,14 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     }
     const tokens = marked.lexer(this.value);
     const markdownJson = MarkdownHelper.markdownToJSON(tokens, this.items);
-    console.log(markdownJson);
+    this.markdownTaskItemService.setTasks(markdownJson);
+
     this.items = MarkdownHelper.toMindMapData(markdownJson);
     this.subject.next(this.items);
   }
 
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private markdownTaskItemService: MarkdownTaskItemService) {
 
   }
 
@@ -545,12 +547,13 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
   }
 
   updateItem(item: MarkdownTaskModel) {
+    const that = this;
     const dialogRef = this.dialog.open(MarkdownTaskItemFormComponent);
 
     let instance = dialogRef.componentInstance;
     instance.item = item;
     instance.itemChange.subscribe((item) => {
-      console.log(item);
+      that.markdownTaskItemService.updateTask(null, item);
     });
 
     dialogRef.afterClosed().subscribe(result => {

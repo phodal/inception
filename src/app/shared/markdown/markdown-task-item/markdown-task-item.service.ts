@@ -24,6 +24,8 @@ export class MarkdownTaskItemService {
     if (!item.id) {
       return;
     }
+    console.log(this.tasks, item);
+
     const tasks = this.updateTaskByItem(this.tasks, item);
     this.update(tasks);
   }
@@ -31,7 +33,7 @@ export class MarkdownTaskItemService {
   updateTaskByItem(tasks, item) {
     for (const task of tasks) {
       if (task.item.id === item.id) {
-        task.item = item;
+        task.item = JSON.parse(JSON.stringify(item));
         return tasks;
       }
 
