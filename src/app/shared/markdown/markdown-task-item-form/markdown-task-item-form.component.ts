@@ -18,7 +18,7 @@ import { MarkdownTaskModel } from '../model/markdown.model';
 export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccessor {
   @Input() id: string;
   private disabled = false;
-  private item: MarkdownTaskModel;
+  item: MarkdownTaskModel;
 
   onChange(param1) {
   }
