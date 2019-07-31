@@ -1,4 +1,6 @@
 .mind-map {
+  background: #fff;
+
   .node circle {
     cursor: pointer;
     fill: #fff;
@@ -18,11 +20,6 @@
 
   .node.selected circle {
     fill: green;
-  }
-
-  #chart {
-    position: absolute;
-    top: 0;
   }
 
   rect {
