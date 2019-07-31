@@ -54,6 +54,11 @@ export class MarkdownTaskItemComponent implements OnInit, ControlValueAccessor {
     this.markdownTaskItemService.updateTask($event, item);
   }
 
+  updateText($event: any, item) {
+    item.editable = false;
+    this.markdownTaskItemService.updateTask($event, item);
+  }
+
   changeStartDateInput(event: any, item) {
     item.startDate = event;
     this.markdownTaskItemService.updateTask(event, item);

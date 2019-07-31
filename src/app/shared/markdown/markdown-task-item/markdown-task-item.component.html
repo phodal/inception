@@ -26,7 +26,7 @@
 
     <span (click)="enableEdit(task.item)" *ngIf="!task.item.editable">{{task.item.text}}</span>
     <input autofocus *ngIf="task.item.editable" type="text" [(ngModel)]="task.item.text"
-           (keyup.enter)="task.item.editable = false">
+           (keyup.enter)="updateText($event, task.item)">
 
     <span class="context" *ngIf="task.item.context"> @{{task.item.context}} </span>
     <span class="tag" *ngIf="task.item.tag">
