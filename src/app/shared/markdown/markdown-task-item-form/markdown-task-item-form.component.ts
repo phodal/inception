@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material';
 import { MarkdownTaskModel } from '../model/markdown.model';
@@ -16,6 +16,7 @@ import { MarkdownTaskModel } from '../model/markdown.model';
   ]
 })
 export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccessor {
+  @Input() id: string;
   private disabled = false;
   private item: MarkdownTaskModel;
 
@@ -45,6 +46,7 @@ export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccess
   }
 
   writeValue(obj: any): void {
+    console.log(this.id, obj);
     if (obj !== null) {
       this.item = obj;
       if (this.item && !this.item.completed) {
