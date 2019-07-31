@@ -8,6 +8,12 @@
         {"name": "Leaf 4"}
       ]
     },
-    {"name": "Branch 2"}
+    {
+      "name": "Branch 2",
+      "children": [
+        {"name": "Leaf 3"},
+        {"name": "Leaf 4"}
+      ]
+    }
   ]
 }

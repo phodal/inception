@@ -35,7 +35,7 @@ export class MindmapComponent implements OnInit, AfterViewInit {
 
     let selectNode = function(target) {
       if (target) {
-        let sel = d3.selectAll('#body svg .node').filter(function(d) {
+        let sel = d3.selectAll('#d3-mindmap svg .node').filter(function(d) {
           return d.id == target.id;
         })[0][0];
         if (sel) {
@@ -258,7 +258,7 @@ export class MindmapComponent implements OnInit, AfterViewInit {
     };
     let connector = diagonal;
 
-    let vis = d3.select('#body')
+    let vis = d3.select('#d3-mindmap')
       .append('svg:svg')
       .attr('width', w
         + m[1] + m[3])
