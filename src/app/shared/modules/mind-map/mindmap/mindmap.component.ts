@@ -256,7 +256,7 @@ export class MindmapComponent implements OnInit, AfterViewInit {
         + 'H' + (source.y + hy)
         + 'V' + target.x + 'H' + target.y;
     };
-    let connector = elbow;
+    let connector = diagonal;
 
     let vis = d3.select('#body')
       .append('svg:svg')

@@ -2,8 +2,6 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@
 import { MarkdownService } from 'ngx-markdown';
 import { MarkdownTaskModel } from '../model/markdown.model';
 
-import map from './data/map';
-
 @Component({
   selector: 'component-markdown-task-editor',
   templateUrl: './markdown-tasks-editor.component.html',
@@ -24,9 +22,7 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
   private taskIndex: number;
   private simplemde: any;
   private indexString: string;
-  displayType = 'todo';
-  data = {...map};
-
+  displayType = 'mindmap';
 
   constructor(private markdownService: MarkdownService) {
   }
