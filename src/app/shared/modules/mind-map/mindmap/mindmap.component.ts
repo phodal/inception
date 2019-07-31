@@ -51,7 +51,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     const tokens = marked.lexer(this.value);
     const markdownJson = MarkdownHelper.markdownToJSON(tokens, this.tasks);
     this.tasks = MarkdownHelper.toMindMapData(markdownJson);
-    console.log(this.tasks);
+    // console.log(this.tasks);
     this.subject.next(this.tasks);
   }
 
@@ -61,232 +61,26 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
   /* tslint:disable */
   ngAfterViewInit(): void {
-    let m = [20, 120, 20, 120],
-      // w = 1280 - m[1] - m[3],
-      w = 900 - m[1] - m[3],
-      h = 500 - m[0] - m[2],
-      i = 0,
-      l,
-      root;
+    var treeData =
+      {
+        'name': 'Top Level',
+        'children': [
+          {
+            'name': 'Level 2: A',
+            'children': [
+              { 'name': 'Son of A' },
+              { 'name': 'Daughter of A' }
+            ]
+          },
+          { 'name': 'Level 2: B' }
+        ]
+      };
 
-    let getDirection = function(data) {
-      if (!data) {
-        return 'root';
-      }
-      if (data.position) {
-        return data.position;
-      }
-      return getDirection(data.parent);
-    };
-
-    let selectNode = function(target) {
-      if (target) {
-        let sel = d3
-          .selectAll('#d3-mindmap svg .node')
-          .filter(d => d.id == target.id)
-          .nodes()[0];
-
-        if (sel) {
-          select(sel);
-        }
-      }
-    };
-
-    Mousetrap.bind('left', function() {
-      // left key pressed
-      let selection = d3.select('.node.selected')[0][0];
-      if (selection) {
-        let data = selection.__data__;
-        let dir = getDirection(data);
-        switch (dir) {
-          case('right'):
-          case('root'):
-            selectNode(data.parent || data.left[0]);
-            break;
-          case('left'):
-            selectNode((data.children || [])[0]);
-            break;
-          default:
-            break;
-        }
-      }
-    });
-    Mousetrap.bind('right', function() {
-      // right key pressed
-      let selection = d3.select('.node.selected')[0][0];
-      if (selection) {
-        let data = selection.__data__;
-        let dir = getDirection(data);
-        switch (dir) {
-          case('left'):
-          case('root'):
-            selectNode(data.parent || data.right[0]);
-            break;
-          case('right'):
-            selectNode((data.children || [])[0]);
-            break;
-          default:
-            break;
-        }
-      }
-    });
-    Mousetrap.bind('up', function() {
-      // up key pressed
-      let selection = d3.select('.node.selected')[0][0];
-      if (selection) {
-        let data = selection.__data__;
-        let dir = getDirection(data);
-        switch (dir) {
-          case('root'):
-            break;
-          case('left'):
-          case('right'):
-            let p = data.parent, nl = p.children || [], i = 1;
-            if (p[dir]) {
-              nl = p[dir];
-            }
-            l = nl.length;
-            for (; i < l; i++) {
-              if (nl[i].id === data.id) {
-                selectNode(nl[i - 1]);
-                break;
-              }
-            }
-            break;
-        }
-      }
-      return false;
-    });
-    Mousetrap.bind('down', function() {
-      // down key pressed
-      // up key pressed
-      let selection = d3.select('.node.selected')[0][0];
-      if (selection) {
-        let data = selection.__data__;
-        let dir = getDirection(data);
-        switch (dir) {
-          case('root'):
-            break;
-          case('left'):
-          case('right'):
-            let p = data.parent, nl = p.children || [], i = 0;
-            if (p[dir]) {
-              nl = p[dir];
-            }
-            l = nl.length;
-            for (; i < l - 1; i++) {
-              if (nl[i].id === data.id) {
-                selectNode(nl[i + 1]);
-                break;
-              }
-            }
-            break;
-        }
-      }
-      return false;
-    });
-
-    Mousetrap.bind(['ins', 'enter'], function() {
-      let selection = d3.select('.node.selected')[0][0];
-      if (selection) {
-        let data = selection.__data__;
-        let dir = getDirection(data);
-        let name = prompt('New name');
-        if (name) {
-          if (dir === 'root') {
-            dir = data.right.length > data.left.length ? 'left' : 'right';
-          }
-          let cl = data[dir] || data.children || data._children;
-          if (!cl) {
-            cl = data.children = [];
-          }
-          cl.push({ name, position: dir });
-          update(root);
-        }
-      }
-    });
-
-    Mousetrap.bind('del', function() {
-      let selection = d3.select('.node.selected')[0][0];
-      if (selection) {
-        let data = selection.__data__;
-        let dir = getDirection(data);
-        if (dir === 'root') {
-          alert('Can\'t delete root');
-          return;
-        }
-        let cl = data.parent[dir] || data.parent.children;
-        if (!cl) {
-          alert('Could not locate children');
-          return;
-        }
-        let i = 0, l = cl.length;
-        for (; i < l; i++) {
-          if (cl[i].id === data.id) {
-            if (confirm('Sure you want to delete ' + data.name + '?') === true) {
-              cl.splice(i, 1);
-            }
-            break;
-          }
-        }
-        selectNode(root);
-        update(root);
-      }
-    });
-
-    Mousetrap.bind('space', function() {
-      let selection = d3.select('.node.selected')[0][0];
-      if (selection) {
-        let data = selection.__data__;
-        data.name = prompt('New text:', data.name) || data.name;
-        update(root);
-      }
-    });
-
-    let select = function(node) {
-      // Find previously selected, unselect
-      d3.select('.selected').classed('selected', false);
-      // Select current item
-      d3.select(node).classed('selected', true);
-    };
-
-    let handleClick = function(d, index) {
-      select(this);
-      update(d);
-    };
-
-    let tree = d3.tree()
-      .size([h, w]);
-    //
-    // let diagonal = d3.svg.diagonal()
-    //   .projection(function(d) {
-    //     return [d.y, d.x];
-    //   });
-
-    let diagonal = d3.linkHorizontal()
-      .x(d => d.x)
-      .y(d => d.y);
-
-    let connector = diagonal;
-
-    let vis = d3.select('#d3-mindmap')
-      .append('svg:svg')
-      .attr('width', w
-        + m[1] + m[3])
-      .attr('height', h + m[0] + m[2])
-      .append('svg:g')
-      // .attr("transform", "translate(" + m[3] + "," + m[0] + ")")
-      .attr('transform', 'translate(' + (w / 2 + m[3]) + ',' + m[0] + ')')
-    ;
-
-// *
-    let loadTasks = function(json) {
-      if (!json) {
-        return;
-      }
+    let updateData = function(json) {
+      let root;
       let i = 0, l = json.children.length;
       (window as any).data = root = json;
-      root.x0 = h / 2;
+      root.x0 = 200;
       root.y0 = 0;
 
       json.left = [];
@@ -300,220 +94,207 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
           json.children[i].position = 'right';
         }
       }
-      update(root, true);
-      selectNode(root);
+
+      return root;
     };
-// */
+    treeData = updateData(treeData);
+    console.log(treeData);
 
-// *
-    let loadFreeMind = function(fileName) {
-      d3.xml(fileName, 'application/xml', function(err, xml) {
-        // Changes XML to JSON
-        function xmlToJson(xml) {
+    // Set the dimensions and margins of the diagram
+    var margin = { top: 20, right: 90, bottom: 30, left: 90 },
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
-          // Create the return object
-          let obj = {};
+// append the svg object to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+    var svg = d3.select('#d3-mindmap').append('svg')
+      .attr('width', width + margin.right + margin.left)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-          if (xml.nodeType == 1) { // element
-            // do attributes
-            if (xml.attributes.length > 0) {
-              obj['@attributes'] = {};
-              for (let j = 0; j < xml.attributes.length; j++) {
-                let attribute = xml.attributes.item(j);
-                obj['@attributes'][attribute.nodeName] = attribute.nodeValue;
-              }
-            }
-          } else if (xml.nodeType == 3) { // text
-            obj = xml.nodeValue;
-          }
+    var i = 0,
+      duration = 750,
+      root;
 
-          // do children
-          if (xml.hasChildNodes()) {
-            for (let i = 0; i < xml.childNodes.length; i++) {
-              let item = xml.childNodes.item(i);
-              let nodeName = item.nodeName;
-              if (typeof (obj[nodeName]) == 'undefined') {
-                obj[nodeName] = xmlToJson(item);
-              } else {
-                if (typeof (obj[nodeName].push) == 'undefined') {
-                  let old = obj[nodeName];
-                  obj[nodeName] = [];
-                  obj[nodeName].push(old);
-                }
-                obj[nodeName].push(xmlToJson(item));
-              }
-            }
-          }
-          return obj;
-        }
+// declares a tree layout and assigns the size
+    var treemap = d3.tree().size([height, width]);
 
-        let js = xmlToJson(xml);
-        let data = (js as any).map.node;
-        let parseData = function(data, direction, d?) {
-          let key, i, l, dir = direction, node: any = {}, child;
-          for (key in data['@attributes']) {
-            node[key.toLowerCase()] = data['@attributes'][key];
-          }
-          node.direction = node.direction || dir;
-          l = (data.node || []).length;
-          if (l) {
-            node.children = [];
-            for (i = 0; i < l; i++) {
-              dir = data.node[i]['@attributes'].POSITION || dir;
-              child = parseData(data.node[i], {}, dir);
-              (node[dir] = node[dir] || []).push(child);
-              node.children.push(child);
-            }
-          }
-          return node;
-        };
-        root = parseData(data, 'right');
-        root.x0 = h / 2;
-        root.y0 = w / 2;
-        update(root, true);
-        selectNode(root);
-      });
-    };
-// */
-    let toArray = function(item, arr?, d?) {
-      arr = arr || [];
-      let dr = d || 1;
-      let i = 0, l = item.children ? item.children.length : 0;
-      arr.push(item);
-      if (item.position && item.position === 'left') {
-        dr = -1;
+// Assigns parent, children, height, depth
+    root = d3.hierarchy(treeData, function(d) {
+      return d.children;
+    });
+    root.x0 = height / 2;
+    root.y0 = 0;
+
+// Collapse after the second level
+    root.children.forEach(collapse);
+
+    update(root);
+
+// Collapse the node and all it's children
+    function collapse(d) {
+      if (d.children) {
+        d._children = d.children;
+        d._children.forEach(collapse);
+        d.children = null;
       }
-      item.y = dr * item.y;
-      for (; i < l; i++) {
-        toArray(item.children[i], arr, dr);
-      }
-      return arr;
-    };
+    }
 
-    function update(source, slow?) {
-      let duration = (d3.event && d3.event.altKey) || slow ? 1000 : 100;
+    function update(source) {
+
+      // Assigns the x and y position for the nodes
+      var treeData = treemap(root);
 
       // Compute the new tree layout.
-      let nodesLeft = tree
-        .size([h, (w / 2) - 20])(
-          d3.hierarchy(root, d => (d.depth === 0) ? d.left : d.children)
-        ).descendants();
-        // .separation(d => (d.depth === 0) ? d.left : d.children)
-        // .nodes(root)
-        // .reverse();
-      let nodesRight = tree
-        .size([h, w / 2])(
-          d3.hierarchy(root, d => (d.depth === 0) ? d.right : d.children)
-        ).descendants();
-        // .separation(d => (d.depth === 0) ? d.right : d.children)
-        // .nodes(root)
-        // .reverse();
-
-      root.children = root.left.concat(root.right);
-      root._children = null;
-      let nodes = toArray(root);
+      var nodes = treeData.descendants(),
+        links = treeData.descendants().slice(1);
 
       // Normalize for fixed-depth.
-      // nodes.forEach(function(d) { d.y = d.depth * 180; });
-      let node = vis.selectAll('g.node')
+      nodes.forEach(function(d) {
+        d.y = d.depth * 180;
+      });
+
+      // ****************** Nodes section ***************************
+
+      // Update the nodes...
+      var node = svg.selectAll('g.node')
         .data(nodes, function(d) {
           return d.id || (d.id = ++i);
         });
 
-      let nodeEnter = node.enter().append('svg:g')
-        .attr('class', function(d) {
-          return d.selected ? 'node selected' : 'node';
-        })
+      // Enter any new modes at the parent's previous position.
+      var nodeEnter = node.enter().append('g')
+        .attr('class', 'node')
         .attr('transform', function(d) {
-          console.log(d, source);
           return 'translate(' + source.y0 + ',' + source.x0 + ')';
         })
-        .on('click', handleClick);
+        .on('click', click);
 
-      nodeEnter.append('svg:circle')
-        .attr('r', 1e-6);
+      // Add Circle for the nodes
+      nodeEnter.append('circle')
+        .attr('class', 'node')
+        .attr('r', 1e-6)
+        .style('fill', function(d) {
+          return d._children ? 'lightsteelblue' : '#fff';
+        });
 
-      nodeEnter.append('svg:text')
+      // Add labels for the nodes
+      nodeEnter.append('text')
+        .attr('dy', '.35em')
         .attr('x', function(d) {
-          return d.children || d._children ? -10 : 10;
+          return d.children || d._children ? -13 : 13;
         })
-
-        .attr('dy', 14)
-        .attr('text-anchor', 'middle')
+        .attr('text-anchor', function(d) {
+          return d.children || d._children ? 'end' : 'start';
+        })
         .text(function(d) {
-          return (d.name || d.text);
-        })
-        .style('fill-opacity', 1);
+          return d.data.name;
+        });
 
-      let nodeUpdate = node.transition()
+      // UPDATE
+      var nodeUpdate = nodeEnter.merge(node);
+
+      // Transition to the proper position for the node
+      nodeUpdate.transition()
         .duration(duration)
         .attr('transform', function(d) {
           return 'translate(' + d.y + ',' + d.x + ')';
         });
 
-      nodeUpdate.select('text')
-        .text(function(d) {
-          return (d.name || d.text);
-        });
+      // Update the node attributes and style
+      nodeUpdate.select('circle.node')
+        .attr('r', 10)
+        .style('fill', function(d) {
+          return d._children ? 'lightsteelblue' : '#fff';
+        })
+        .attr('cursor', 'pointer');
 
-      nodeUpdate.select('circle')
-        .attr('r', 6);
 
-      let nodeExit = node.exit().transition()
+      // Remove any exiting nodes
+      var nodeExit = node.exit().transition()
         .duration(duration)
         .attr('transform', function(d) {
           return 'translate(' + source.y + ',' + source.x + ')';
         })
         .remove();
 
+      // On exit reduce the node circles size to 0
       nodeExit.select('circle')
         .attr('r', 1e-6);
 
+      // On exit reduce the opacity of text labels
       nodeExit.select('text')
         .style('fill-opacity', 1e-6);
 
-      // Update the links…
-      let link = vis.selectAll('path.link')
-        .data(tree(d3.hierarchy(nodes, )).links(), function(d) {
-          return d.target.id;
+      // ****************** links section ***************************
+
+      // Update the links...
+      var link = svg.selectAll('path.link')
+        .data(links, function(d) {
+          return d.id;
         });
 
       // Enter any new links at the parent's previous position.
-      link.enter().insert('svg:path', 'g')
+      var linkEnter = link.enter().insert('path', 'g')
         .attr('class', 'link')
         .attr('d', function(d) {
-          let o = { x: source.x0, y: source.y0 };
-          return connector({ source: o, target: o });
-        })
-        .transition()
-        .duration(duration)
-        .attr('d', connector);
+          var o = { x: source.x0, y: source.y0 };
+          return diagonal(o, o);
+        });
 
-      // Transition links to their new position.
-      link.transition()
-        .duration(duration)
-        .attr('d', connector);
+      // UPDATE
+      var linkUpdate = linkEnter.merge(link);
 
-      // Transition exiting nodes to the parent's new position.
-      link.exit().transition()
+      // Transition back to the parent element position
+      linkUpdate.transition()
         .duration(duration)
         .attr('d', function(d) {
-          let o = { x: source.x, y: source.y };
-          return connector({ source: o, target: o });
+          return diagonal(d, d.parent);
+        });
+
+      // Remove any exiting links
+      var linkExit = link.exit().transition()
+        .duration(duration)
+        .attr('d', function(d) {
+          var o = { x: source.x, y: source.y };
+          return diagonal(o, o);
         })
         .remove();
 
-      // Stash the old positions for transition.
+      // Store the old positions for transition.
       nodes.forEach(function(d) {
         d.x0 = d.x;
         d.y0 = d.y;
       });
+
+      // Creates a curved (diagonal) path from parent to the child nodes
+      function diagonal(s, d) {
+
+        let path = `M ${s.y} ${s.x}
+            C ${(s.y + d.y) / 2} ${s.x},
+              ${(s.y + d.y) / 2} ${d.x},
+              ${d.y} ${d.x}`;
+
+        return path;
+      }
+
+      // Toggle children on click.
+      function click(d) {
+        if (d.children) {
+          d._children = d.children;
+          d.children = null;
+        } else {
+          d.children = d._children;
+          d._children = null;
+        }
+        update(d);
+      }
     }
 
-    loadTasks(this.tasks);
-
     this.subject.asObservable().subscribe((value) => {
-      loadTasks(value);
+
     });
   }
 
