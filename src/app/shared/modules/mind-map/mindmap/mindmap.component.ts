@@ -450,7 +450,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
         });
 
       nodeUpdate.select('circle')
-        .attr('r', 4.5);
+        .attr('r', 6);
 
       let nodeExit = node.exit().transition()
         .duration(duration)
