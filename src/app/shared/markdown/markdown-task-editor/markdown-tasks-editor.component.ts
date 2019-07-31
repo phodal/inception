@@ -35,6 +35,8 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
     this.simplemde = new (window as any).SimpleMDE({
       autoDownloadFontAwesome: false,
       autosave: true,
+      spellChecker: false,
+      autofocus: true,
       status: ['autosave', 'lines', 'words', 'cursor', {
         className: 'keystrokes',
         defaultValue(el) {
