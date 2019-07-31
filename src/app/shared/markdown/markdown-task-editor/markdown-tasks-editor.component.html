@@ -18,7 +18,9 @@
 
     </component-markdown-task-render>
     <div *ngIf="displayType === 'mindmap'">
-      <component-mindmap></component-mindmap>
+      <component-mindmap
+        [(ngModel)]="value"
+        (ngModelChange)="updateModel($event)"></component-mindmap>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import { MarkdownService } from 'ngx-markdown';
 import { MarkdownTaskModel } from '../model/markdown.model';
 

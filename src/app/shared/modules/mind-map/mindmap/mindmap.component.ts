@@ -1,13 +1,59 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Subject } from 'rxjs';
+import MarkdownHelper from '../../../markdown/utils/markdown.helper';
+import marked from 'marked';
+
 const d3 = require('d3');
 const Mousetrap = require('mousetrap');
 
 @Component({
   selector: 'component-mindmap',
   templateUrl: './mindmap.component.html',
-  styleUrls: ['./mindmap.component.scss']
+  styleUrls: ['./mindmap.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MindmapComponent),
+      multi: true
+    }
+  ]
 })
-export class MindmapComponent implements OnInit, AfterViewInit {
+export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+  value: string;
+  tasks: [];
+  private subject = new Subject<any>();
+  private disabled = false;
+
+  onChange(value: any) {
+  }
+
+  onTouched() {
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  writeValue(obj: any): void {
+    this.value = obj;
+    if (!this.value) {
+      return;
+    }
+    const tokens = marked.lexer(this.value);
+    this.tasks = MarkdownHelper.markdownToJSON(tokens, this.tasks);
+    console.log(this.tasks);
+    // this.subject.next(this.tasks);
+  }
+
   // Refs: http://bl.ocks.org/jdarling/2d4e84460d5f5df9c0ff
   ngOnInit(): void {
   }
@@ -210,7 +256,9 @@ export class MindmapComponent implements OnInit, AfterViewInit {
       .size([h, w]);
 
     let diagonal = d3.svg.diagonal()
-      .projection(function(d) { return [d.y, d.x]; });
+      .projection(function(d) {
+        return [d.y, d.x];
+      });
 
     let connector = diagonal;
 
@@ -321,7 +369,6 @@ export class MindmapComponent implements OnInit, AfterViewInit {
       });
     };
 // */
-
     let toArray = function(item, arr?, d?) {
       arr = arr || [];
       let dr = d || 1;
@@ -457,5 +504,13 @@ export class MindmapComponent implements OnInit, AfterViewInit {
     }
 
     loadJSON('/assets/data/mindmap/data.json');
+
+    this.subject.asObservable().subscribe((value) => {
+      loadJSON(value);
+    })
+  }
+
+  changeNode() {
+    this.onChange(this.value);
   }
 }
