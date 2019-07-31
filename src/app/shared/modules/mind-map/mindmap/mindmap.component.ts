@@ -148,6 +148,16 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       var treeData = treemap(root);
 
       // Compute the new tree layout.
+      let nodesLeft = treemap(
+          d3.hierarchy(root, d => (d.depth === 0) ? d.left : d.children)
+        )
+
+      // Compute the new tree layout.
+      let nodesRight = treemap(
+          d3.hierarchy(root, d => (d.depth === 0) ? d.right : d.children)
+        )
+
+      // Compute the new tree layout.
       var nodes = treeData.descendants(),
         links = treeData.descendants().slice(1);
 
