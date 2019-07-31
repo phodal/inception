@@ -33,7 +33,7 @@
               "node_modules/prismjs/themes/prism-okaidia.css"
             ],
             "scripts": [
-              "node_modules/d3/dist/d3.min.js",
+              "node_modules/d3/d3.min.js",
               "node_modules/mousetrap/mousetrap.min.js",
               "node_modules/prismjs/prism.js",
               "node_modules/marked/lib/marked.js"

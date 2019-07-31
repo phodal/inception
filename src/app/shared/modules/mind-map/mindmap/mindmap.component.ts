@@ -233,7 +233,7 @@ export class MindmapComponent implements OnInit, AfterViewInit {
       update(d);
     };
 
-    let tree = d3.tree()
+    let tree = d3.layout.tree()
       .size([h, w]);
 
     let calcLeft = function(d) {
@@ -245,9 +245,8 @@ export class MindmapComponent implements OnInit, AfterViewInit {
       return { x: d.x, y: l };
     };
 
-    let diagonal = d3.linkVertical()
-      .x(function(d) { return d.x; })
-      .y(function(d) { return d.y; });
+    let diagonal = d3.svg.diagonal()
+      .projection(function(d) { return [d.y, d.x]; });
 
     let elbow = function(d, i?) {
       let source = calcLeft(d.source);
