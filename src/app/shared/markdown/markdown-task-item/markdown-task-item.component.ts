@@ -45,7 +45,7 @@ export class MarkdownTaskItemComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    if (obj) {
+    if (obj !== null) {
       this.list = obj;
     }
   }
@@ -54,22 +54,8 @@ export class MarkdownTaskItemComponent implements OnInit, ControlValueAccessor {
     this.markdownTaskItemService.updateTask($event, item);
   }
 
-  updateText($event: any, item) {
-    item.editable = false;
+  changeForm($event: any, item: any) {
+    console.log(item, 'aaaaa')
     this.markdownTaskItemService.updateTask($event, item);
-  }
-
-  changeStartDateInput(event: any, item) {
-    item.startDate = event;
-    this.markdownTaskItemService.updateTask(event, item);
-  }
-
-  changeEndDateInput(event: any, item) {
-    item.endDate = event;
-    this.markdownTaskItemService.updateTask(event, item);
-  }
-
-  enableEdit(item) {
-    item.editable = true;
   }
 }

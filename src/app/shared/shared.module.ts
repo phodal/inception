@@ -24,6 +24,7 @@ import { MarkdownTaskRenderComponent } from './markdown/markdown-task-render/mar
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { MarkdownTaskItemService } from './markdown/markdown-task-item/markdown-task-item.service';
 import { MindMapModule } from './modules/mind-map/mind-map.module';
+import { MarkdownTaskItemFormComponent } from './markdown/markdown-task-item-form/markdown-task-item-form.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { MindMapModule } from './modules/mind-map/mind-map.module';
     MarkdownTasksEditorComponent,
     MarkdownTaskItemComponent,
     RichTextEditorComponent,
-    MarkdownTaskRenderComponent
+    MarkdownTaskRenderComponent,
+    MarkdownTaskItemFormComponent
   ],
   providers: [
     ContentEditableDirective,
@@ -85,7 +87,8 @@ import { MindMapModule } from './modules/mind-map/mind-map.module';
     MarkdownTasksEditorComponent,
     MarkdownTaskItemComponent,
     MarkdownTaskRenderComponent,
-    RichTextEditorComponent
+    RichTextEditorComponent,
+    MarkdownTaskItemFormComponent
   ],
   entryComponents: []
 })

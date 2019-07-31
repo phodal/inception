@@ -24,7 +24,7 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
   private indexString: string;
   displayType = 'mindmap';
 
-  constructor(private markdownService: MarkdownService) {
+  constructor() {
   }
 
   ngOnInit() {

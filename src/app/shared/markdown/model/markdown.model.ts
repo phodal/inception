@@ -1,6 +1,7 @@
 export interface MarkdownTaskModel {
   id: string;
   completed: boolean;
+  editable?: boolean;
   startDate?: string;
   endDate?: string;
   text: string;

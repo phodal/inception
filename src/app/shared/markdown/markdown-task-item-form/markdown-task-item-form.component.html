@@ -1,0 +1,31 @@
+<mat-checkbox class="complete" [(ngModel)]="item.completed" (change)="checkValue($event)"></mat-checkbox>
+
+<span class="priority" *ngIf="item.priority">{{item.priority}} </span>
+<span class="start-date" *ngIf="item.startDate">
+        <mat-form-field>
+          <mat-icon matPrefix>calendar today</mat-icon>
+          <input mwlFlatpickr
+                 matInput
+                 (ngModelChange)="changeStartDateInput($event)"
+                 [(ngModel)]="item.startDate">
+          </mat-form-field>
+    </span>
+<span class="end-date" *ngIf="item.endDate">
+        <mat-form-field>
+          <mat-icon matPrefix>calendar today</mat-icon>
+          <input mwlFlatpickr
+                 matInput
+                 (ngModelChange)="changeEndDateInput($event)"
+                 [(ngModel)]="item.endDate">
+          </mat-form-field>
+    </span>
+
+<span (click)="enableEdit($event)" *ngIf="!item.editable">{{item.text}}</span>
+<input autofocus *ngIf="item.editable" type="text" [(ngModel)]="item.text"
+       (keyup.enter)="updateText($event)">
+
+<span class="context" *ngIf="item.context"> @{{item.context}} </span>
+<span class="tag" *ngIf="item.tag">
+      <span *ngFor="let tag of item.tag;let last = last">{{tag}}
+        <ng-template *ngIf="!last">,</ng-template> </span>
+</span>
