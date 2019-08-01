@@ -66,6 +66,7 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
     this.indexString = '';
 
     this.taskToMarkdownList($event);
+    this.tempValue = this.tempValue.replace(/\$[A-Za-z0-9_-]{7,14}/g, '');
     this.simplemde.value(this.tempValue);
   }
 

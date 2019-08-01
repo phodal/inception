@@ -55,7 +55,6 @@ export class MarkdownTaskItemComponent implements OnInit, ControlValueAccessor {
   }
 
   changeForm($event: any, item: any) {
-    console.log($event, item);
     this.markdownTaskItemService.updateTask($event, item);
   }
 }
