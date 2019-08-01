@@ -23,6 +23,6 @@ export class KnowledgeManagementComponent implements OnInit {
   }
 
   changeValue($event) {
-    this.storage.setItem('knowledge.editor.value', $event);
+    this.storage.setItemString('knowledge.editor.value', $event);
   }
 }
