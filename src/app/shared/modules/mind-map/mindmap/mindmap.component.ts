@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, forwardRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material';
@@ -24,6 +24,8 @@ const Mousetrap = require('mousetrap');
   ]
 })
 export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+  @ViewChild('mapElement', null) mapElement: Elementref;
+
   value: string;
   items: any;
   private subject = new Subject<any>();
@@ -69,13 +71,16 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
   /* tslint:disable */
   ngAfterViewInit(): void {
     const that = this;
+    const element = this.mapElement.nativeElement;
+
     let m = [20, 120, 20, 120],
       // w = 1280 - m[1] - m[3],
-      w = 900 - m[1] - m[3],
-      h = 500 - m[0] - m[2],
+      w = element.offsetWidth - m[1] - m[3],
+      h = element.offsetHeight - m[0] - m[2],
       i = 0,
       l,
       root;
+
 
     let getDirection = function(data) {
       if (!data) {
@@ -283,7 +288,12 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       .attr('transform', 'translate(' + (w / 2 + m[3]) + ',' + m[0] + ')')
     ;
 
-// *
+    function updateWindow() {
+      vis.attr('width', that.mapElement.nativeElement.offsetWidth).attr('height', that.mapElement.nativeElemente.offsetHeight);
+    }
+
+    d3.select(window).on('resize', updateWindow);
+
     let loadTasks = function(json) {
       if (!json) {
         return;
@@ -455,7 +465,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
         })
         .style('fill', d => {
           if (!d.item) {
-            return 'yellow'
+            return 'yellow';
           }
           console.log(d.item);
           return d.item.completed ? 'red' : 'blue';
