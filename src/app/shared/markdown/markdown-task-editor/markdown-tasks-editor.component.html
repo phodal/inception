@@ -13,14 +13,14 @@
 
     <component-markdown-task-render
       *ngIf="displayType === 'todo'"
-      [(ngModel)]="value"
+      [(ngModel)]="tasks"
       (ngModelChange)="updateModel($event)">
-
     </component-markdown-task-render>
     <div *ngIf="displayType === 'mindmap'">
       <component-mindmap
-        [(ngModel)]="value"
-        (ngModelChange)="updateModel($event)"></component-mindmap>
+        [(ngModel)]="tasks"
+        (ngModelChange)="updateModel($event)">
+      </component-mindmap>
     </div>
   </div>
 </div>

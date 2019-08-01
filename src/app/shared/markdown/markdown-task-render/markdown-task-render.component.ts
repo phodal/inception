@@ -51,12 +51,8 @@ export class MarkdownTaskRenderComponent implements OnInit, ControlValueAccessor
   }
 
   writeValue(obj: any): void {
-    this.value = obj;
-    if (this.value) {
-      const tokens = marked.lexer(this.value);
-      this.tasks = MarkdownHelper.markdownToJSON(tokens, this.tasks);
-      this.markdownTaskItemService.setTasks(this.tasks);
-
+    if (obj) {
+      this.tasks = obj;
       if (this.hasSubscribe) {
         return;
       }

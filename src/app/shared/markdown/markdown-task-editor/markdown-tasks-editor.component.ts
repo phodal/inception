@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MarkdownTaskModel } from '../model/markdown.model';
+import marked from 'marked';
+import MarkdownHelper from '../utils/markdown.helper';
+import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-item.service';
 
 @Component({
   selector: 'component-markdown-task-editor',
@@ -7,7 +10,7 @@ import { MarkdownTaskModel } from '../model/markdown.model';
   styleUrls: ['./markdown-tasks-editor.component.scss']
 })
 export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
-  @Input() value = `
+  @Input() textValue = `
  - [x] (A) 2016-03-14 2016-03-18 1.323 +tag +tag2 @context due: 2016-05-30
  - 33
     - 1.23
@@ -22,8 +25,9 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
   private simplemde: any;
   private indexString: string;
   displayType = 'mindmap';
+  tasks: any;
 
-  constructor() {
+  constructor(private markdownTaskItemService: MarkdownTaskItemService) {
   }
 
   ngOnInit() {
@@ -49,14 +53,23 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
       }],
       element: document.querySelector('.markdown-task-editor')
     });
-    this.simplemde.value(this.value);
+    this.simplemde.value(this.textValue);
+
     this.simplemde.codemirror.on('change', () => {
       that.updateValue(that.simplemde.value());
     });
+
+    setTimeout(() => {
+      that.updateValue(that.textValue);
+    }, 10);
   }
 
   updateValue(value) {
-    this.value = value;
+    this.textValue = value;
+    const tokens = marked.lexer(this.textValue);
+    this.tasks = MarkdownHelper.markdownToJSON(tokens, this.tasks);
+    this.markdownTaskItemService.setTasks(this.tasks);
+
     this.change.emit(value);
   }
 
