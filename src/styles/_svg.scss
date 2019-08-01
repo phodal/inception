@@ -20,6 +20,9 @@
 
   .node.selected circle {
     fill: green;
+    stroke-width: 4px;
+    opacity: 0.5;
+    stroke: black;
   }
 
   rect {
