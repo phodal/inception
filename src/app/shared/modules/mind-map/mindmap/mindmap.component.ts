@@ -2,7 +2,6 @@ import { AfterViewInit, Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import MarkdownHelper from '../../../markdown/utils/markdown.helper';
-import marked from 'marked';
 import { MatDialog } from '@angular/material';
 import { MarkdownTaskItemFormComponent } from 'src/app/shared/markdown/markdown-task-item-form/markdown-task-item-form.component';
 import { MarkdownTaskModel } from '../../../markdown/model/markdown.model';
