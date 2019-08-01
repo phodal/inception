@@ -33,3 +33,7 @@ body {
   letter-spacing: .01em;
   line-height: 1.6;
 }
+
+.as-horizontal >.as-split-area {
+  overflow-y: hidden!important;;
+}
