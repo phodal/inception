@@ -247,9 +247,6 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       if (selection) {
         let data = selection.__data__;
         that.updateItem(data.item);
-        // console.log(data);
-        // data.name = prompt('New text:', data.name) || data.name;
-        // update(root);
       }
     });
 
@@ -548,7 +545,6 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
   addItem(data, name: string) {
     const results = this.markdownTaskItemService.addTask(data.item, name);
-    console.log(results);
     this.onChange(results);
   }
 
