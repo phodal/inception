@@ -59,7 +59,32 @@ export class MarkdownTaskItemService {
   }
 
   addTask(item, name: string) {
+    return this.addTaskByItem(this.tasks, item, name);
+  }
 
+  addTaskByItem(tasks, item, name) {
+    for (const task of tasks) {
+      if (task.item.id === item.id) {
+        const newItem = {
+          item: {
+            text: name
+          }
+        };
+
+        if (task.childrens) {
+          task.childrens.push(newItem);
+        } else {
+          task.childrens = [newItem];
+        }
+        return tasks;
+      }
+
+      if (task.childrens) {
+        this.addTaskByItem(task.childrens, item, name);
+      }
+    }
+
+    return tasks;
   }
 
   updateTaskByItem(tasks, item) {

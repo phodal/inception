@@ -544,8 +544,10 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     this.onChange(results);
   }
 
-  addItem(item: MarkdownTaskModel, name: string) {
-    this.markdownTaskItemService.addTask(item, name);
+  addItem(data, name: string) {
+    const results = this.markdownTaskItemService.addTask(data.item, name);
+    console.log(results);
+    this.onChange(results);
   }
 
   updateItem(item: MarkdownTaskModel) {
