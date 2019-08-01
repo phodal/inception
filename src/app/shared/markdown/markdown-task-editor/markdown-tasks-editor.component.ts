@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MarkdownTaskModel } from '../model/markdown.model';
 import marked from 'marked';
 import MarkdownHelper from '../utils/markdown.helper';
 import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-item.service';
+import { SplitAreaDirective, SplitComponent } from 'angular-split';
 
 @Component({
   selector: 'component-markdown-task-editor',
@@ -12,6 +13,24 @@ import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-ite
 export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
   @Input() textValue = '';
   @Output() change = new EventEmitter();
+
+  @ViewChild('split', {static: false}) split: SplitComponent;
+  @ViewChild('area1', {static: false}) area1: SplitAreaDirective;
+  @ViewChild('area2', {static: false}) area2: SplitAreaDirective;
+
+  direction = 'horizontal';
+  sizes = {
+    percent: {
+      area1: 30,
+      area2: 70,
+    },
+    pixel: {
+      area1: 120,
+      area2: '*',
+      area3: 160,
+    },
+  };
+
   private tempValue: string;
   private taskIndex: number;
   private simplemde: any;
@@ -53,6 +72,18 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       that.updateValue(that.textValue);
     }, 10);
+  }
+
+
+  dragEnd(unit, {sizes}) {
+    if (unit === 'percent') {
+      this.sizes.percent.area1 = sizes[0];
+      this.sizes.percent.area2 = sizes[1];
+    } else if (unit === 'pixel') {
+      this.sizes.pixel.area1 = sizes[0];
+      this.sizes.pixel.area2 = sizes[1];
+      this.sizes.pixel.area3 = sizes[2];
+    }
   }
 
   updateValue(value) {

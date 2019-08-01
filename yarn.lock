@@ -838,6 +838,13 @@ angular-resizable-element@^3.2.4:
   dependencies:
     tslib "^1.9.0"
 
+angular-split@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/angular-split/-/angular-split-3.0.2.tgz#df7c52653b15a7307f143e127d7552039f526b13"
+  integrity sha512-km59k1kEgVlplo2t4t5Ob43Vx16qVXWXsl5gbsdQtqrOW7341So4CFUmCjcZgfk1swu9RBaCdSQEqzNWOe/89w==
+  dependencies:
+    tslib "^1.9.0"
+
 angularx-flatpickr@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/angularx-flatpickr/-/angularx-flatpickr-6.1.0.tgz#e1edad5a360b4c2b56c92cee5334c6319b968def"

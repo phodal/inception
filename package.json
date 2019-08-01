@@ -26,6 +26,7 @@
     "@ecodev/fab-speed-dial": "^3.1.4",
     "@swimlane/ngx-datatable": "^15.0.2",
     "angular-calendar": "^0.27.14",
+    "angular-split": "^3.0.2",
     "angularx-flatpickr": "^6.1.0",
     "core-js": "^2.5.4",
     "d3": "3.5.17",

@@ -25,6 +25,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { MarkdownTaskItemService } from './markdown/markdown-task-item/markdown-task-item.service';
 import { MindMapModule } from './modules/mind-map/mind-map.module';
 import { MarkdownTaskItemFormComponent } from './markdown/markdown-task-item-form/markdown-task-item-form.component';
+import { AngularSplitModule } from 'angular-split';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { MarkdownTaskItemFormComponent } from './markdown/markdown-task-item-for
     EcoFabSpeedDialModule,
     FlexLayoutModule,
     FlatpickrModule.forRoot(),
+    AngularSplitModule.forRoot(),
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,
@@ -77,6 +79,7 @@ import { MarkdownTaskItemFormComponent } from './markdown/markdown-task-item-for
     FlexLayoutModule,
     FlatpickrModule,
     MindMapModule,
+    AngularSplitModule,
 
     CalendarHeaderComponent,
     DraggableEditableSectionComponent,
