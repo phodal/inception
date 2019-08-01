@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, forwardRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, forwardRef, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material';
@@ -24,7 +24,7 @@ const Mousetrap = require('mousetrap');
   ]
 })
 export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
-  @ViewChild('mapElement', null) mapElement: Elementref;
+  @ViewChild('mapElement', null) mapElement: ElementRef;
 
   value: string;
   items: any;
