@@ -289,7 +289,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     ;
 
     function updateWindow() {
-      vis.attr('width', that.mapElement.nativeElement.offsetWidth).attr('height', that.mapElement.nativeElemente.offsetHeight);
+      vis.attr('width', that.mapElement.nativeElement.offsetWidth).attr('height', that.mapElement.nativeElement.offsetHeight);
     }
 
     d3.select(window).on('resize', updateWindow);
