@@ -548,7 +548,8 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     let instance = dialogRef.componentInstance;
     instance.item = item;
     instance.itemChange.subscribe((item) => {
-      that.markdownTaskItemService.updateTask(null, item);
+      const results = that.markdownTaskItemService.updateTask(null, item);
+      that.onChange(results);
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -24,10 +24,11 @@ export class MarkdownTaskItemService {
     if (!item.id) {
       return;
     }
-    console.log(this.tasks, item);
 
     const tasks = this.updateTaskByItem(this.tasks, item);
     this.update(tasks);
+
+    return tasks;
   }
 
   updateTaskByItem(tasks, item) {

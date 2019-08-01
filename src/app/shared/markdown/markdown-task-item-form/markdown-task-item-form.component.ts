@@ -76,6 +76,7 @@ export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccess
   }
 
   checkValue($event: MatCheckboxChange) {
+    this.item.completed = $event.checked;
     this.itemChange.emit(this.item);
   }
 }
