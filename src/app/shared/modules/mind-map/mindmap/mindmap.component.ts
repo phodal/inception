@@ -257,7 +257,6 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     };
 
     let handleClick = function(d, index) {
-      console.log(d, index);
       select(this);
       update(d);
       that.updateItem(d.item);
