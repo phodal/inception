@@ -444,7 +444,6 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       nodeEnter.append('svg:circle')
         .attr('r', 1e-6)
         .on('mouseover', function(d) {
-          console.log(d);
           div.transition()
             .duration(200)
             .style('opacity', .9);
@@ -540,10 +539,6 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     this.subject.asObservable().subscribe((value) => {
       loadTasks(value);
     });
-  }
-
-  changeNode() {
-    this.onChange(this.value);
   }
 
   updateItem(item: MarkdownTaskModel) {
