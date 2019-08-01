@@ -452,13 +452,19 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
           div.transition()
             .duration(500)
             .style('opacity', 0);
+        })
+        .style('fill', d => {
+          if (!d.item) {
+            return 'yellow'
+          }
+          console.log(d.item);
+          return d.item.completed ? 'red' : 'blue';
         });
 
       nodeEnter.append('svg:text')
         .attr('x', function(d) {
           return d.children || d._children ? -10 : 10;
         })
-
         .attr('dy', 14)
         .attr('text-anchor', 'middle')
         .text(function(d) {
