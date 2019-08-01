@@ -52,11 +52,8 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     if (!this.value) {
       return;
     }
-    const tokens = marked.lexer(this.value);
-    const markdownJson = MarkdownHelper.markdownToJSON(tokens, this.items);
-    this.markdownTaskItemService.setTasks(markdownJson);
 
-    this.items = MarkdownHelper.toMindMapData(markdownJson);
+    this.items = MarkdownHelper.toMindMapData(this.value);
     this.subject.next(this.items);
   }
 
@@ -548,12 +545,11 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     let instance = dialogRef.componentInstance;
     instance.item = item;
     instance.itemChange.subscribe((item) => {
-      const results = that.markdownTaskItemService.updateTask(null, item);
-      that.onChange(results);
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      const results = that.markdownTaskItemService.updateTask(null, item);
+      that.onChange(results);
     });
   }
 }
