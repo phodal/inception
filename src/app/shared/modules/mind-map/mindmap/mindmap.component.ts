@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
-import MarkdownHelper from '../../../markdown/utils/markdown.helper';
 import { MatDialog } from '@angular/material';
+
+import MarkdownHelper from '../../../markdown/utils/markdown.helper';
 import { MarkdownTaskItemFormComponent } from 'src/app/shared/markdown/markdown-task-item-form/markdown-task-item-form.component';
 import { MarkdownTaskModel } from '../../../markdown/model/markdown.model';
 import { MarkdownTaskItemService } from '../../../markdown/markdown-task-item/markdown-task-item.service';
@@ -205,13 +206,14 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
           if (!cl) {
             cl = data.children = [];
           }
+          that.addItem(data, name);
           cl.push({ name, position: dir });
           update(root);
         }
       }
     });
 
-    Mousetrap.bind('del', function() {
+    Mousetrap.bind(['del', 'backspace'], function() {
       let selection = d3.select('.node.selected')[0][0];
       if (selection) {
         let data = selection.__data__;
@@ -230,6 +232,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
           if (cl[i].id === data.id) {
             if (confirm('Sure you want to delete ' + data.name + '?') === true) {
               cl.splice(i, 1);
+              that.deleteItem(data);
             }
             break;
           }
@@ -534,6 +537,15 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
     this.subject.asObservable().subscribe((value) => {
       loadTasks(value);
     });
+  }
+
+  deleteItem(data) {
+    const results = this.markdownTaskItemService.deleteTask(data.item);
+    this.onChange(results);
+  }
+
+  addItem(item: MarkdownTaskModel, name: string) {
+    this.markdownTaskItemService.addTask(item, name);
   }
 
   updateItem(item: MarkdownTaskModel) {

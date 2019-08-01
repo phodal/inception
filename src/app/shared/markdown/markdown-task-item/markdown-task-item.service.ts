@@ -31,6 +31,37 @@ export class MarkdownTaskItemService {
     return tasks;
   }
 
+  deleteTask(item) {
+    if (!item.id) {
+      return;
+    }
+
+    const tasks = this.deleteTaskByItem(this.tasks, item);
+    this.update(tasks);
+
+    return tasks;
+  }
+
+  deleteTaskByItem(tasks: any, item: any) {
+    for (let i = 0; i < tasks.length; i++) {
+      let task = tasks[i];
+      if (task.item.id === item.id) {
+        tasks.splice(i, 1);
+        return tasks;
+      }
+
+      if (task.childrens) {
+        task = this.deleteTaskByItem(task.childrens, item);
+      }
+    }
+
+    return tasks;
+  }
+
+  addTask(item, name: string) {
+
+  }
+
   updateTaskByItem(tasks, item) {
     for (const task of tasks) {
       if (task.item.id === item.id) {
