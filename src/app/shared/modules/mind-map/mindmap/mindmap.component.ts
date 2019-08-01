@@ -465,7 +465,7 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
         .attr('x', function(d) {
           return d.children || d._children ? -10 : 10;
         })
-        .attr('dy', 14)
+        .attr('dy', 20)
         .attr('text-anchor', 'middle')
         .text(function(d) {
           return (d.name || d.text);
