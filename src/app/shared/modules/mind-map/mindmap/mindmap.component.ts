@@ -246,8 +246,10 @@ export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAcce
       let selection = d3.select('.node.selected')[0][0];
       if (selection) {
         let data = selection.__data__;
-        data.name = prompt('New text:', data.name) || data.name;
-        update(root);
+        that.updateItem(data.item);
+        // console.log(data);
+        // data.name = prompt('New text:', data.name) || data.name;
+        // update(root);
       }
     });
 
