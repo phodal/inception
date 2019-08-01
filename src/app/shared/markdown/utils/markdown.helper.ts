@@ -10,6 +10,7 @@ import { MarkdownTaskModel } from '../model/markdown.model';
 const COMPLETED_PATTERN = /(\[[x|X]] )(.*)/;
 const COMPLETED_PREPENDED_DATES_PATTERN = /(\d{4}-\d{2}-\d{2}) (\d{4}-\d{2}-\d{2}) (.*)/;
 const SINGLE_DATE_PATTERN = /(\d{4}-\d{2}-\d{2}) (.*)/;
+const ID_PATTERN = /(\$([A-Za-z0-9_-]{7,14})) (.*)/;
 const CONTEXT_PATTERN = /(?:^|\s)@(\S*\w)/;
 const TAG_PATTERN = /(?:^|\s)\+(\S*\w)/g;
 const PRIORITY_PATTERN = /\(([A-Z])\) (.*)/;
@@ -23,8 +24,15 @@ const MarkdownHelper = {
     let context;
     let priority;
     let tag;
+    let id;
 
     TAG_PATTERN.lastIndex = 0;
+
+    const idMatch = ID_PATTERN.exec(text);
+    if (idMatch && idMatch.length && idMatch.length > 1) {
+      id = idMatch[2];
+      text = idMatch[3];
+    }
 
     const completeMatch = COMPLETED_PATTERN.exec(text);
     if (completeMatch && completeMatch.length && completeMatch.length > 1) {
@@ -65,7 +73,10 @@ const MarkdownHelper = {
       text = text.replace(TAG_PATTERN, '');
     }
 
-    const id = shortid.generate();
+    if (!id) {
+      id = shortid.generate();
+    }
+
     return {
       originText,
       id,

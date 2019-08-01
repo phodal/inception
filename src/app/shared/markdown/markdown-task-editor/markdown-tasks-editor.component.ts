@@ -79,6 +79,10 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
           this.indexString = '  '.repeat(this.taskIndex);
         }
         this.tempValue += this.indexString + ` -`;
+        if (item.id) {
+          this.tempValue += ` $${item.id}`;
+        }
+
         if (item.completed) {
           this.tempValue += ' [x]';
         } else {
