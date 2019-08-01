@@ -1,8 +1,15 @@
-# Inception
+# Phodal's Personal Knowledge Management toolbox
 
-> A Toolbox for research on Agile Inception step by step
+>  Phodal's Personal Knowledge Management toolbox
 
-Libraries:
+Demo: [https://inception.phodal.com/](https://inception.phodal.com/)
+
+## Setup
+
+1. ``yarn install``
+2. ``yarn start``
+
+## Libraries
 
 Markdown
 
@@ -12,4 +19,5 @@ Markdown
 
 ## LICENSE
 
+ MIT
  
