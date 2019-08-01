@@ -10,15 +10,7 @@ import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-ite
   styleUrls: ['./markdown-tasks-editor.component.scss']
 })
 export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
-  @Input() textValue = `
- - [x] (A) 2016-03-14 2016-03-18 1.323 +tag +tag2 @context due: 2016-05-30
- - 33
-    - 1.23
-    - 1.44
-      - 1.55
-      - 2.55
- - 23.34
-    `;
+  @Input() textValue = '';
   @Output() change = new EventEmitter();
   private tempValue: string;
   private taskIndex: number;
@@ -31,7 +23,6 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
   }
 
   ngAfterViewInit(): void {
