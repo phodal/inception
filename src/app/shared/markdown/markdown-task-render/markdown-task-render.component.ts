@@ -1,11 +1,8 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { MarkdownTaskModel } from '../model/markdown.model';
-import MarkdownHelper from '../utils/markdown.helper';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-item.service';
-
-const marked = require('marked');
 
 @Component({
   selector: 'component-markdown-task-render',
