@@ -10,7 +10,7 @@ import { MarkdownTaskModel } from '../model/markdown.model';
 const COMPLETED_PATTERN = /(\[[x|X]] )(.*)/;
 const COMPLETED_PREPENDED_DATES_PATTERN = /(\d{4}-\d{2}-\d{2}) (\d{4}-\d{2}-\d{2}) (.*)/;
 const SINGLE_DATE_PATTERN = /(\d{4}-\d{2}-\d{2}) (.*)/;
-const ID_PATTERN = /(\$([A-Za-z0-9_-]{7,14})) (.*)/;
+const ID_PATTERN = /(\s\$([A-Za-z0-9_-]{7,14})) (.*)/;
 const CONTEXT_PATTERN = /(?:^|\s)@(\S*\w)/;
 const TAG_PATTERN = /(?:^|\s)\+(\S*\w)/g;
 const PRIORITY_PATTERN = /\(([A-Z])\) (.*)/;
