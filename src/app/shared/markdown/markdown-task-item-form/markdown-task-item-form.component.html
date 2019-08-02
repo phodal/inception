@@ -1,7 +1,7 @@
 <mat-checkbox class="complete" [(ngModel)]="item.completed" (change)="checkValue($event)"></mat-checkbox>
 
-<span class="priority" *ngIf="item.priority">{{item.priority}} </span>
-<span class="start-date" *ngIf="item.startDate">
+<span class="priority" *ngIf="item.priority || item.editable">{{item.priority}} </span>
+<span class="start-date" *ngIf="item.startDate || item.editable">
         <mat-form-field>
           <mat-icon matPrefix>calendar today</mat-icon>
           <input mwlFlatpickr
@@ -10,7 +10,7 @@
                  [(ngModel)]="item.startDate">
           </mat-form-field>
     </span>
-<span class="end-date" *ngIf="item.endDate">
+<span class="end-date" *ngIf="item.endDate || item.editable">
         <mat-form-field>
           <mat-icon matPrefix>calendar today</mat-icon>
           <input mwlFlatpickr
