@@ -72,7 +72,6 @@ export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccess
 
   enableEdit(event) {
     this.item.editable = true;
-    this.itemChange.emit(this.item);
   }
 
   checkValue($event: MatCheckboxChange) {

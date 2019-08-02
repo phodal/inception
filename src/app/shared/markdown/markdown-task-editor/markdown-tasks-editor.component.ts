@@ -35,7 +35,7 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
   private taskIndex: number;
   private simplemde: any;
   private indexString: string;
-  displayType = 'mindmap';
+  displayType = 'todo';
   tasks: any;
 
   constructor(private markdownTaskItemService: MarkdownTaskItemService) {
