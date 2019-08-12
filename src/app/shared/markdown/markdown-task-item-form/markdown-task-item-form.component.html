@@ -2,23 +2,23 @@
 
 <span class="priority" *ngIf="item.priority || item.editable">{{item.priority}} </span>
 <span class="start-date" *ngIf="item.startDate || item.editable">
-        <mat-form-field>
-          <mat-icon matPrefix>calendar today</mat-icon>
-          <input mwlFlatpickr
-                 matInput
-                 (ngModelChange)="changeStartDateInput($event)"
-                 [(ngModel)]="item.startDate">
-          </mat-form-field>
-    </span>
+  <mat-form-field>
+    <input mwlFlatpickr
+           matInput
+           (ngModelChange)="changeStartDateInput($event)"
+           [(ngModel)]="item.startDate">
+    <mat-icon matPrefix>calendar today</mat-icon>
+  </mat-form-field>
+</span>
 <span class="end-date" *ngIf="item.endDate || item.editable">
-        <mat-form-field>
+  <mat-form-field>
+    <input mwlFlatpickr
+           matInput
+           (ngModelChange)="changeEndDateInput($event)"
+           [(ngModel)]="item.endDate">
           <mat-icon matPrefix>calendar today</mat-icon>
-          <input mwlFlatpickr
-                 matInput
-                 (ngModelChange)="changeEndDateInput($event)"
-                 [(ngModel)]="item.endDate">
-          </mat-form-field>
-    </span>
+  </mat-form-field>
+</span>
 
 <span (click)="enableEdit($event)" *ngIf="!item.editable">{{item.text}}</span>
 <input autofocus *ngIf="item.editable" type="text" [(ngModel)]="item.text"

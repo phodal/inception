@@ -3,3 +3,19 @@
     border-top: 0;
   }
 }
+
+.start-date, .end-date {
+  mat-form-field {
+    width: 120px;
+  }
+  .mat-form-field-infix {
+    width: 120px;
+  }
+
+  .material-icons {
+    direction: rtl;
+  }
+  .mat-form-field-wrapper {
+    margin-right: 12px;
+  }
+}
