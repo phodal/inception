@@ -8,13 +8,18 @@
   mat-form-field {
     width: 120px;
   }
+
   .mat-form-field-infix {
     width: 120px;
   }
 
   .material-icons {
     direction: rtl;
+    position: relative;
+    top: 6px;
+    left: -2px;
   }
+
   .mat-form-field-wrapper {
     margin-right: 12px;
   }
