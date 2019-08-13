@@ -1,16 +1,16 @@
-<ul *ngFor="let task of list">
-  <li>
+<ul>
+  <li *ngFor="let task of list">
     <component-markdown-task-item-form
       [item]="task.item"
       (itemChange)="changeForm($event, task.item)">
     </component-markdown-task-item-form>
 
-    <ul *ngIf="task.childrens">
+    <span *ngIf="task.childrens">
       <component-markdown-task-item
         ngDefaultControl
         [(ngModel)]="task.childrens"
         (ngModelChange)="checkValue($event, null)">
       </component-markdown-task-item>
-    </ul>
+    </span>
   </li>
 </ul>
