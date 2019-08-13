@@ -12,18 +12,18 @@ const d3 = require('d3');
 const Mousetrap = require('mousetrap');
 
 @Component({
-  selector: 'component-mindmap',
-  templateUrl: './mindmap.component.html',
-  styleUrls: ['./mindmap.component.scss'],
+  selector: 'component-mind-map',
+  templateUrl: './mind-map.component.html',
+  styleUrls: ['./mind-map.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => MindmapComponent),
+      useExisting: forwardRef(() => MindMapComponent),
       multi: true
     }
   ]
 })
-export class MindmapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class MindMapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @ViewChild('mapElement', null) mapElement: ElementRef;
 
   value: string;

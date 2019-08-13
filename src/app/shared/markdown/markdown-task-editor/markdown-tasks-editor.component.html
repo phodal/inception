@@ -21,10 +21,10 @@
           (ngModelChange)="updateModel($event)">
         </component-markdown-task-render>
         <div *ngIf="displayType === 'mindmap'">
-          <component-mindmap
+          <component-mind-map
             [(ngModel)]="tasks"
             (ngModelChange)="updateModel($event)">
-          </component-mindmap>
+          </component-mind-map>
         </div>
       </div>
     </as-split-area>

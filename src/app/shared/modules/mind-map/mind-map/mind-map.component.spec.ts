@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MindmapComponent } from './mindmap.component';
+import { MindMapComponent } from './mind-map.component';
 
 describe('MindmapComponent', () => {
-  let component: MindmapComponent;
-  let fixture: ComponentFixture<MindmapComponent>;
+  let component: MindMapComponent;
+  let fixture: ComponentFixture<MindMapComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MindmapComponent ]
+      declarations: [ MindMapComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MindmapComponent);
+    fixture = TestBed.createComponent(MindMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

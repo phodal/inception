@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MindmapComponent } from './mindmap/mindmap.component';
+import { MindMapComponent } from './mind-map/mind-map.component';
 
 
 
 @NgModule({
-  declarations: [MindmapComponent],
-  exports: [MindmapComponent],
+  declarations: [MindMapComponent],
+  exports: [MindMapComponent],
   imports: [
     CommonModule
   ]
