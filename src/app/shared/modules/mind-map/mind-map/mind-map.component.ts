@@ -76,7 +76,8 @@ export class MindMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     let m = [20, 120, 20, 120],
       // w = 1280 - m[1] - m[3],
       w = element.offsetWidth - m[1] - m[3],
-      h = element.offsetHeight - m[0] - m[2],
+      h = window.innerHeight - 120,
+      // h = element.offsetHeight - m[0] - m[2],
       i = 0,
       l,
       root;
@@ -211,6 +212,7 @@ export class MindMapComponent implements OnInit, AfterViewInit, ControlValueAcce
           if (!cl) {
             cl = data.children = [];
           }
+          console.log(data);
           that.addItem(data, name);
           cl.push({ name, position: dir });
           update(root);
