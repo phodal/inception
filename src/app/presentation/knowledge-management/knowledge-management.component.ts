@@ -16,7 +16,6 @@ export class KnowledgeManagementComponent implements OnInit {
 
   ngOnInit() {
     const storageValue = this.storage.getItemString('knowledge.editor.value');
-    console.log(storageValue);
     if (storageValue) {
       this.textValue = storageValue;
     }

@@ -47,7 +47,7 @@ export class MarkdownTaskItemFormComponent implements OnInit, ControlValueAccess
   }
 
   writeValue(obj: any): void {
-    if (obj !== null) {
+    if (obj !== null && obj !== undefined) {
       this.item = obj;
       if (this.item && !this.item.completed) {
         this.item.completed = false;

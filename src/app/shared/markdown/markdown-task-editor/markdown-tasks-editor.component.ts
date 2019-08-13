@@ -46,6 +46,9 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const that = this;
+    if (!(window as any).SimpleMDE) {
+      return;
+    }
     this.simplemde = new (window as any).SimpleMDE({
       autoDownloadFontAwesome: false,
       autosave: true,

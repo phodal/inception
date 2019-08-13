@@ -13,6 +13,9 @@ export class RichTextEditorComponent implements OnInit {
 
   ngOnInit() {
     const markDownEl = document.querySelector('.markdown');
+    if (!(window as any).MediumEditor) {
+      return;
+    }
     this.editor = new (window as any).MediumEditor(document.querySelector('.editor'), {
       toolbar: {
         buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'quote', 'orderedlist', 'unorderedlist']

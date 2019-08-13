@@ -13,7 +13,8 @@ const PEOPLE_CHECKLIST = require('../../../../assets/data/checklists/people.json
 export class NewProjectChecklistComponent implements OnInit {
   techChecklist: any[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.techChecklist = TECH_CHECKLIST;

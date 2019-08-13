@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MarkdownTaskItemComponent } from './markdown-task-item.component';
+import { SharedModule } from '../../shared.module';
+import { FeaturesModule } from '../../../features/features.module';
 
 describe('MarkdownTaskItemComponent', () => {
   let component: MarkdownTaskItemComponent;
@@ -8,7 +12,13 @@ describe('MarkdownTaskItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MarkdownTaskItemComponent ]
+      imports: [
+        BrowserAnimationsModule,
+        RouterTestingModule,
+        SharedModule,
+        FeaturesModule
+      ],
+      declarations: [  ]
     })
     .compileComponents();
   }));
