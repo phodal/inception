@@ -20,7 +20,7 @@
   </mat-form-field>
 </span>
 
-<span (click)="enableEdit($event)" *ngIf="!item.editable">{{item.text}}</span>
+<div class="item-markdown-render" markdown (click)="enableEdit($event)" *ngIf="!item.editable">{{item.text}}</div>
 <input autofocus *ngIf="item.editable" type="text" [(ngModel)]="item.text"
        (keyup.enter)="updateText($event)">
 
