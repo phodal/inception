@@ -76,7 +76,7 @@ export class MindMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     let m = [20, 120, 20, 120],
       // w = 1280 - m[1] - m[3],
       w = element.offsetWidth - m[1] - m[3],
-      h = window.innerHeight - 120,
+      h = window.innerHeight - 180,
       // h = element.offsetHeight - m[0] - m[2],
       i = 0,
       l,
@@ -470,7 +470,7 @@ export class MindMapComponent implements OnInit, AfterViewInit, ControlValueAcce
             return 'yellow';
           }
           console.log(d.item);
-          return d.item.completed ? 'red' : 'blue';
+          return d.item.completed ? 'green' : 'red';
         });
 
       nodeEnter.append('svg:text')
