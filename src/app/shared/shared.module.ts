@@ -26,6 +26,7 @@ import { MarkdownTaskItemService } from './markdown/markdown-task-item/markdown-
 import { MindMapModule } from './modules/mind-map/mind-map.module';
 import { MarkdownTaskItemFormComponent } from './markdown/markdown-task-item-form/markdown-task-item-form.component';
 import { AngularSplitModule } from 'angular-split';
+import { MarkdownKanbanComponent } from './markdown/markdown-kanban/markdown-kanban.component';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { AngularSplitModule } from 'angular-split';
     MarkdownTaskItemComponent,
     RichTextEditorComponent,
     MarkdownTaskRenderComponent,
-    MarkdownTaskItemFormComponent
+    MarkdownTaskItemFormComponent,
+    MarkdownKanbanComponent
   ],
   providers: [
     ContentEditableDirective,
@@ -91,7 +93,8 @@ import { AngularSplitModule } from 'angular-split';
     MarkdownTaskItemComponent,
     MarkdownTaskRenderComponent,
     RichTextEditorComponent,
-    MarkdownTaskItemFormComponent
+    MarkdownTaskItemFormComponent,
+    MarkdownKanbanComponent
   ],
   entryComponents: [
     MarkdownTaskItemFormComponent
