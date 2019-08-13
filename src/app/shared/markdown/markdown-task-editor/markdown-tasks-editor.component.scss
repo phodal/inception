@@ -4,6 +4,10 @@
   }
 }
 
+:host {
+  background: #fff;
+}
+
 .markdown-editor-container {
   display: flex;
   justify-content: space-between;
@@ -16,7 +20,6 @@
   }
 
   .preview {
-    background-color: #ccc;
     flex: 1;
     padding: 1rem;
   }
