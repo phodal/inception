@@ -59,6 +59,16 @@ export class MarkdownTaskItemService {
   }
 
   addTask(item, name: string) {
+    console.log(this.tasks);
+    if (!item) {
+      this.tasks.push({
+        item: {
+          text: name
+        }
+      });
+
+      return this.tasks;
+    }
     return this.addTaskByItem(this.tasks, item, name);
   }
 
