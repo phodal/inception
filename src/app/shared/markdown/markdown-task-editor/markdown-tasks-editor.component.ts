@@ -78,7 +78,8 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
       that.updateValue(that.simplemde.value());
     });
 
-    Mousetrap.bind(['command+s', 'ctrl+s'], () => {
+    Mousetrap.bind(['command+s', 'ctrl+s'], (event) => {
+      event.preventDefault();
       that.updateValue(that.simplemde.value());
     });
 
