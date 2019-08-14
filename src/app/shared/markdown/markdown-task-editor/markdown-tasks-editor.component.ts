@@ -41,6 +41,7 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
   private indexString: string;
   displayType = 'todo';
   tasks: any;
+  isInitEditor = false;
 
   constructor(private markdownTaskItemService: MarkdownTaskItemService, private storageService: StorageService) {
   }
@@ -73,7 +74,9 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
           el.innerHTML = '0 Keystrokes';
         },
         onUpdate(el) {
-          el.innerHTML = ++this.keystrokes + ' Keystrokes';
+          if (that.isInitEditor) {
+            that.updateValue(that.simplemde.value());
+          }
         }
       }],
       element: document.querySelector('.markdown-task-editor')
@@ -90,6 +93,7 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
     });
 
     setTimeout(() => {
+      that.isInitEditor = true;
       that.updateValue(that.textValue);
     }, 10);
   }
