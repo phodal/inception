@@ -212,7 +212,6 @@ export class MindMapComponent implements OnInit, AfterViewInit, ControlValueAcce
           if (!cl) {
             cl = data.children = [];
           }
-          console.log(data);
           that.addItem(data, name);
           cl.push({ name, position: dir });
           update(root);
@@ -469,7 +468,6 @@ export class MindMapComponent implements OnInit, AfterViewInit, ControlValueAcce
           if (!d.item) {
             return 'yellow';
           }
-          console.log(d.item);
           return d.item.completed ? 'green' : 'red';
         });
 

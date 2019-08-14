@@ -59,7 +59,6 @@ export class MarkdownTaskItemService {
   }
 
   addTask(item, name: string) {
-    console.log(this.tasks);
     if (!item) {
       this.tasks.push({
         item: {

@@ -22,8 +22,6 @@ export class KnowledgeManagementComponent implements OnInit {
   }
 
   changeValue($event) {
-    console.log($event);
-    console.log(typeof $event);
     this.storage.setItemString('knowledge.editor.value', $event);
   }
 }

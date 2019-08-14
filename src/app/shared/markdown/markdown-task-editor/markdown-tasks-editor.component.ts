@@ -67,18 +67,7 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
       },
       spellChecker: false,
       autofocus: true,
-      status: ['autosave', 'lines', 'words', 'cursor', {
-        className: 'keystrokes',
-        defaultValue(el) {
-          this.keystrokes = 0;
-          el.innerHTML = '0 Keystrokes';
-        },
-        onUpdate(el) {
-          if (that.isInitEditor) {
-            that.updateValue(that.simplemde.value());
-          }
-        }
-      }],
+      status: ['autosave', 'lines', 'words', 'cursor'],
       element: document.querySelector('.markdown-task-editor')
     });
     this.simplemde.value(this.textValue);
