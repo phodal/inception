@@ -15,13 +15,13 @@ export class KnowledgeManagementComponent implements OnInit {
   }
 
   ngOnInit() {
-    const storageValue = this.storage.getItemString('knowledge.editor.value');
+    const storageValue = this.storage.getItemString('smde_pholedge');
     if (storageValue) {
       this.textValue = storageValue;
     }
   }
 
   changeValue($event) {
-    this.storage.setItemString('knowledge.editor.value', $event);
+    this.storage.setItemString('smde_pholedge', $event);
   }
 }
