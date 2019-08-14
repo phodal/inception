@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { MarkdownTaskModel } from '../model/markdown.model';
 import marked from 'marked';
+const Mousetrap = require('mousetrap');
+import { SplitAreaDirective, SplitComponent } from 'angular-split';
+
+import { MarkdownTaskModel } from '../model/markdown.model';
 import MarkdownHelper from '../utils/markdown.helper';
 import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-item.service';
-import { SplitAreaDirective, SplitComponent } from 'angular-split';
 
 @Component({
   selector: 'component-markdown-task-editor',
@@ -72,7 +74,11 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
     });
     this.simplemde.value(this.textValue);
 
-    this.simplemde.codemirror.on('change', () => {
+    this.simplemde.codemirror.on('blur', () => {
+      that.updateValue(that.simplemde.value());
+    });
+
+    Mousetrap.bind(['command+s', 'ctrl+s'], () => {
       that.updateValue(that.simplemde.value());
     });
 
