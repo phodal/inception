@@ -1,25 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonasComponent } from './personas.component';
+import { PersonalDevelopmentPlanComponent } from './personal-development-plan.component';
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
-import { StorageService } from '../../core/services/storage.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('PersonasComponent', () => {
-  let component: PersonasComponent;
-  let fixture: ComponentFixture<PersonasComponent>;
+describe('PersonalDevelopmentPlanComponent', () => {
+  let component: PersonalDevelopmentPlanComponent;
+  let fixture: ComponentFixture<PersonalDevelopmentPlanComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, FeaturesModule, BrowserAnimationsModule],
-      providers: [StorageService],
-      declarations: [PersonasComponent]
+      declarations: [PersonalDevelopmentPlanComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PersonasComponent);
+    fixture = TestBed.createComponent(PersonalDevelopmentPlanComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
