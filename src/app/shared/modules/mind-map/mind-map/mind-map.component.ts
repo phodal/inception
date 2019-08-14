@@ -475,14 +475,15 @@ export class MindMapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
       nodeEnter.append('svg:text')
         .attr('x', function(d) {
-          return d.children || d._children ? -10 : 10;
+          return d.children || d._children ? -12 : 12;
         })
-        .attr('dy', 20)
+        .attr('dy', 24)
         .attr('text-anchor', 'middle')
         .text(function(d) {
           return (d.name || d.text);
         })
-        .style('fill-opacity', 1);
+        .style('fill-opacity', 1)
+        .style("font-size", "1em");
 
       let nodeUpdate = node.transition()
         .duration(duration)
