@@ -51,7 +51,11 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
     }
     this.simplemde = new (window as any).SimpleMDE({
       autoDownloadFontAwesome: false,
-      autosave: true,
+      autosave: {
+        enabled: true,
+        uniqueId: 'pholedge',
+        delay: 1000,
+      },
       spellChecker: false,
       autofocus: true,
       status: ['autosave', 'lines', 'words', 'cursor', {
