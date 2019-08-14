@@ -9,7 +9,7 @@
       <div class="preview">
         <mat-form-field>
           <mat-label>Render Type</mat-label>
-          <mat-select [(value)]="displayType">
+          <mat-select [(value)]="displayType" (selectionChange)="changeRenderType($event)">
             <mat-option value="todo">Todo</mat-option>
             <mat-option value="mindmap">Mind Map</mat-option>
           </mat-select>

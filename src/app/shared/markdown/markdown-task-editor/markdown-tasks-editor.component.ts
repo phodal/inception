@@ -6,6 +6,8 @@ import { SplitAreaDirective, SplitComponent } from 'angular-split';
 import { MarkdownTaskModel } from '../model/markdown.model';
 import MarkdownHelper from '../utils/markdown.helper';
 import { MarkdownTaskItemService } from '../markdown-task-item/markdown-task-item.service';
+import { MatSelectChange } from '@angular/material';
+import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
   selector: 'component-markdown-task-editor',
@@ -40,10 +42,14 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
   displayType = 'todo';
   tasks: any;
 
-  constructor(private markdownTaskItemService: MarkdownTaskItemService) {
+  constructor(private markdownTaskItemService: MarkdownTaskItemService, private storageService: StorageService) {
   }
 
   ngOnInit() {
+    const renderType = this.storageService.getItemString('render.type');
+    if (renderType) {
+      this.displayType = renderType;
+    }
   }
 
   ngAfterViewInit(): void {
@@ -88,6 +94,9 @@ export class MarkdownTasksEditorComponent implements OnInit, AfterViewInit {
     }, 10);
   }
 
+  changeRenderType($event: MatSelectChange) {
+    this.storageService.setItemString('render.type', $event.value);
+  }
 
   dragEnd(unit, {sizes}) {
     if (unit === 'percent') {
