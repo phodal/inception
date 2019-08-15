@@ -1,9 +1,5 @@
 <div class="nav-bar">
-  <a mat-button routerLinkActive="active-link" routerLink="/inception/schedule">日程</a>
-  <a mat-button routerLinkActive="active-link" routerLink="/inception/vision">远景</a>
-  <a mat-button routerLinkActive="active-link" routerLink="/inception/positioning">定位</a>
-  <a mat-button routerLinkActive="active-link" routerLink="/inception/personas">用户</a>
-  <a mat-button routerLinkActive="active-link" routerLink="/inception/business">业务架构</a>
-  <a mat-button routerLinkActive="active-link" routerLink="/inception/technical">技术架构</a>
-  <a mat-button routerLinkActive="active-link" routerLink="/inception/planning">计划</a>
+  <ng-container *ngFor="let link of linksData">
+    <a mat-button routerLinkActive="active-link" [routerLink]="link.link">{{link.name}}</a>
+  </ng-container>
 </div>
