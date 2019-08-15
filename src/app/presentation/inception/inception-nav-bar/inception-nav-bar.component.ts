@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 const Mousetrap = require('mousetrap');
@@ -41,7 +41,7 @@ export class InceptionNavBarComponent implements OnInit, AfterViewInit {
   ];
   private currentRouterIndex = 0;
 
-  constructor(private router: Router) {
+  constructor(private ngZone: NgZone, private router: Router) {
   }
 
   ngOnInit() {
@@ -71,7 +71,7 @@ export class InceptionNavBarComponent implements OnInit, AfterViewInit {
 
   private moveRouterToLeft() {
     this.currentRouterIndex--;
-    if (this.currentRouterIndex <= 0) {
+    if (this.currentRouterIndex < 0) {
       this.currentRouterIndex = this.linksData.length - 1;
     }
     this.routerToIndex();
@@ -79,6 +79,8 @@ export class InceptionNavBarComponent implements OnInit, AfterViewInit {
   }
 
   private routerToIndex() {
-    this.router.navigateByUrl(this.linksData[this.currentRouterIndex].link);
+    this.ngZone.run(() => {
+      this.router.navigateByUrl(this.linksData[this.currentRouterIndex].link);
+    });
   }
 }
