@@ -1,1 +1,27 @@
-<p>personal-development-plan works!</p>
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="reviewGroupForm">
+    <form [formGroup]="reviewGroupForm">
+      <ng-template matStepLabel>回顾（REVIEW）</ng-template>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="defineFormGroup">
+    <ng-template matStepLabel>定义（DEFINE）</ng-template>
+  </mat-step>
+
+  <mat-step [stepControl]="articulateFormGroup">
+    <ng-template matStepLabel>表达（ARTICULATE）</ng-template>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>试验（Mini Launch）</ng-template>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>寻觅（SCAN）</ng-template>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>运行（Launch）</ng-template>
+  </mat-step>
+</mat-horizontal-stepper>
