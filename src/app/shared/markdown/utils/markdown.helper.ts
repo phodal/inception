@@ -149,7 +149,7 @@ const MarkdownHelper = {
       return [];
     }
     const results = {
-      name: 'Root',
+      name: '',
       children: []
     };
     for (const taskItem of markdownJson) {
