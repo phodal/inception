@@ -1,7 +1,9 @@
 <mat-horizontal-stepper #stepper>
-  <mat-step>
-    <ng-template matStepLabel>回顾（REVIEW）</ng-template>
-    <app-review-timeline></app-review-timeline>
+  <mat-step [stepControl]="reviewGroupForm">
+    <form [formGroup]="reviewGroupForm">
+      <ng-template matStepLabel>回顾（REVIEW）</ng-template>
+      <app-review-timeline [(form)]="reviewGroupForm"></app-review-timeline>
+    </form>
   </mat-step>
 
   <mat-step>

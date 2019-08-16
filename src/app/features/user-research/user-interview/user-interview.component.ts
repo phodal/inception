@@ -18,7 +18,7 @@ export class UserInterviewComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // based on: https://martinfowler.com/articles/lean-inception/describe-personas.html
     this.form = this.formBuilder.group({
-      personas: this.formBuilder.array([
+      events: this.formBuilder.array([
         this.getNewAction()
       ])
     });
@@ -52,7 +52,6 @@ export class UserInterviewComponent implements OnInit, AfterViewInit {
       }));
     });
   }
-
 
   addUnit() {
     const control = this.form.get('personas') as FormArray;

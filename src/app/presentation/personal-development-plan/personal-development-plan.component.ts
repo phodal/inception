@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-personal-development-plan',
@@ -7,11 +7,13 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./personal-development-plan.component.scss']
 })
 export class PersonalDevelopmentPlanComponent implements OnInit {
-  reviewGroupForm: FormGroup;
+  reviewGroupForm: FormGroup = this.formBuilder.group({});
   defineFormGroup: FormGroup;
   articulateFormGroup: FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) {
+
+  }
 
   ngOnInit() {
   }
