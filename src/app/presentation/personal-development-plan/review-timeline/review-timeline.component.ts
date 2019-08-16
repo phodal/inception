@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./review-timeline.component.scss']
 })
 export class ReviewTimelineComponent implements OnInit {
+  tomorrow = new Date(2017, 9, 20, 14);
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
