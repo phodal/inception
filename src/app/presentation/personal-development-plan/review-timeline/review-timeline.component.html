@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <vertical-timeline>
+  <vertical-timeline class="time-line">
     <ng-container formArrayName="events" *ngFor="let event of formData.controls; let i=index">
       <ng-container [formGroupName]="i">
         <vertical-timeline-card
@@ -7,16 +7,17 @@
           [dateValue]="event.value?.date"
           [timeString]="event.value?.date | date: 'yyyy.MM'">
 
-          <mat-form-field>
+          <mat-form-field class="pdp-timeline-color">
             <input type="color" matInput formControlName="color" required>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="pdp-timeline-date">
             <input type="date" matInput formControlName="date" required>
           </mat-form-field>
 
-          <mat-form-field>
-            <input type="text" matInput placeholder="标题" formControlName="content" required>
+          <mat-form-field class="pdp-timeline-content">
+            <textarea type="text" matInput placeholder="标题" formControlName="content" required>
+            </textarea>
           </mat-form-field>
         </vertical-timeline-card>
       </ng-container>
