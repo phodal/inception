@@ -1,22 +1,29 @@
 <form [formGroup]="form">
-  {{formData.controls.length}}
-  <vertical-timeline formArrayName="events">
-    <ng-container *ngFor="let event of formData.controls; let i=index" [formGroupName]="i">
-      <vertical-timeline-card>
-        aa
-        <mat-form-field>
-          <input type="color" matInput formControlName="color" required>
-        </mat-form-field>
+  <vertical-timeline>
+    <ng-container formArrayName="events" *ngFor="let event of formData.controls; let i=index">
+      <ng-container [formGroupName]="i">
+        <vertical-timeline-card
+          [color]="event.value?.color"
+          [dateValue]="event.value?.date"
+          [timeString]="event.value?.date | date: 'yyyy.MM'">
 
-        <mat-form-field>
-          <input type="date" matInput formControlName="date" required>
-        </mat-form-field>
+          <mat-form-field>
+            <input type="color" matInput formControlName="color" required>
+          </mat-form-field>
 
-        <mat-form-field>
-          <input type="text" matInput placeholder="标题" formControlName="content" required>
-        </mat-form-field>
+          <mat-form-field>
+            <input type="date" matInput formControlName="date" required>
+          </mat-form-field>
 
-      </vertical-timeline-card>
+          <mat-form-field>
+            <input type="text" matInput placeholder="标题" formControlName="content" required>
+          </mat-form-field>
+        </vertical-timeline-card>
+      </ng-container>
     </ng-container>
   </vertical-timeline>
+
+  <button mat-mini-fab color="warn" type="button" color="primary" (click)="addUnit()">
+    <mat-icon>add box</mat-icon>
+  </button>
 </form>

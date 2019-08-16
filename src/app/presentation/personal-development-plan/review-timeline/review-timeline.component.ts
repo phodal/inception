@@ -2,6 +2,7 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { StorageService } from '../../../core/services/storage.service';
+import { isEmpty } from 'lodash';
 
 @Component({
   selector: 'app-review-timeline',
@@ -21,11 +22,6 @@ export class ReviewTimelineComponent implements OnInit, AfterViewInit {
         this.getNewAction()
       ])
     });
-
-    this.form.valueChanges.subscribe(() => {
-      this.formChange.emit(this.form);
-      this.submitTimelineForm();
-    });
   }
 
   ngAfterViewInit(): void {
@@ -34,10 +30,17 @@ export class ReviewTimelineComponent implements OnInit, AfterViewInit {
   }
 
   initForm(that) {
+    that.form.valueChanges.subscribe(() => {
+      that.formChange.emit(that.form);
+      that.submitTimelineForm();
+    });
+
     const events = that.storage.getItem('pdp.review.events');
-    if (!events) {
+    if (isEmpty(events)) {
       return;
     }
+
+    console.log(events, isEmpty(events));
 
     const control = that.form.get('events') as FormArray;
     control.clear();
@@ -68,7 +71,7 @@ export class ReviewTimelineComponent implements OnInit, AfterViewInit {
     return this.formBuilder.group({
       date: ['', Validators.required],
       color: ['', Validators.required],
-      content: [[''], Validators.required]
+      content: ['', Validators.required]
     });
   }
 
