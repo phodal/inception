@@ -1,16 +1,14 @@
 <mat-horizontal-stepper #stepper>
-  <mat-step [stepControl]="reviewGroupForm">
-    <form [formGroup]="reviewGroupForm">
-      <ng-template matStepLabel>回顾（REVIEW）</ng-template>
-    </form>
+  <mat-step>
+    <ng-template matStepLabel>回顾（REVIEW）</ng-template>
     <app-review-timeline></app-review-timeline>
   </mat-step>
 
-  <mat-step [stepControl]="defineFormGroup">
+  <mat-step>
     <ng-template matStepLabel>定义（DEFINE）</ng-template>
   </mat-step>
 
-  <mat-step [stepControl]="articulateFormGroup">
+  <mat-step>
     <ng-template matStepLabel>表达（ARTICULATE）</ng-template>
   </mat-step>
 

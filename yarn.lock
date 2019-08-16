@@ -845,6 +845,11 @@ angular-split@^3.0.2:
   dependencies:
     tslib "^1.9.0"
 
+angular-vertical-timeline@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/angular-vertical-timeline/-/angular-vertical-timeline-0.6.0.tgz#5e949741c2a2ceee37a30c5245195c86745da90d"
+  integrity sha1-XpSXQcKizu43owxSRRlchnRdqQ0=
+
 angularx-flatpickr@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/angularx-flatpickr/-/angularx-flatpickr-6.1.0.tgz#e1edad5a360b4c2b56c92cee5334c6319b968def"

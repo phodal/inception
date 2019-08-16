@@ -6,6 +6,7 @@ import { PersonalDevelopmentPlanComponent } from './personal-development-plan.co
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
 import { ReviewTimelineComponent } from './review-timeline/review-timeline.component';
+import { VerticalTimelineModule } from 'angular-vertical-timeline';
 
 const routes: Routes = [
   { path: '', component: PersonalDevelopmentPlanComponent }
@@ -21,7 +22,8 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     FeaturesModule,
-    CommonModule
+    CommonModule,
+    VerticalTimelineModule
   ]
 })
 export class PersonalDevelopmentPlanModule {
