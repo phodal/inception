@@ -1,16 +1,9 @@
-<!-- Add the timeline -->
 <vertical-timeline>
-
-  <!-- Add some cards to the timeline. It works with *ngFor too -->
-
-  <!-- If no value is passed for the date, the current time is used. -->
-  <vertical-timeline-card>
-    <h1>Today</h1>
+  <vertical-timeline-card [color]="'red'" [timeString]="'2019'">
+    <p>Today</p>
   </vertical-timeline-card>
 
-  <!-- tomorrow = new Date(2017, 9, 20, 14,34); -->
   <vertical-timeline-card [dateValue]="tomorrow">
-    <h1>Tomorrow</h1>
+    <p>Tomorrow</p>
   </vertical-timeline-card>
-
 </vertical-timeline>
