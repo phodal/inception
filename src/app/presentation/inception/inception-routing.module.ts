@@ -9,33 +9,33 @@ const routes: Routes = [
     children: [
       {
         path: 'schedule',
-        loadChildren: () => import('../schedule/schedule.module').then(m => m.ScheduleModule),
+        loadChildren: () => import('./schedule/schedule.module').then(m => m.ScheduleModule),
         data: { animation: 'HomePage' }
       },
       {
         path: 'technical',
-        loadChildren: () => import('../technical/technical.module').then(m => m.TechnicalModule),
+        loadChildren: () => import('./technical/technical.module').then(m => m.TechnicalModule),
         data: { animation: 'TechnicalPage' }
       },
       {
         path: 'positioning',
-        loadChildren: () => import('../positioning/positioning.module').then(m => m.PositioningModule)
+        loadChildren: () => import('./positioning/positioning.module').then(m => m.PositioningModule)
       },
       {
         path: 'vision',
-        loadChildren: () => import('../vision/vision.module').then(m => m.VisionModule)
+        loadChildren: () => import('./vision/vision.module').then(m => m.VisionModule)
       },
       {
         path: 'business',
-        loadChildren: () => import('../business/business.module').then(m => m.BusinessModule)
+        loadChildren: () => import('./business/business.module').then(m => m.BusinessModule)
       },
       {
         path: 'personas',
-        loadChildren: () => import('../personas/personas.module').then(m => m.PersonasModule)
+        loadChildren: () => import('./personas/personas.module').then(m => m.PersonasModule)
       },
       {
         path: 'planning',
-        loadChildren: () => import('../planning/planning.module').then(m => m.PlanningModule)
+        loadChildren: () => import('./planning/planning.module').then(m => m.PlanningModule)
       }]
   }
 ];

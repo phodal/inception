@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PlanningComponent } from './planning.component';
-import { SharedModule } from '../../shared/shared.module';
-import { FeaturesModule } from '../../features/features.module';
+import { SharedModule } from '../../../shared/shared.module';
+import { FeaturesModule } from '../../../features/features.module';
 
 const routes: Routes = [
   { path: '', component: PlanningComponent }

@@ -5,8 +5,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ContextMenuModule } from 'ngx-contextmenu';
 
-import { SharedModule } from '../../shared/shared.module';
-import { FeaturesModule } from '../../features/features.module';
+import { SharedModule } from '../../../shared/shared.module';
+import { FeaturesModule } from '../../../features/features.module';
 
 const routes: Routes = [
   { path: '', component: ScheduleComponent }

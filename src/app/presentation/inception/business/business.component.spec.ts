@@ -1,26 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { VisionComponent } from './vision.component';
-import { SharedModule } from '../../shared/shared.module';
-import { FeaturesModule } from '../../features/features.module';
-import { StorageService } from '../../core/services/storage.service';
+import { BusinessComponent } from './business.component';
+import { StorageService } from '../../../core/services/storage.service';
+import { SharedModule } from '../../../shared/shared.module';
+import { FeaturesModule } from '../../../features/features.module';
 
-describe('VisionComponent', () => {
-  let component: VisionComponent;
-  let fixture: ComponentFixture<VisionComponent>;
+describe('BusinessComponent', () => {
+  let component: BusinessComponent;
+  let fixture: ComponentFixture<BusinessComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, FeaturesModule, BrowserAnimationsModule],
       providers: [StorageService],
-      declarations: [ VisionComponent ]
+      declarations: [ BusinessComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VisionComponent);
+    fixture = TestBed.createComponent(BusinessComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

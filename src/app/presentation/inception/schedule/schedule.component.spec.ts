@@ -6,8 +6,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { ContextMenuModule, ContextMenuService } from 'ngx-contextmenu';
 
 import { ScheduleComponent } from './schedule.component';
-import { SharedModule } from '../../shared/shared.module';
-import { StorageService } from '../../core/services/storage.service';
+import { SharedModule } from '../../../shared/shared.module';
+import { StorageService } from '../../../core/services/storage.service';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 describe('ScheduleComponent', () => {

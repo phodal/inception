@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TechnicalComponent } from './technical.component';
-import { FeaturesModule } from '../../features/features.module';
-import { SharedModule } from '../../shared/shared.module';
+import { FeaturesModule } from '../../../features/features.module';
+import { SharedModule } from '../../../shared/shared.module';
 
 const TECHNICAL_ROUTES: Routes = [
   { path: '', component: TechnicalComponent }

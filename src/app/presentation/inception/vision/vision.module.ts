@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { VisionComponent } from './vision.component';
-import { FeaturesModule } from '../../features/features.module';
+import { FeaturesModule } from '../../../features/features.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 
 const VISION_ROUTES: Routes = [
   { path: '', component: VisionComponent }

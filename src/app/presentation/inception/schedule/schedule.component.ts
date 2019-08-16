@@ -8,7 +8,7 @@ import {
 import { isEmpty } from 'lodash';
 import flatpickr from 'flatpickr';
 
-import { StorageService } from '../../core/services/storage.service';
+import { StorageService } from '../../../core/services/storage.service';
 
 export const colors: any = {
   red: {

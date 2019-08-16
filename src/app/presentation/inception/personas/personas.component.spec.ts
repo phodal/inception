@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PersonasComponent } from './personas.component';
-import { SharedModule } from '../../shared/shared.module';
-import { FeaturesModule } from '../../features/features.module';
-import { StorageService } from '../../core/services/storage.service';
+import { SharedModule } from '../../../shared/shared.module';
+import { FeaturesModule } from '../../../features/features.module';
+import { StorageService } from '../../../core/services/storage.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('PersonasComponent', () => {
