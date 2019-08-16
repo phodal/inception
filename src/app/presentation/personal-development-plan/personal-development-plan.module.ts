@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PersonalDevelopmentPlanComponent } from './personal-development-plan.component';
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
+import { ReviewTimelineComponent } from './review-timeline/review-timeline.component';
 
 const routes: Routes = [
   { path: '', component: PersonalDevelopmentPlanComponent }
@@ -12,7 +13,10 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [PersonalDevelopmentPlanComponent],
+  declarations: [
+    PersonalDevelopmentPlanComponent,
+    ReviewTimelineComponent
+  ],
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
