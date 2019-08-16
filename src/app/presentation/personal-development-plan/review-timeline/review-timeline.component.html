@@ -1,23 +1,22 @@
 <form [formGroup]="form">
+  {{formData.controls.length}}
   <vertical-timeline formArrayName="events">
-    <ng-container *ngFor="let time of formData.controls; let i=index">
-      <div [formGroupName]="i">
-        <vertical-timeline-card [color]="time.color" [timeString]="time.date | date: 'YYYY'">
-          aa
-          <mat-form-field>
-            <input type="color" matInput formControlName="color" required>
-          </mat-form-field>
+    <ng-container *ngFor="let event of formData.controls; let i=index" [formGroupName]="i">
+      <vertical-timeline-card>
+        aa
+        <mat-form-field>
+          <input type="color" matInput formControlName="color" required>
+        </mat-form-field>
 
-          <mat-form-field>
-            <input type="date" matInput formControlName="date" required>
-          </mat-form-field>
+        <mat-form-field>
+          <input type="date" matInput formControlName="date" required>
+        </mat-form-field>
 
-          <mat-form-field>
-            <input type="text" matInput placeholder="标题" formControlName="content" required>
-          </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput placeholder="标题" formControlName="content" required>
+        </mat-form-field>
 
-        </vertical-timeline-card>
-      </div>
+      </vertical-timeline-card>
     </ng-container>
   </vertical-timeline>
 </form>
