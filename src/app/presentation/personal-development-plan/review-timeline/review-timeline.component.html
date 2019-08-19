@@ -7,6 +7,12 @@
           [dateValue]="event.value?.date"
           [timeString]="event.value?.date | date: 'yyyy.MM'">
 
+          <button type="button" mat-mini-fab color="warn"
+                  *ngIf="form.controls.events.controls.length > 1"
+                  (click)="removeUnit(i)">
+            删除
+          </button>
+
           <mat-form-field class="pdp-timeline-color">
             <input type="color" matInput formControlName="color" required>
           </mat-form-field>
